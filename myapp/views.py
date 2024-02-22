@@ -4,18 +4,21 @@ from .models import Paquete, Servicio
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Pagina index")
+    title='AI.Tech - Artificial Intelligence HTML Template'
+    return render(request, "index.html",{
+        'title':title
+    })
 def hello(request,username):
     return HttpResponse("<h2>Hola %s</h2>"%username)
 
 def about(request):
-    return HttpResponse("about")
+    return render(request,"about.html")
 
 def paquetes(request):
     proyectos=list(Paquete.objects.values())
-    return JsonResponse(proyectos, safe=False)
+    return render(request, 'paquetes.html')
 
-def servicios(request,nombre):
-    servicios= Servicio.objects.get(nombre=nombre)
-    return HttpResponse('servicios: %s' %servicios.nombre)
+def servicios(request):
+    #servicios= Servicio.objects.get(nombre=nombre)
+    return render(request, 'servicios.html')
 
