@@ -22,3 +22,5 @@ def servicios(request):
     #servicios= Servicio.objects.get(nombre=nombre)
     return render(request, 'servicios.html')
 
+def registro(request):
+    return render(request, 'registro.html')
