@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Paquete, Servicio
-
-# Create your views here.
+paquete1="Paquete Amigo (Básico)"
+precio=15
+#nombresPaquetes=list([Paquete.objects.values.name])
+#preciosPaquetes=list([Paquete.objects.values.precio])
+# Create your views here
 def index(request):
-    title='AI.Tech - Artificial Intelligence HTML Template'
+    title='AI.Tech - Pulseras Wifi'    
     return render(request, "index.html",{
-        'title':title
+        'title':title,
+        'paquete1':paquete1,
+        'precio':precio
+
     })
 def hello(request,username):
     return HttpResponse("<h2>Hola %s</h2>"%username)
@@ -24,3 +30,8 @@ def servicios(request):
 
 def registro(request):
     return render(request, 'registro.html')
+
+def pagos(request):
+    return render(request,'pagos.html',{
+        'paquete1':paquete1,
+        'precio':precio})
