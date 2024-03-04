@@ -38,3 +38,9 @@ def pagos(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def recuperacion(request):
+    return render(request, 'recuperacion.html')
