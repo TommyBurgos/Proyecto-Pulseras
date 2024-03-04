@@ -35,3 +35,6 @@ def pagos(request):
     return render(request,'pagos.html',{
         'paquete1':paquete1,
         'precio':precio})
+
+def login(request):
+    return render(request, 'login.html')
