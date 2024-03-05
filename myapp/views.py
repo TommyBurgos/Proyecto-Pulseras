@@ -35,3 +35,12 @@ def pagos(request):
     return render(request,'pagos.html',{
         'paquete1':paquete1,
         'precio':precio})
+
+def login(request):
+    return render(request, 'login.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def recuperacion(request):
+    return render(request, 'recuperacion.html')

@@ -590,3 +590,32 @@ body{
 .shadow-lg, .shadow-lg--on-hover:hover {
     box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
 }
+
+/*Seccion de inicio de sesion*/
+.login-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.login-card .card-body {
+    padding: 35px;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    border-radius: 20px;
+    border: 0;
+    padding: 10px 24px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-radius: 20px;
+    border: 0;
+    padding: 10px 24px;
+}
