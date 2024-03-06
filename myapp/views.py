@@ -47,3 +47,6 @@ def recuperacion(request):
 
 def detallePaquete(request):
     return render(request, 'detallePaquete.html')
+
+def blogs(request):
+    return render(request,'blogs.html')
