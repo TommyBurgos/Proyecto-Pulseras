@@ -45,5 +45,8 @@ def contact(request):
 def recuperacion(request):
     return render(request, 'recuperacion.html')
 
+def detallePaquete(request):
+    return render(request, 'detallePaquete.html')
+
 def blogs(request):
     return render(request,'blogs.html')

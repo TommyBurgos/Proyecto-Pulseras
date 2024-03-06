@@ -12,6 +12,7 @@ urlpatterns = [
     path('login/', views.login),
     path('contact/', views.contact),
     path('recuperacion/', views.recuperacion),
+    path('detallePaquete/', views.detallePaquete),
     path('blogs/', views.blogs)
 
 ]
