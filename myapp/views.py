@@ -21,7 +21,7 @@ def about(request):
     return render(request,"about.html")
 
 def paquetes(request):
-    proyectos=list(Paquete.objects.values())
+    #proyectos=list(Paquete.objects.values())
     return render(request, 'paquetes.html')
 
 def servicios(request):

@@ -619,3 +619,47 @@ body{
     border: 0;
     padding: 10px 24px;
 }
+
+/*Seccion paquetes*/
+.service-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.service-item p:nth-child(4) {
+    font-size: 24px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.btn-favorite {
+    background-color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-action {
+    margin: 0 5px;
+    padding: 5px 20px; 
+}
+
+.btn-primary.btn-action:hover {
+    background-color: #007bff; 
+    border-color: #007bff; 
+}
+
+.btn-primary.btn-action {
+    color: #fff; 
+}
+
+.btn-light {
+    margin-bottom: 10px;
+}
