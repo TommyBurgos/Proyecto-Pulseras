@@ -50,3 +50,6 @@ def detallePaquete(request):
 
 def blogs(request):
     return render(request,'blogs.html')
+
+def crearPaquete(request):
+    return render(request,'crearPaquete.html')

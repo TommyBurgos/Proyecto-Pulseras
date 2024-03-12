@@ -668,3 +668,48 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 }
 
+.circle-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/*crear paquete*/
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.left-section, .right-section {
+    width: 45%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-section input[type="file"], .right-section input[type="number"], .right-section textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.right-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
