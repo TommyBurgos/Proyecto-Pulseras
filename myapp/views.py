@@ -48,5 +48,10 @@ def recuperacion(request):
 def detallePaquete(request):
     return render(request, 'detallePaquete.html')
 
+def loginAdmin(request):
+    return render(request, 'usAdmin/index.html')
+
 def blogs(request):
     return render(request,'blogs.html')
+
+
