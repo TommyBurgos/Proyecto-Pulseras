@@ -14,7 +14,11 @@ urlpatterns = [
     path('recuperacion/', views.recuperacion),
     path('detallePaquete/', views.detallePaquete),
     path('blogs/', views.blogs),
+<<<<<<< HEAD
     path('crearPaquete/', views.crearPaquete)
 
+=======
+    path('login/usAdmin/',views.loginAdmin)
+>>>>>>> f72f814b5eeff098b96767ca78f6df339accfb03
 
 ]
