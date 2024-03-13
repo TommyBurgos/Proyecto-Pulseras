@@ -54,9 +54,6 @@ def loginAdmin(request):
 def blogs(request):
     return render(request,'blogs.html')
 
-<<<<<<< HEAD
 def crearPaquete(request):
     return render(request,'crearPaquete.html')
-=======
 
->>>>>>> f72f814b5eeff098b96767ca78f6df339accfb03
