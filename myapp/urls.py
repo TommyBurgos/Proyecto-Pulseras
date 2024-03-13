@@ -14,8 +14,12 @@ urlpatterns = [
     path('recuperacion/', views.recuperacion),
     path('detallePaquete/', views.detallePaquete),
     path('blogs/', views.blogs),
-    path('crearPaquete/', views.crearPaquete),
-    path('login/usAdmin/',views.loginAdmin)
+    path('crearPaquete/usAdmin', views.crearPaquete),
+    path('login/usAdmin/',views.loginAdmin),
+    path('detallePaqAdmin/usAdmin', views.detallePaqAdmin),
+    path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
+    path('ofertas/usAdmin', views.ofertas),
+    path('paqueteAdmin/usAdmin', views.paqueteAdmin)
 
 
 ]

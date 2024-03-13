@@ -47,50 +47,56 @@
     <!-- Navbar End -->
 
     <!-- Formulario crear Paquete -->
-    <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-        <form action="#" class="contact-form form-validate" novalidate="novalidate">
-            <div class="row">
-                <!-- Carga de Imágenes (Parte Izquierda) -->
-                <div class="col-sm-6 mb-4">
-                    <label for="packageImages" class="form-label">Cargar Imágenes del Paquete (3 a 5 imágenes)</label>
-                    <input type="file" class="form-control" id="packageImages" name="packageImages" accept="image/*" multiple>
-                </div>
-                <!-- Resto de Campos (Parte Derecha) -->
-                <div class="col-sm-6">
-                    <!-- Nombre del Paquete -->
-                    <div class="mb-4">
-                        <label class="required-field" for="packageName">Nombre del Paquete</label>
-                        <input type="text" class="form-control" id="packageName" name="packageName" placeholder="Nombre del Paquete">
-                    </div>
-                    <!-- Precio del Paquete -->
-                    <div class="mb-4">
-                        <label class="required-field" for="packagePrice">Precio del Paquete (al mes)</label>
-                        <input type="number" class="form-control" id="packagePrice" name="packagePrice" placeholder="Precio del Paquete">
-                    </div>
-                    <!-- Descripción General -->
-                    <div class="mb-4">
-                        <label class="required-field" for="packageDescription">Descripción General</label>
-                        <textarea class="form-control" id="packageDescription" name="packageDescription" rows="3" placeholder="Descripción General"></textarea>
-                    </div>
-                    <!-- Descripción Detallada -->
-                    <div class="mb-4">
-                        <label class="required-field" for="packageDetails">Descripción Detallada</label>
-                        <textarea class="form-control" id="packageDetails" name="packageDetails" rows="5" placeholder="Descripción Detallada"></textarea>
-                    </div>
-                    <!-- Servicios Incluidos -->
-                    <div class="mb-4">
-                        <label for="includedServices">Servicios Incluidos</label>
-                        <textarea class="form-control" id="includedServices" name="includedServices" rows="3" placeholder="Servicios Incluidos"></textarea>
-                    </div>
-                    <!-- Botón para Crear Paquete -->
-                    <div>
-                        <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Crear Paquete</button>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col-lg-6">
+          <label for="packageImagesPreview" class="form-label">Vista Previa de Imágenes</label>
+          <div id="packageImagesPreview" class="image-preview mb-4">
+            <!--imágenes cargadas -->
+          </div>
+          <label class="form-label">Cargar Imágenes del Paquete (3 a 5 imágenes)</label>
+          <div id="imageUploadContainer" class="image-upload-container">
+            <!-- Botón para agregar nuevas cargas de imagen -->
+            <button type="button" id="addImageField" class="btn btn-primary add-image"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <label class="required-field" for="packageName">Nombre del Paquete</label>
+              <input type="text" class="form-control" id="packageName" name="packageName" placeholder="Nombre del Paquete">
             </div>
-        </form>
-    </div>
-    
+            <div class="col-md-6 mb-4">
+              <label class="required-field" for="packagePrice">Precio del Paquete (al mes)</label>
+              <input type="number" class="form-control" id="packagePrice" name="packagePrice" placeholder="Precio del Paquete">
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="required-field" for="packageDescription">Descripción General</label>
+            <textarea class="form-control" id="packageDescription" name="packageDescription" rows="5" placeholder="Descripción General"></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="required-field" for="packageDetails">Descripción Detallada</label>
+            <textarea class="form-control" id="packageDetails" name="packageDetails" rows="7" placeholder="Descripción Detallada"></textarea>
+          </div>
+          <!-- Servicios Incluidos -->
+          <div class="mb-4">
+            <label for="includedServicesContainer">Servicios Incluidos</label>
+            <div id="includedServicesContainer">
+              <!-- Contenedor para los servicios -->
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Servicio">
+                <button class="btn btn-outline-secondary" type="button" id="addServiceField"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <!-- Botón para Crear Paquete -->
+          <div>
+            <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Crear Paquete</button>
+          </div>
+        </div>
+      </div>
+      
     
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5">
@@ -171,6 +177,7 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{% static 'js/codigoAdmin/crearPaquete.js' %}"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

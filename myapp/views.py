@@ -48,12 +48,27 @@ def recuperacion(request):
 def detallePaquete(request):
     return render(request, 'detallePaquete.html')
 
-def loginAdmin(request):
-    return render(request, 'usAdmin/index.html')
-
 def blogs(request):
     return render(request,'blogs.html')
 
+
+#Páginas Administrador
+
+def loginAdmin(request):
+    return render(request, 'usAdmin/index.html')
+
 def crearPaquete(request):
-    return render(request,'crearPaquete.html')
+    return render(request,'usAdmin/crearPaquete.html')
+
+def detallePaqAdmin(request):
+    return render(request,'usAdmin/detallePaqAdmin.html')
+
+def dispositivosAdmin(request):
+    return render(request,'usAdmin/dispositivosAdmin.html')
+
+def ofertas(request):
+    return render(request,'usAdmin/ofertas.html')
+
+def paqueteAdmin(request):
+    return render(request,'usAdmin/paqueteAdmin.html')
 

@@ -713,3 +713,21 @@ body{
     background-color: #0056b3;
 }
 
+.image-preview img {
+    max-width: 100px;
+    margin: 10px;
+  }
+  
+  .add-image {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .input-group .form-control {
+    border-right: 0;
+  }
+  
+  .input-group .btn-outline-secondary {
+    border-left: 0;
+  }
+  
