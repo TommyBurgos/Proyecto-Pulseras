@@ -12,7 +12,7 @@ document.getElementById('addImageField').addEventListener('click', function() {
     }
   });
   
-  document.getElementById('addServiceField').addEventListener('click', function() {
+  document.getElementById('addImageField').addEventListener('click', function() {
     var container = document.getElementById('includedServicesContainer');
     if(container.getElementsByTagName('input').length < 10) {
       var div = document.createElement('div');
@@ -27,4 +27,5 @@ document.getElementById('addImageField').addEventListener('click', function() {
       alert('Máximo 10 servicios.');
     }
   });
+  
   
