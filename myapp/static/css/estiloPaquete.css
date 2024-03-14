@@ -1,0 +1,58 @@
+.container-fluid {
+    margin-top: 20px; 
+    margin-right: 20px; 
+    margin-left: 20px; 
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.sidebar-offcanvas {
+    position: relative;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.main-content {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.image-preview img {
+    max-width: 100px;
+    margin: 10px;
+}
+
+.add-image {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.input-group .form-control {
+    border-right: 0;
+}
+
+.input-group .btn-outline-secondary {
+    border-left: 0;
+}
+
+.col-md-10 {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+}

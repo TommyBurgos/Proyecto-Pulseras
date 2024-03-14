@@ -117,7 +117,7 @@ h6,
         background: var(--primary);
     }
 
-    .navbar .navbar-nav .nav-link  {
+    .navbar .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
@@ -305,19 +305,19 @@ h6,
         max-width: 100% !important;
     }
 
-    .newsletter .newsletter-text  {
+    .newsletter .newsletter-text {
         padding-right: calc(((100% - 960px) / 2) + .75rem);
     }
 }
 
 @media (min-width: 1200px) {
-    .newsletter .newsletter-text  {
+    .newsletter .newsletter-text {
         padding-right: calc(((100% - 1140px) / 2) + .75rem);
     }
 }
 
 @media (min-width: 1400px) {
-    .newsletter .newsletter-text  {
+    .newsletter .newsletter-text {
         padding-right: calc(((100% - 1320px) / 2) + .75rem);
     }
 }
@@ -327,11 +327,11 @@ h6,
 .case-item img {
     transition: .5s;
 }
-  
+
 .case-item:hover img {
     transform: scale(1.2);
 }
-  
+
 .case-overlay {
     position: absolute;
     padding: 30px;
@@ -476,7 +476,7 @@ h6,
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
     border: 1px solid rgba(256, 256, 256, .1);
     border-radius: 40px;
     transition: .3s;
@@ -491,7 +491,7 @@ h6,
     margin-bottom: 10px;
     padding: 0;
     text-align: left;
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
     font-weight: normal;
     transition: .3s;
 }
@@ -520,7 +520,7 @@ h6,
 }
 
 .footer .copyright a {
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
 }
 
 .footer .copyright a:hover {
@@ -540,20 +540,23 @@ h6,
 }
 
 /*SECCION DE REGISTRO*/
-body{
-    margin-top:20px;
-    background:#eee;
+body {
+    margin-top: 20px;
+    background: #eee;
 }
+
 .gradient-brand-color {
     background-image: -webkit-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
     background-image: -ms-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
     color: #fff;
 }
+
 .contact-info__wrapper {
     overflow: hidden;
     border-radius: .625rem .625rem 0 0
 }
-.navBarGeneral{
+
+.navBarGeneral {
     background-color: #376be6;
 }
 
@@ -563,15 +566,19 @@ body{
         padding: 5rem !important
     }
 }
+
 .contact-info__list span.position-absolute {
     left: 0
 }
+
 .z-index-101 {
     z-index: 101;
 }
+
 .list-style--none {
     list-style: none;
 }
+
 .contact__wrapper {
     background-color: #fff;
     border-radius: 0 0 .625rem .625rem
@@ -582,20 +589,23 @@ body{
         border-radius: .625rem 0 .625rem .625rem
     }
 }
+
 @media (min-width: 1024px) {
     .contact-form__wrapper {
         padding: 5rem !important
     }
 }
-.shadow-lg, .shadow-lg--on-hover:hover {
-    box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+
+.shadow-lg,
+.shadow-lg--on-hover:hover {
+    box-shadow: 0 1rem 3rem rgba(132, 138, 163, 0.1) !important;
 }
 
 /*Seccion de inicio de sesion*/
 .login-card {
     border: none;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -648,16 +658,16 @@ body{
 
 .btn-action {
     margin: 0 5px;
-    padding: 5px 20px; 
+    padding: 5px 20px;
 }
 
 .btn-primary.btn-action:hover {
-    background-color: #007bff; 
-    border-color: #007bff; 
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .btn-primary.btn-action {
-    color: #fff; 
+    color: #fff;
 }
 
 .btn-light {
@@ -665,7 +675,7 @@ body{
 }
 
 .shadow-custom {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .circle-btn {
@@ -674,60 +684,3 @@ body{
     border-radius: 50%;
 }
 
-/*crear paquete*/
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.left-section, .right-section {
-    width: 45%;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.left-section input[type="file"], .right-section input[type="number"], .right-section textarea {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.right-section form {
-    display: flex;
-    flex-direction: column;
-}
-
-.btn {
-    width: 50%;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.image-preview img {
-    max-width: 100px;
-    margin: 10px;
-  }
-  
-  .add-image {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  .input-group .form-control {
-    border-right: 0;
-  }
-  
-  .input-group .btn-outline-secondary {
-    border-left: 0;
-  }
-  
