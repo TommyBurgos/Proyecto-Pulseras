@@ -51,6 +51,8 @@ def detallePaquete(request):
 def blogs(request):
     return render(request,'blogs.html')
 
+def crearCercos(request):
+    return render(request,'crearCercos.html')
 
 #Páginas Administrador
 
@@ -71,4 +73,6 @@ def ofertas(request):
 
 def paqueteAdmin(request):
     return render(request,'usAdmin/paqueteAdmin.html')
+
+
 

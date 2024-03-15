@@ -7,10 +7,75 @@
 
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de Rutas</title>
+    <style>
+
+        .body-content {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        
+        .map-container {
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .custom-map-container iframe {
+            width: 100%;
+            height: 650px;
+            border: 0;
+        }
+
+        .sidebar {
+            width: 300px;
+            float: right;
+            padding: 20px;
+        }
+
+        .container {
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+        }
+
+        .col-lg-4 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .col-lg-4 .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .button-container button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
 
 <body>
 
     <!-- Navbar Start -->
+
     <div class="container-fluid sticky-top navBarGeneral">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark p-0">
@@ -46,6 +111,66 @@
     </div>
     <!-- Navbar End -->
 
+
+    <!--Creacion de cerco-->
+    <div class="container-fluid body-content">
+        <div class="row">
+            <!-- Mapa -->
+            <div class="col-lg-8 custom-map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127586.73554755065!2d-80.05373220273442!3d-2.1207648999999944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6d48bbb0a2d3%3A0x788d45089a022976!2sVeris%20Samanes!5e0!3m2!1ses-419!2sec!4v1710458202722!5m2!1ses-419!2sec" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <!-- Formulario -->
+            <div class="col-lg-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nombre de ruta -->
+                            <div class="mb-3">
+                                <label for="nombreRuta" class="form-label">Nombre de ruta:</label>
+                                <input type="text" class="form-control" id="nombreRuta" placeholder="Ingrese el nombre de la ruta">
+                            </div>
+                            <!-- Forma -->
+                            <div class="mb-3">
+                                <label for="forma" class="form-label">Forma:</label>
+                                <select id="forma" class="form-select">
+                                    <option value="circular">Circular</option>
+                                    <option value="poligono">Polígono</option>
+                                    <option value="ruta">Ruta</option>
+                                </select>
+                            </div>
+                            <!-- Descripción -->
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción:</label>
+                                <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea>
+                            </div>
+                            <!-- Parámetros -->
+                            <div class="mb-3">
+                                <label for="parametros" class="form-label">Parámetros:</label>
+                                <input type="text" class="form-control" id="parametros" placeholder="Ingrese los parámetros">
+                            </div>
+                            <!-- Enviar alerta cuando -->
+                            <div class="mb-3">
+                                <label for="alerta" class="form-label">Enviar alerta cuando:</label>
+                                <select id="alerta" class="form-select">
+                                    <option value="salga">Salga de la ruta</option>
+                                    <option value="entre">Entre a la ruta</option>
+                                    <!-- Agrega más opciones aquí según sea necesario -->
+                                </select>
+                            </div>
+                            <!-- Botones de acción -->
+                            <div class="button-container">
+                                <button type="button" class="btn btn-danger">Borrar</button>
+                                <button type="button" class="btn btn-success">Guardar</button>
+                                <button type="button" class="btn btn-secondary">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
    
     
     <!-- Footer Start -->
@@ -130,6 +255,20 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // Función para inicializar el mapa
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            });
+        }
+    </script>
 
 </body>
 

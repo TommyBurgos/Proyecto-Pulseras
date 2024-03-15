@@ -19,7 +19,8 @@ urlpatterns = [
     path('detallePaqAdmin/usAdmin', views.detallePaqAdmin),
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('ofertas/usAdmin', views.ofertas),
-    path('paqueteAdmin/usAdmin', views.paqueteAdmin)
+    path('paqueteAdmin/usAdmin', views.paqueteAdmin),
+    path('crearCercos/', views.crearCercos)
 
 
 ]
