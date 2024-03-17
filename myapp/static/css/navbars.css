@@ -1,0 +1,42 @@
+.navbar, .navbar * {
+    background-color: #376be6;
+    color: #fff; 
+}
+
+
+.input-group {
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 5px 0;
+}
+
+.form-control {
+    height: 40px; 
+    border-radius: 20px; 
+    padding: 0 15px; 
+}
+
+
+.input-group-text i {
+    color: #376be6; 
+    font-size: 20px; 
+    background-color: #fff; 
+    border-radius: 10px; 
+    padding: 5px; 
+}
+
+
+.nav-link .icon-bell, .nav-link .icon-ellipsis {
+    color: #fff; 
+    font-size: 20px; 
+    background-color: #376be6; 
+    border-radius: 50%; 
+    padding: 5px; 
+}
+
+
+.navbar-toggler, .navbar-toggler-right {
+    background-color: #376be6; 
+    color: #fff; 
+    border: none;
+}
