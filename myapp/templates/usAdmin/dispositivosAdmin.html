@@ -5,8 +5,17 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
   <title>Skydash Admin</title>
   <!-- plugins:css -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/feather.css' %}">
   <link href="{% static 'css/estiloAdmin/themify-icons.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/vendor.bundle.base.css' %}">
@@ -411,33 +420,144 @@
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE; ">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" style="background-color:#3788FF" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
+                                    </div>
+                                </button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        ...
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="fas fa-pen"></i>
+                                    </button>
+                                      <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">Editar datos</a></li>
+                                          <li><a class="dropdown-item" href="#">Administrar</a></li>
+                                          <li><a class="dropdown-item" href="#">Ver</a></li>
+                                          <li><a class="dropdown-item" href="#">eliminar</a></li>
+                                      </ul>
+                                  </div> 
+                            </td>
                           </tr>
                           <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
-                            <td>@fat</td>
                             <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                                  </div>
-                                  <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                                  </div>
+                                meinstac01
+
                             </td>
-                            <td>@fat</td>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE;">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
+                                    </div>
+                                </button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        ...
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>                                                                  
+                                <div class="btn-group" role="group">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-pen"></i>
+                                  </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Editar datos</a></li>
+                                        <li><a class="dropdown-item" href="#">Administrar</a></li>
+                                        <li><a class="dropdown-item" href="#">Ver</a></li>
+                                        <li><a class="dropdown-item" href="#">eliminar</a></li>
+                                    </ul>
+                                </div>                            
+                            </td>
                           </tr>
                           <tr>
                             <th scope="row">3</th>
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>@twitter</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE;">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
+                                    </div>
+                                </button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        ...
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="fas fa-pen"></i>
+                                    </button>
+                                      <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">Editar datos</a></li>
+                                          <li><a class="dropdown-item" href="#">Administrar</a></li>
+                                          <li><a class="dropdown-item" href="#">Ver</a></li>
+                                          <li><a class="dropdown-item" href="#">eliminar</a></li>
+                                      </ul>
+                                  </div> 
+
+                            </td>
                           </tr>
                         </tbody>
                       </table>
