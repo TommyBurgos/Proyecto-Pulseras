@@ -5,6 +5,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
@@ -22,6 +23,68 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    }
+
+    .settings-container {
+        width: 80%;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    details {
+        margin-bottom: 10px;
+    }
+
+    summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    summary i {
+        margin-right: 10px;
+    }
+
+    .summary-text {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .section-details {
+        display: none;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    details[open] summary {
+        background-color: #eaeaea;
+    }
+
+    details[open] .section-details {
+        display: block;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+    }
+
+  </style>
+
 </head>
 <body>
   <div class="container-scroller">
@@ -390,11 +453,197 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            
             <div class="row">
-                <div class="row">
 
-                </div>
-
+            </div>
+            <div class="settings-container">
+                <details>
+                    <summary>
+                        <i class="fas fa-user-secret fa-lg"></i>
+                        <span>Privacidad</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Configuración de Privacidad</h3>
+                        <p>Seleccione quién puede ver su información personal:</p>
+                        <ul class="no-bullets">
+                            <li>
+                                <input type="checkbox" id="privacidad-amigos" name="privacidad-amigos">
+                                <label for="privacidad-amigos">Amigos</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-publico" name="privacidad-publico">
+                                <label for="privacidad-publico">Público</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-privado" name="privacidad-privado">
+                                <label for="privacidad-privado">Privado</label>
+                            </li>
+                        </ul>
+                        <p>Seleccione qué información desea mostrar:</p>
+                        <ul class="no-bullets">
+                            <li>
+                                <input type="checkbox" id="privacidad-nombre" name="privacidad-nombre">
+                                <label for="privacidad-nombre">Nombre</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-correo" name="privacidad-correo">
+                                <label for="privacidad-correo">Correo Electrónico</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-telefono" name="privacidad-telefono">
+                                <label for="privacidad-telefono">Teléfono</label>
+                            </li>
+                        </ul>
+                        <p>Seleccione qué actividades desea compartir:</p>
+                        <ul class="no-bullets">
+                            <li>
+                                <input type="checkbox" id="privacidad-fotos" name="privacidad-fotos">
+                                <label for="privacidad-fotos">Fotos</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-publicaciones" name="privacidad-publicaciones">
+                                <label for="privacidad-publicaciones">Publicaciones</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="privacidad-comentarios" name="privacidad-comentarios">
+                                <label for="privacidad-comentarios">Comentarios</label>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>
+                        <i class="fas fa-shield-alt fa-lg"></i>
+                        <span>Seguridad</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Configuración de Seguridad</h3>
+                        <p>Seleccione las opciones de seguridad que desee aplicar:</p>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="seguridad-contrasena" name="seguridad-contrasena">
+                                <label for="seguridad-contrasena">Contraseña Fuerte</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="seguridad-verificacion" name="seguridad-verificacion">
+                                <label for="seguridad-verificacion">Verificación en Dos Pasos</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="seguridad-notificaciones" name="seguridad-notificaciones">
+                                <label for="seguridad-notificaciones">Notificaciones de Inicio de Sesión</label>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span>Notificaciones</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Configuración de Notificaciones</h3>
+                        <p>Seleccione las notificaciones que desea recibir:</p>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="notificaciones-email" name="notificaciones-email">
+                                <label for="notificaciones-email">Notificaciones por Correo Electrónico</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="notificaciones-telefono" name="notificaciones-telefono">
+                                <label for="notificaciones-telefono">Notificaciones por Mensaje de Texto</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="notificaciones-push" name="notificaciones-push">
+                                <label for="notificaciones-push">Notificaciones Push en la Aplicación</label>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>
+                        <i class="fas fa-cogs fa-lg"></i>
+                        <span>Preferencias de la Aplicación</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Configuración de Preferencias</h3>
+                        <p>Seleccione sus preferencias para la aplicación:</p>
+                        <ul>
+                            <li>
+                                <label for="preferencias-tema">Tema Oscuro</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="preferencias-tema" name="preferencias-tema">
+                                    <span class="toggle-slider"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="preferencias-idioma">Idioma</label>
+                                <select id="preferencias-idioma" name="preferencias-idioma">
+                                    <option value="es">Español</option>
+                                    <option value="en">Inglés</option>
+                                    <option value="fr">Francés</option>
+                                    <option value="de">Alemán</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                
+                
+                <details>
+                    <summary>
+                        <i class="fas fa-cogs fa-lg"></i>
+                        <span>Integración y Servicios</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Integración y Servicios</h3>
+                        <p>Seleccione las integraciones y servicios que desea activar:</p>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="integracion-correo" name="integracion-correo">
+                                <label for="integracion-correo">Integración de Correo Electrónico</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="integracion-redes" name="integracion-redes">
+                                <label for="integracion-redes">Integración con Redes Sociales</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="integracion-pagos" name="integracion-pagos">
+                                <label for="integracion-pagos">Integración de Pagos</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="servicio-soporte" name="servicio-soporte">
+                                <label for="servicio-soporte">Servicio de Soporte</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="servicio-almacenamiento" name="servicio-almacenamiento">
+                                <label for="servicio-almacenamiento">Servicio de Almacenamiento en la Nube</label>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>
+                        <i class="fas fa-trash fa-lg"></i>
+                        <span>Eliminar Cuenta</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </summary>
+                    <div class="section-details">
+                        <h3>Eliminar Cuenta</h3>
+                        <p>Advertencia: Al eliminar su cuenta, perderá acceso a todos los datos y configuraciones asociados. Esta acción no se puede deshacer.</p>
+                        <button onclick="confirmarEliminacion()">Eliminar Cuenta</button>
+                    </div>
+                </details>
+                
             </div>
           </div>       
         </div>
