@@ -20,7 +20,11 @@ urlpatterns = [
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('ofertas/usAdmin', views.ofertas),
     path('paqueteAdmin/usAdmin', views.paqueteAdmin),
-    path('crearCercos/', views.crearCercos)
+    path('crearCercos/', views.crearCercos),
+    path('infoCuenta/gestion', views.infoCuenta),
+    path('configuracion/gestion', views.configuracion),
+    path('metodos/gestion', views.metodos),
+    path('transacciones/gestion', views.transacciones)
 
 
 ]

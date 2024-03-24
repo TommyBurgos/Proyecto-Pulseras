@@ -54,6 +54,21 @@ def blogs(request):
 def crearCercos(request):
     return render(request,'crearCercos.html')
 
+
+#Paginas de Gestion de cuenta
+def infoCuenta(request):
+    return render(request,'gestion/infoCuenta.html')
+
+def configuracion(request):
+    return render(request,'gestion/configuracion.html')
+
+def metodos(request):
+    return render(request,'gestion/metodos.html')
+
+def transacciones(request):
+    return render(request,'gestion/transacciones.html')
+
+
 #Páginas Administrador
 
 def loginAdmin(request):
@@ -73,6 +88,8 @@ def ofertas(request):
 
 def paqueteAdmin(request):
     return render(request,'usAdmin/paqueteAdmin.html')
+
+
 
 
 
