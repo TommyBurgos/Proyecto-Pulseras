@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -9,7 +10,7 @@ urlpatterns = [
     path('servicios/', views.servicios),
     path('registro/', views.registro),
     path('pagos/', views.pagos),
-    path('login/', views.login),
+    path('login/', views.iniciar),
     path('contact/', views.contact),
     path('recuperacion/', views.recuperacion),
     path('detallePaquete/', views.detallePaquete),
@@ -20,7 +21,9 @@ urlpatterns = [
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('ofertas/usAdmin', views.ofertas),
     path('paqueteAdmin/usAdmin', views.paqueteAdmin),
-    path('crearCercos/', views.crearCercos)
+    path('crearCercos/', views.crearCercos),
+    path('regitroExitoso/', views.registroExitoso, name='registroExitoso'),
+    path('logout/', views.signout)
 
 
 ]

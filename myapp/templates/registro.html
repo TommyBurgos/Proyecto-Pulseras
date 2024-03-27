@@ -65,7 +65,8 @@
                 </div>
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-                    <form action="#" class="contact-form form-validate" novalidate="novalidate">
+                    <form action="/regitroExitoso/" method="POST" class="contact-form form-validate" novalidate="novalidate">
+                        {% csrf_token %}
                         <div class="row">
                             <!--Tipo de identificacion-->
                             <div class="col-sm-6 mb-4">

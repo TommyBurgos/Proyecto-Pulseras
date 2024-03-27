@@ -305,7 +305,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="/login/usAdmin/">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
                 
@@ -398,8 +398,74 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-                <div class="row">
+                <div class="row"style="padding-botton: 5%;">
+                    <div class="row col-12" style="padding-left: 5%;">
+                      <h3>Dispositivos</h3>
+                    </div>
+                    <div class="row col-12" style="padding-left: 5%;">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                            <i class="icon-search"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search">
+                    </div>
+                    <div class="row col-12" style="padding-top: 2%; padding-left: 5%;">
 
+                      <div class="col-4">                        
+                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nueva pulsera</button>                        
+                        
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col-4">                                                                   
+                        <a class="btn btn-primary" href="#" role="button"><i class="fas fa-screwdriver"></i>Configuración general</a>
+                      </div>
+                      
+                      <div class="col-4">
+                        <div class="btn-group btn-primary">
+                          <button type="button" class="btn btn-primary">Filtro</button>
+                          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                            <span class="visually-hidden">Activos</span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Inactivos</a></li>
+                            <li><a class="dropdown-item" href="#">Adquirido</a></li>
+                            <li><a class="dropdown-item" href="#">Por Comprar</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sin filtro</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div class="row" style="padding: 5%;">
                     <table class="table caption-top">
@@ -417,9 +483,9 @@
                         <tbody>
                           <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>Pulsx13003</td>
+                            <td>Marcos Mora</td>
+                            <td>MarcoPolo12</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE; ">
                                     <div class="form-check form-switch">
@@ -453,7 +519,9 @@
                                       <i class="fas fa-pen"></i>
                                     </button>
                                       <ul class="dropdown-menu">
-                                          <li><a class="dropdown-item" href="#">Editar datos</a></li>
+                                          <li>
+                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen">Editar</button>
+                                          </li>
                                           <li><a class="dropdown-item" href="#">Administrar</a></li>
                                           <li><a class="dropdown-item" href="#">Ver</a></li>
                                           <li><a class="dropdown-item" href="#">eliminar</a></li>
@@ -463,10 +531,10 @@
                           </tr>
                           <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
+                            <td>Pulsx13002</td>
+                            <td>Paula Peralta</td>
                             <td>
-                                meinstac01
+                                PaulaP000
 
                             </td>
                             <td>
@@ -514,9 +582,9 @@
                           </tr>
                           <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
+                            <td>Pulsx13001</td>
                             <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>bird997</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE;">
                                     <div class="form-check form-switch">
@@ -569,6 +637,25 @@
           </div>
         </div>
         </div>
-
   </div>
+  <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'js/codigoAdmin/Chart.min.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/codigoAdmin/off-canvas.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/template.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/settings.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/logicaAdmin.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
 </body>
