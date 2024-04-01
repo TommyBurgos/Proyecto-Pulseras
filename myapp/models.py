@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+
 
 class Medicamento(models.Model):
     name= models.CharField(max_length=100)
@@ -11,7 +13,7 @@ class Departamento(models.Model):
 
 
 class Medico(models.Model):
-    idUsuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    idUsuario=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     departamento=models.ForeignKey(Departamento,on_delete=models.CASCADE)
 
 class EstadoCita(models.Model):
@@ -24,16 +26,24 @@ class Estado(models.Model):
 class TipoDispositivo(models.Model):
     nombre=models.CharField(max_length=100)
     descripcion=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre
+    
 class EstadoDispositivo(models.Model):
     nombre=models.CharField(max_length=100)
     descripcion=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nombre
+    
 class Dispositivo(models.Model):
     tipo=models.ForeignKey(TipoDispositivo,on_delete=models.CASCADE)
     estadoD=models.ForeignKey(EstadoDispositivo,on_delete=models.CASCADE)
     serie=models.CharField(max_length=50)
     
 class Paciente(models.Model):
-    idUsuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    idUsuario=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     idDispositivo=models.ForeignKey(Dispositivo,on_delete=models.CASCADE)
     estado=models.ForeignKey(Estado,on_delete=models.CASCADE)
 

@@ -420,30 +420,46 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl">
                             <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                              <div class="modal-header bg-primary">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Registrar nuevo dispositivo</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                <form>
-                                  <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                <form action="/regitroDispositivo/" method="POST" class="contact-form form-validate" novalidate="novalidate">
+                                  {% csrf_token %}
+                                  <div class="mb-3 col-12 row">
+                                    <div class="col-5">
+                                      <label for="recipient-name" class="col-form-label">Número de serie</label>
+                                      <input type="text" class="form-control" id="numSerie" name="numSerie">
+                                    </div>
+                                    <div class="col-5">
+                                      <label for="recipient-name" class="col-form-label">Estado del dispositivo</label>
+                                      <select name="opEstado" class="form-select form-control" aria-label="Default select example">
+                                        <option selected>Selecciona una opción</option>
+                                        <option value="1">Disponible</option>
+                                        <option value="2">Asignado</option>
+                                        <option value="3">Vendido</option>
+                                        <option value="4">Alquilado</option>
+                                      </select>
+
+                                    </div>                                                                      
                                   </div>
                                   <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <label for="message-text" class="col-form-label">Tipo</label>
+                                    <select name="opTipo" class="form-select form-control" aria-label="Default select example">
+                                      <option selected>Selecciona una opción</option>
+                                      <option value="1">Pulsera</option>
+                                      <option value="2">Anillo</option>                                      
+                                    </select>
+                                  </div>
+                                  <div>                                    
+                                    <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                                   </div>
                                 </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
-                              </div>
+                              </div>                              
                             </div>
                           </div>
                         </div>
-
                       </div>
 
                       <div class="col-4">                                                                   
@@ -466,7 +482,7 @@
                         </div>
                       </div>
                     </div>
-                </div>
+                </div>                               
                 <div class="row" style="padding: 5%;">
                     <table class="table caption-top">
                         <caption>Lista de dispositivos</caption>
@@ -520,7 +536,9 @@
                                     </button>
                                       <ul class="dropdown-menu">
                                           <li>
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen">Editar</button>
+                                            
+                                            <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>                                            
+                                            
                                           </li>
                                           <li><a class="dropdown-item" href="#">Administrar</a></li>
                                           <li><a class="dropdown-item" href="#">Ver</a></li>
@@ -637,6 +655,50 @@
           </div>
         </div>
         </div>
+  </div>
+  <!-- Modales de opcion Li  -->
+  <div class="modal fade" id="modalEditarDatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Edición del dispositivo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/regitroDispositivo/" method="POST" class="contact-form form-validate" novalidate="novalidate">
+            {% csrf_token %}
+            <div class="mb-3 col-12 row">
+              <div class="col-5">
+                <label for="recipient-name" class="col-form-label">Número de serie</label>
+                <input type="text" class="form-control" id="numSerie" name="numSerie">
+              </div>
+              <div class="col-5">
+                <label for="recipient-name" class="col-form-label">Estado del dispositivo</label>
+                <select name="opEstado" class="form-select form-control" aria-label="Default select example">
+                  <option selected>Selecciona una opción</option>
+                  <option value="1">Disponible</option>
+                  <option value="2">Asignado</option>
+                  <option value="3">Vendido</option>
+                  <option value="4">Alquilado</option>
+                </select>
+
+              </div>                                                                      
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Tipo</label>
+              <select name="opTipo" class="form-select form-control" aria-label="Default select example">
+                <option selected>Selecciona una opción</option>
+                <option value="1">Pulsera</option>
+                <option value="2">Anillo</option>                                      
+              </select>
+            </div>
+            <div>                                    
+              <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
+            </div>
+          </form>
+        </div>                              
+      </div>
+    </div>
   </div>
   <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
   <!-- endinject -->

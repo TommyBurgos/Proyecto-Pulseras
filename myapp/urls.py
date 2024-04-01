@@ -23,6 +23,7 @@ urlpatterns = [
     path('paqueteAdmin/usAdmin', views.paqueteAdmin),
     path('crearCercos/', views.crearCercos),
     path('regitroExitoso/', views.registroExitoso, name='registroExitoso'),
+    path('regitroDispositivo/', views.registrarDispositivo, name='registroDispositivo'),
     path('logout/', views.signout),
     path('infoCuenta/gestion', views.infoCuenta),
     path('configuracion/gestion', views.configuracion),
