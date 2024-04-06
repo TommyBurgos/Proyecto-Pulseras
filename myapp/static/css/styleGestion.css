@@ -1,117 +1,102 @@
-.main-panel {
-    background-color: #f0f0f0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Estilo General del Card */
+.card {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
 }
 
-.content-wrapper {
-    width: 100%;
-    max-width: 800px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
+.card-header.bg-light-blue {
+    background-color: #00BFFF; /* Azul claro */
+    color: #ffffff;
+    border-radius: 0; /* Asegura que el header de la card se extienda a los bordes */
+    padding-bottom: 30px;
 }
 
-.profile-header {
-    margin-bottom: 20px;
-}
-
+/* Estilos para la imagen de perfil y la cámara */
 .profile-image-container {
     position: relative;
-    margin: 0 auto;
-    width: 150px; /* Más grande */
-    height: 150px;
+    display: inline-block;
+    margin-bottom: 20px; /* Espaciado debajo de la imagen del perfil */
+}
+
+.profile-image-container .change-image {
+    background-color: rgba(128, 128, 128, 0.5); /* Gris transparente */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transform: translate(50%, 50%); /* Ajusta para centrar sobre el borde inferior derecho */
 }
 
 .profile-image-container img {
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para la foto de perfil */
 }
 
-.change-image {
-    position: absolute;
-    bottom: 0;
-    right: 10%;
-    background-color: rgba(128, 128, 128, 0.7); /* Gris medio transparente */
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 10px;
+/* Ajustes para el cuerpo de la tarjeta */
+.card-body {
+    padding: 20px;
 }
 
-.profile-details-container {
+.card-body h4, .card-body p {
+    margin-top: 20px; /* Espaciado entre los elementos */
+    text-align: left; /* Alineación a la izquierda */
+}
+
+.card-body p {
+    font-size: 18px; /* Aumento del tamaño de la letra */
+}
+
+/* Sombras y estilos para las imágenes de familiares */
+.card-body .rounded-circle {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para las imágenes */
+    width: 70px;
+    height: 70px;
+}
+
+/* Ajustes adicionales para mejorar la visualización */
+.card-footer.text-body-secondary {
+    background-color: #f8f9fa; /* Fondo del pie de página de la tarjeta */
+    color: #6c757d; /* Color del texto */
+}
+
+/* Estilos específicos para el acordeón de dispositivos vinculados */
+.accordion-button {
+    background-color: #e7e7e7; /* Fondo de los botones del acordeón */
+    color: #000; /* Color del texto */
+}
+
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #007bff; /* Fondo cuando está expandido */
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+}
+
+.accordion-body {
+    line-height: 1.5;
+}
+
+/* Estilos para los ítems del acordeón */
+.accordion-item {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.accordion-item:last-child {
+    border-bottom: 0;
+}
+
+/* Icono y texto de los dispositivos */
+.device-item {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    gap: 10px; /* Espacio entre el icono y el texto */
 }
 
-.profile-details {
-    flex: 1;
-    text-align: left;
+.device-item i {
+    /* Asume que vas a usar algún framework de iconos, como FontAwesome */
+    font-size: 24px; /* Tamaño del icono */
 }
-
-.profile-details p {
-    margin: 10px 0; /* Más espacio entre detalles */
-    font-size: 1.2rem;
-}
-
-.profile-map {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.edit-button
-{
-    display: inline-block;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 20px;
-    align-self: flex-end;
-}
-
-.edit-button:hover {
-    background-color: #0056b3;
-}
-
-@media (max-width: 768px) {
-    .profile-details-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .profile-details, .profile-map {
-        width: 100%;
-    }
-
-    .edit-button {
-        align-self: center; 
-    }
-}
-
-.fas.fa-camera {
-    color: white;
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
-
-h2 {
-    margin: 10px 0;
-    color: #333;
-}
-

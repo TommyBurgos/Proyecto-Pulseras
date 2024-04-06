@@ -22,6 +22,18 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <style>
+    .form-container {
+        background-color: #ffffff; 
+        border-radius: 15px; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        padding: 20px;
+    }
+
+  </style>
 </head>
 <body>
   <div class="container-scroller">
@@ -395,71 +407,71 @@
 
                 </div>
                 <!-- Contenedor del formulario -->
-                <div class="col-md-9 main-content">
+                <div class="form-container">
                   <div class="row">
-                      <div class="col-md-12">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <!-- Sección de carga de imágenes -->
-                                  <div class="mb-3">
-                                      <label for="packageImagesPreview" class="form-label">Vista Previa de
-                                          Imágenes</label>
-                                      <div id="packageImagesPreview" class="image-preview mb-4">
-                                          <!--imágenes cargadas -->
-                                      </div>
-                                      <label class="form-label">Cargar Imágenes del Paquete (3 a 5 imágenes)</label>
-                                      <div id="imageUploadContainer" class="image-upload-container">
-                                          <!-- Botón para agregar nuevas cargas de imagen -->
-                                          <button type="button" id="addImageField"
-                                              class="btn btn-outline-primary add-image"><i class="fa fa-plus"></i></button>
-                                      </div>
-                                  </div>
+                      <!-- Sección de carga de imágenes -->
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="packageImagesPreview" class="form-label"><strong>Vista Previa de Imágenes</strong></label>
+                              <div id="packageImagesPreview" class="image-preview mb-4">
+                                  <!-- Imágenes cargadas -->
                               </div>
-                              <div class="col-md-6">
-                                  <!-- Formulario de creación de paquete -->
-                                  <form>
-                                      <div class="mb-3">
-                                          <label for="packageName" class="form-label">Nombre del Paquete</label>
-                                          <input type="text" class="form-control" id="packageName"
-                                              placeholder="Nombre del Paquete">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="packagePrice" class="form-label">Precio del Paquete (al
-                                              mes)</label>
-                                          <input type="number" class="form-control" id="packagePrice"
-                                              placeholder="Precio del Paquete">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="packageDescription" class="form-label">Descripción
-                                              General</label>
-                                          <textarea class="form-control" id="packageDescription" rows="5"
-                                              placeholder="Descripción General"></textarea>
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="packageDetails" class="form-label">Descripción
-                                              Detallada</label>
-                                          <textarea class="form-control" id="packageDetails" rows="7"
-                                              placeholder="Descripción Detallada"></textarea>
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="includedServicesContainer" class="form-label">Servicios
-                                              Incluidos</label>
-                                          <div id="includedServicesContainer">
-                                              <div class="input-group mb-3">
-                                                  <input type="text" class="form-control" placeholder="Servicio">
-                                                  <button class="btn btn-outline-secondary" type="button"><i
-                                                          class="fa fa-plus"></i></button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <button type="submit" class="btn btn-primary">Crear Paquete</button>
-                                  </form>
+                              <label class="form-label">Cargar Imágenes del Paquete (3 a 5 imágenes)</label>
+                              <div id="imageUploadContainer" class="image-upload-container">
+                                  <!-- Botón para agregar nuevas cargas de imagen -->
+                                  <button type="button" id="addImageField" class="btn btn-outline-primary add-image"><i class="fa fa-plus"></i> Agregar Imagen</button>
                               </div>
                           </div>
                       </div>
-                  </div>
-                </div>
+                      <!-- Carousel para mostrar las imágenes cargadas -->
+                      <!--<div id="imageCarousel" class="carousel slide" data-bs-ride="carousel"> -->
+                        <!--<div class="carousel-inner">-->
+                            <!-- Los items del carousel se agregarán aquí -->
+                        <!--</div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+                      </div>-->
 
+                      <!-- Formulario de creación de paquete -->
+                      <div class="col-md-6">
+                          <form>
+                              <div class="mb-3">
+                                  <label for="packageName" class="form-label">Nombre del Paquete</label>
+                                  <input type="text" class="form-control" id="packageName" placeholder="Nombre del Paquete">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="packagePrice" class="form-label">Precio del Paquete (al mes)</label>
+                                  <input type="number" class="form-control" id="packagePrice" placeholder="Precio del Paquete">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="packageDescription" class="form-label">Descripción General</label>
+                                  <textarea class="form-control" id="packageDescription" rows="5" placeholder="Descripción General"></textarea>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="packageDetails" class="form-label">Descripción Detallada</label>
+                                  <textarea class="form-control" id="packageDetails" rows="7" placeholder="Descripción Detallada"></textarea>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="includedServicesContainer" class="form-label">Servicios Incluidos</label>
+                                  <div id="includedServicesContainer">
+                                      <div class="input-group mb-3">
+                                          <input type="text" class="form-control" placeholder="Servicio">
+                                          <button class="btn btn-outline-secondary" type="button" onclick="agregarServicio()"><i class="fa fa-plus"></i> Agregar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Crear Paquete</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              
             </div>
           </div>       
         </div>
@@ -571,9 +583,84 @@
     <!-- Custom js for this page-->
     <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
     <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+      function agregarImagen() {
+        const previewContainer = document.getElementById("packageImagesPreview");
+        const imageUploadContainer = document.getElementById("imageUploadContainer");
+        const carouselInner = document.getElementById("carouselInner");
+
+        if (previewContainer.children.length >= 5) {
+            alert("Solo se permiten hasta 5 imágenes.");
+            return;
+        }
+
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const image = document.createElement("img");
+                    image.src = reader.result;
+                    previewContainer.appendChild(image);
+
+                    const carouselItem = document.createElement("div");
+                    carouselItem.classList.add("carousel-item");
+                    if (previewContainer.children.length === 1) {
+                        carouselItem.classList.add("active");
+                    }
+                    const carouselImage = document.createElement("img");
+                    carouselImage.src = reader.result;
+                    carouselImage.classList.add("d-block", "w-100");
+                    carouselItem.appendChild(carouselImage);
+                    carouselInner.appendChild(carouselItem);
+                };
+                reader.readAsDataURL(file);
+            }
+      });
+
+    imageUploadContainer.appendChild(input);
+    }
+
+
+      function agregarServicio() {
+          const servicioInput = document.querySelector('#includedServicesContainer input');
+          const servicio = servicioInput.value.trim();
+
+          if (servicio === '') {
+              alert('Por favor ingrese un servicio válido.');
+              return;
+          }
+
+          const servicioElement = document.createElement('div');
+          servicioElement.classList.add('input-group', 'mb-3');
+          servicioElement.innerHTML = `
+              <input type="text" class="form-control" value="${servicio}" readonly>
+              <button class="btn btn-outline-secondary" type="button" onclick="eliminarServicio(this)"><i class="fa fa-trash"></i></button>
+          `;
+
+          const container = document.querySelector('#includedServicesContainer');
+          container.appendChild(servicioElement);
+
+          servicioInput.value = '';
+      }
+
+      function eliminarServicio(btn) {
+          btn.parentElement.remove();
+      }
+
+      document.getElementById("addImageField").addEventListener("click", agregarImagen);
+      document.getElementById("addServiceField").addEventListener("click", agregarServicio);
+
+
+    </script>
 
 </body>
 

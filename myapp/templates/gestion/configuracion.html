@@ -24,67 +24,41 @@
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    .accordion-button > span {
+      font-size: 1.2rem;
+      margin-left: 0.5rem; 
     }
 
-    .settings-container {
-        width: 80%;
-        margin: 20px auto;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 10px;
+    .accordion-button::after {
+      margin-top: .25em;
+      content: url('data:image/svg+xml;base64,...');
+    }
+    
+    .accordion-button:not(.collapsed)::after {
+      content: url('data:image/svg+xml;base64,...');
     }
 
-    details {
-        margin-bottom: 10px;
+    .form-check {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
     }
 
-    summary {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
+    .form-check-input {
+      width: 2.5em; 
+      height: 1.25em; 
+      cursor: pointer;
     }
 
-    summary i {
-        margin-right: 10px;
-    }
-
-    .summary-text {
-        flex-grow: 1;
-        margin-left: 10px;
-    }
-
-    .section-details {
-        display: none;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    details[open] summary {
-        background-color: #eaeaea;
-    }
-
-    details[open] .section-details {
-        display: block;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .no-bullets {
-    list-style-type: none;
-    padding-left: 0;
+    .form-check-label {
+      margin-right: auto; 
     }
 
   </style>
-
 </head>
 <body>
   <div class="container-scroller">
@@ -457,194 +431,160 @@
             <div class="row">
 
             </div>
-            <div class="settings-container">
-                <details>
-                    <summary>
-                        <i class="fas fa-user-secret fa-lg"></i>
-                        <span>Privacidad</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Configuración de Privacidad</h3>
-                        <p>Seleccione quién puede ver su información personal:</p>
-                        <ul class="no-bullets">
-                            <li>
-                                <input type="checkbox" id="privacidad-amigos" name="privacidad-amigos">
-                                <label for="privacidad-amigos">Amigos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-publico" name="privacidad-publico">
-                                <label for="privacidad-publico">Público</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-privado" name="privacidad-privado">
-                                <label for="privacidad-privado">Privado</label>
-                            </li>
-                        </ul>
-                        <p>Seleccione qué información desea mostrar:</p>
-                        <ul class="no-bullets">
-                            <li>
-                                <input type="checkbox" id="privacidad-nombre" name="privacidad-nombre">
-                                <label for="privacidad-nombre">Nombre</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-correo" name="privacidad-correo">
-                                <label for="privacidad-correo">Correo Electrónico</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-telefono" name="privacidad-telefono">
-                                <label for="privacidad-telefono">Teléfono</label>
-                            </li>
-                        </ul>
-                        <p>Seleccione qué actividades desea compartir:</p>
-                        <ul class="no-bullets">
-                            <li>
-                                <input type="checkbox" id="privacidad-fotos" name="privacidad-fotos">
-                                <label for="privacidad-fotos">Fotos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-publicaciones" name="privacidad-publicaciones">
-                                <label for="privacidad-publicaciones">Publicaciones</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="privacidad-comentarios" name="privacidad-comentarios">
-                                <label for="privacidad-comentarios">Comentarios</label>
-                            </li>
-                        </ul>
+            <div class="accordion" id="accordionSettings">
+
+              <!-- Privacidad -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPrivacy">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrivacy" aria-expanded="true" aria-controls="collapsePrivacy">
+                    <i class="fas fa-user-secret fa-lg"></i>
+                    <span> Privacidad</span>
+                  </button>
+                </h2>
+                <div id="collapsePrivacy" class="accordion-collapse collapse show" aria-labelledby="headingPrivacy" data-bs-parent="#accordionSettings">
+                  <div class="accordion-body">
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="compartirTerceros">Compartir información con terceros</label>
+                      <input class="form-check-input" type="checkbox" id="compartirTerceros">
                     </div>
-                </details>
-                
-                <details>
-                    <summary>
-                        <i class="fas fa-shield-alt fa-lg"></i>
-                        <span>Seguridad</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Configuración de Seguridad</h3>
-                        <p>Seleccione las opciones de seguridad que desee aplicar:</p>
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="seguridad-contrasena" name="seguridad-contrasena">
-                                <label for="seguridad-contrasena">Contraseña Fuerte</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="seguridad-verificacion" name="seguridad-verificacion">
-                                <label for="seguridad-verificacion">Verificación en Dos Pasos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="seguridad-notificaciones" name="seguridad-notificaciones">
-                                <label for="seguridad-notificaciones">Notificaciones de Inicio de Sesión</label>
-                            </li>
-                        </ul>
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="cookiesSeguimiento">Habilitar cookies y seguimiento</label>
+                      <input class="form-check-input" type="checkbox" id="cookiesSeguimiento" checked>
                     </div>
-                </details>
-                
-                <details>
-                    <summary>
-                        <i class="fas fa-bell fa-lg"></i>
-                        <span>Notificaciones</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Configuración de Notificaciones</h3>
-                        <p>Seleccione las notificaciones que desea recibir:</p>
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="notificaciones-email" name="notificaciones-email">
-                                <label for="notificaciones-email">Notificaciones por Correo Electrónico</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="notificaciones-telefono" name="notificaciones-telefono">
-                                <label for="notificaciones-telefono">Notificaciones por Mensaje de Texto</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="notificaciones-push" name="notificaciones-push">
-                                <label for="notificaciones-push">Notificaciones Push en la Aplicación</label>
-                            </li>
-                        </ul>
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="activacionDosPasos">Activación de verificación en dos pasos</label>
+                      <input class="form-check-input" type="checkbox" id="activacionDosPasos">
                     </div>
-                </details>
-                
-                <details>
-                    <summary>
-                        <i class="fas fa-cogs fa-lg"></i>
-                        <span>Preferencias de la Aplicación</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Configuración de Preferencias</h3>
-                        <p>Seleccione sus preferencias para la aplicación:</p>
-                        <ul>
-                            <li>
-                                <label for="preferencias-tema">Tema Oscuro</label>
-                                <div class="toggle-switch">
-                                    <input type="checkbox" id="preferencias-tema" name="preferencias-tema">
-                                    <span class="toggle-slider"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <label for="preferencias-idioma">Idioma</label>
-                                <select id="preferencias-idioma" name="preferencias-idioma">
-                                    <option value="es">Español</option>
-                                    <option value="en">Inglés</option>
-                                    <option value="fr">Francés</option>
-                                    <option value="de">Alemán</option>
-                                </select>
-                            </li>
-                        </ul>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Seguridad -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSecurity">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSecurity" aria-expanded="false" aria-controls="collapseSecurity">
+                    <i class="fas fa-shield-alt fa-lg"></i>
+                    <span> Seguridad</span>
+                  </button>
+                </h2>
+                <div id="collapseSecurity" class="accordion-collapse collapse" aria-labelledby="headingSecurity" data-bs-parent="#accordionSettings">
+                  <div class="accordion-body">
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="contrasenaFuerte">Contraseña Fuerte</label>
+                      <input class="form-check-input" type="checkbox" id="contrasenaFuerte">
                     </div>
-                </details>
-                
-                
-                <details>
-                    <summary>
-                        <i class="fas fa-cogs fa-lg"></i>
-                        <span>Integración y Servicios</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Integración y Servicios</h3>
-                        <p>Seleccione las integraciones y servicios que desea activar:</p>
-                        <ul>
-                            <li>
-                                <input type="checkbox" id="integracion-correo" name="integracion-correo">
-                                <label for="integracion-correo">Integración de Correo Electrónico</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="integracion-redes" name="integracion-redes">
-                                <label for="integracion-redes">Integración con Redes Sociales</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="integracion-pagos" name="integracion-pagos">
-                                <label for="integracion-pagos">Integración de Pagos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="servicio-soporte" name="servicio-soporte">
-                                <label for="servicio-soporte">Servicio de Soporte</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="servicio-almacenamiento" name="servicio-almacenamiento">
-                                <label for="servicio-almacenamiento">Servicio de Almacenamiento en la Nube</label>
-                            </li>
-                        </ul>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="actualizacionSegura">Actualización Segura</label>
+                        <input class="form-check-input" type="checkbox" id="actualizacionSegura">
                     </div>
-                </details>
-                
-                <details>
-                    <summary>
-                        <i class="fas fa-trash fa-lg"></i>
-                        <span>Eliminar Cuenta</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </summary>
-                    <div class="section-details">
-                        <h3>Eliminar Cuenta</h3>
-                        <p>Advertencia: Al eliminar su cuenta, perderá acceso a todos los datos y configuraciones asociados. Esta acción no se puede deshacer.</p>
-                        <button onclick="confirmarEliminacion()">Eliminar Cuenta</button>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="copiasSeguridad">Copias de Seguridad Automáticas</label>
+                        <input class="form-check-input" type="checkbox" id="copiasSeguridad">
                     </div>
-                </details>
-                
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="registroActividad">Registro de Actividad de Usuario</label>
+                        <input class="form-check-input" type="checkbox" id="registroActividad">
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Notificaciones -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNotifications">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span> Notificaciones</span>
+                  </button>
+                </h2>
+                <div id="collapseNotifications" class="accordion-collapse collapse" aria-labelledby="headingNotifications" data-bs-parent="#accordionSettings">
+                  <div class="accordion-body">
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="notificacionesCorreo">Notificaciones por Correo Electrónico</label>
+                      <input class="form-check-input" type="checkbox" id="notificacionesCorreo">
+                    </div>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="notificacionesSMS">Notificaciones por Mensaje de Texto (SMS)</label>
+                        <input class="form-check-input" type="checkbox" id="notificacionesSMS">
+                    </div>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="notificacionesPush">Notificaciones Push en la Aplicación</label>
+                        <input class="form-check-input" type="checkbox" id="notificacionesPush">
+                    </div>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="notificacionesActividades">Notificaciones de Actividades de la Plataforma</label>
+                        <input class="form-check-input" type="checkbox" id="notificacionesActividades">
+                    </div>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="notificacionesPersonalizadas">Notificaciones Personalizadas</label>
+                        <input class="form-check-input" type="checkbox" id="notificacionesPersonalizadas">
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Preferencias de la Aplicación -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAppPreferences">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAppPreferences" aria-expanded="false" aria-controls="collapseAppPreferences">
+                    <i class="fas fa-cogs fa-lg"></i>
+                    <span> Preferencias de la Aplicación</span>
+                  </button>
+                </h2>
+                <div id="collapseAppPreferences" class="accordion-collapse collapse" aria-labelledby="headingAppPreferences" data-bs-parent="#accordionSettings">
+                  <div class="accordion-body">
+                    <div class="form-check form-switch">
+                      <label class="form-check-label" for="temaOscuro">Tema Oscuro</label>
+                      <input class="form-check-input" type="checkbox" id="temaOscuro">
+                    </div>
+                    <div class="form-group">
+                        <label for="idioma">Idioma</label>
+                        <select class="form-select" id="idioma">
+                            <option value="es">Español</option>
+                            <option value="en">Inglés</option>
+                            <option value="fr">Francés</option>
+                            <option value="de">Alemán</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificacionesTiempoReal">Notificaciones en Tiempo Real</label>
+                        <select class="form-select" id="notificacionesTiempoReal">
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tamanioTexto">Tamaño del Texto</label>
+                        <select class="form-select" id="tamanioTexto">
+                            <option value="pequeno">Pequeño</option>
+                            <option value="mediano">Mediano</option>
+                            <option value="grande">Grande</option>
+                        </select>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Eliminar Cuenta -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAppElimination">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAppElimination" aria-expanded="false" aria-controls="collapseAppElimination">
+                    <i class="fas fa-trash fa-lg"></i>
+                    <span> Eliminación de Cuenta</span>
+                  </button>
+                </h2>
+                <div id="collapseAppElimination" class="accordion-collapse collapse" aria-labelledby="headingAppElimination" data-bs-parent="#accordionSettings">
+                  <div class="accordion-body">
+                    <p>Advertencia: Al eliminar su cuenta, perderá acceso a todos los datos y configuraciones asociados. Esta acción no se puede deshacer.</p>
+                    <button onclick="confirmarEliminacion()">Eliminar Cuenta</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>  
           </div>       
         </div>
           </div>
@@ -759,6 +699,18 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    <!-- Bootstrap JS bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var myCollapsible = document.getElementById('accordionConfiguracion');
+        myCollapsible.addEventListener('hide.bs.collapse', function () {
+        });
+      });
+    </script>
 </body>
 
 </html>
