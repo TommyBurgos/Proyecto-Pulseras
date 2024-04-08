@@ -102,6 +102,32 @@
         }
     }
 
+
+    /*paquete con oferta*/
+    .price-text {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .discounted-price {
+        color: red;
+    }
+
+    .discount-badge {
+        position: absolute;
+        top: 16px;
+        left: 2px;
+        background-color: red;
+        color: white;
+        padding: 8px 15px; 
+        border-radius: 5px;
+        transform: rotate(-45deg);
+        font-size: 0.89rem;
+        font-weight: bold;
+    }
+
   </style>
 </head>
 
@@ -584,19 +610,23 @@
                         </div>
                         <!-- Paquete Avanzado -->
                         <div class="col">
-                            <div class="card h-100 shadow-custom">
-                                <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <span class="package-title">Paquete Avanzado</span>
-                                        <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                    </h5>
-                                    <p class="card-text price-text">$40 /mes</p>
-                                    <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
-                                    <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                </div>
-                            </div>
+                          <div class="card h-100 shadow-custom">
+                              <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
+                              <div class="card-body text-center">
+                                  <h5 class="card-title">
+                                      <span class="package-title">Paquete Avanzado</span>
+                                      <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
+                                  </h5>
+                                  <p class="card-text price-text"><del>$40 /mes</del> <span class="discounted-price">-$30 /mes</span></p>
+                                  <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
+                                  <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
+                                  <div class="discount-badge">
+                                      <span>Oferta</span>
+                                  </div>
+                              </div>
+                          </div>
                         </div>
+                      
                         <!-- Paquete Premium -->
                         <div class="col">
                             <div class="card h-100 shadow-custom">

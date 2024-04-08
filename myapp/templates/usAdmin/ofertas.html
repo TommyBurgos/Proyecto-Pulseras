@@ -24,7 +24,103 @@
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .container-py-5 {
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 20px; 
+    }
 
+    .container-py-5 form {
+      margin-bottom: 0; 
+    }
+
+    .container-py-5 label {
+      font-size: 18px; 
+    }
+
+    .container-py-5 input[type="text"],
+    .container-py-5 textarea,
+    .container-py-5 select {
+      font-size: 18px; 
+      margin-bottom: 10px; 
+    }
+
+    .container-py-5 .form-check-label {
+      font-size: 18px; 
+      margin-right: 20px; 
+    }
+
+    .container-py-5 button {
+      float: right; 
+      margin-top: 20px; 
+    }
+
+    .form-check-inline {
+      display: inline-block; 
+      margin-right: 20px; 
+    }
+
+    .form-check-inline .form-check-input {
+      margin-right: 5px; 
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    select,
+    textarea,
+    .form-check-input {
+        border: 1px solid #ced4da; 
+        border-radius: 0.25rem; 
+        padding: 0.375rem 0.75rem; 
+    }
+
+    .form-check-input[type="radio"],
+    .form-check-input[type="checkbox"] {
+        width: 1.25em; 
+        height: 1.25em;
+        margin-top: 0.25em; 
+        margin-bottom: 0.25em; 
+    }
+
+    
+    #descuentoPersonalizado button {
+        margin-top: 0.5rem;
+        padding: 0.375rem 0.75rem; 
+        border: 1px solid #ced4da; 
+        border-radius: 0.25rem; 
+        background-color: #fff; 
+        color: #212529;
+    }
+
+    #descuentoPersonalizado button:hover {
+        background-color: #e9ecef; 
+    }
+
+    
+    button[type="submit"] {
+        float: right; 
+        margin-top: 1rem; 
+        padding: 0.5rem 1rem; 
+        border: 1px solid #007bff; 
+        border-radius: 0.25rem; 
+        color: #fff; 
+        background-color: #007bff; 
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3; 
+        border-color: #0056b3;
+    }
+
+
+  </style>
 </head>
 
 <body>
@@ -398,61 +494,56 @@
                 <div class="row">
 
                 </div>
-                <div class="container py-5">
-                    <h2>Agregar Oferta a Paquete</h2>
-                    <form>
-                        <div class="mb-3">
-                            <label for="nombreOferta" class="form-label">Nombre de la Oferta</label>
-                            <input type="text" class="form-control" id="nombreOferta" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcionOferta" class="form-label">Descripción de la Oferta</label>
-                            <textarea class="form-control" id="descripcionOferta" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Descuento de la Oferta</label>
-                            <div class="row">
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento10" value="10">
-                                        <label class="form-check-label" for="descuento10">10%</label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento20" value="20">
-                                        <label class="form-check-label" for="descuento20">20%</label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento30" value="30">
-                                        <label class="form-check-label" for="descuento30">30%</label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-secondary mt-2 mt-md-0">Descuento Personalizado</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 d-none" id="descuentoPersonalizado">
-                            <label for="descuentoCustom" class="form-label">Descuento Personalizado</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="descuentoCustom" min="0" step="0.01" placeholder="Ingrese el descuento">
-                                <span class="input-group-text">%</span>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fechaExpiracion" class="form-label">Fecha de Expiración</label>
-                            <input type="date" class="form-control" id="fechaExpiracion" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="ofertaActiva">
-                            <label class="form-check-label" for="ofertaActiva">Oferta Activa</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Agregar Oferta</button>
-                    </form>
-                </div>
+                <div class="container py-5 container-py-5">
+                  <h2>Agregar Oferta a Paquete</h2>
+                  <form>
+                      <div class="mb-3">
+                          <label for="nombreOferta" class="form-label">Nombre de la Oferta</label>
+                          <input type="text" class="form-control" id="nombreOferta" required>
+                      </div>
+                      <div class="mb-3">
+                          <label for="descripcionOferta" class="form-label">Descripción de la Oferta</label>
+                          <textarea class="form-control" id="descripcionOferta" rows="3" required></textarea>
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Descuento de la Oferta</label>
+                          <div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento10" value="10">
+                                  <label class="form-check-label" for="descuento10">10%</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento20" value="20">
+                                  <label class="form-check-label" for="descuento20">20%</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="descuentoOferta" id="descuento30" value="30">
+                                  <label class="form-check-label" for="descuento30">30%</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <button type="button" class="btn btn-secondary" id="btnDescuentoPersonalizado">Descuento Personalizado</button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="mb-3 d-none" id="descuentoPersonalizado">
+                          <label for="descuentoCustom" class="form-label">Descuento Personalizado</label>
+                          <div class="input-group">
+                              <input type="number" class="form-control" id="descuentoCustom" min="0" step="0.01" placeholder="Ingrese el descuento">
+                              <span class="input-group-text">%</span>
+                          </div>
+                      </div>
+                      <div class="mb-3">
+                          <label for="fechaExpiracion" class="form-label">Fecha de Expiración</label>
+                          <input type="date" class="form-control" id="fechaExpiracion" required>
+                      </div>
+                      <div class="mb-3 form-check">
+                          <input type="checkbox" class="form-check-input" id="ofertaActiva">
+                          <label class="form-check-label" for="ofertaActiva">Oferta Activa</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Agregar Oferta</button>
+                  </form>
+              </div>
+              
             </div>
           </div>       
         </div>
@@ -566,10 +657,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
     <script>
-        document.getElementById('btnDescuentoPersonalizado').addEventListener('click', function() {
-            document.getElementById('descuentoPersonalizado').classList.toggle('d-none');
-        });
+      const btnDescuentoPersonalizado = document.getElementById('btnDescuentoPersonalizado');
+      const descuentoPersonalizado = document.getElementById('descuentoPersonalizado');
+
+      btnDescuentoPersonalizado.addEventListener('click', () => {
+          descuentoPersonalizado.classList.toggle('d-none');
+      });
     </script>
 
     <!-- Template Javascript -->
