@@ -28,5 +28,7 @@ urlpatterns = [
     path('infoCuenta/gestion', views.infoCuenta),
     path('configuracion/gestion', views.configuracion),
     path('metodos/gestion', views.metodos),
-    path('transacciones/gestion', views.transacciones)
+    path('transacciones/gestion', views.transacciones),
+    path('user/doctor', views.inicioDoctor)
+
 ]

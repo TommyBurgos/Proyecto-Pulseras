@@ -74,27 +74,41 @@ def metodos(request):
 def transacciones(request):
     return render(request,'gestion/transacciones.html')
 
-
+#DOCTOR
+def inicioDoctor(request):
+    return render(request,'usDoctor/panelDoctor.html')
 #Páginas Administrador
 
 def loginAdmin(request):
+    print("HE INGRESADO A LA SESION pero no entro al if")
     if request.method == 'GET':
+        #user = authenticate(request, username=request.POST['idNumber'], password= request.POST['password'])                
         return render(request, 'usAdmin/index.html')
+        
     else:
         #return render(request, 'usAdmin/index.html')
         print("usuario intento")
         print(request.POST)
         user = authenticate(request, username=request.POST['idNumber'], password= request.POST['password'])
-        print("usuario "+request.POST['idNumber'])    
+        print("usuario "+request.POST['idNumber'])          
+        rol=user.rol_id
+        print("HE INGRESADO A LA SESION")  
         if user is None:
             return render(request, 'login.html', {
                 'error': 'Username o password son incorrectas'
             })
         else:
-            login(request, user)
-            return render(request, 'usAdmin/index.html', {
-                'usuario':user.first_name
-            })
+            if rol ==1:
+                login(request, user)
+                return render(request, 'usAdmin/index.html', {
+                    'usuario':user.first_name
+                })
+            if rol==2:
+                login(request, user)
+                return render(request, 'usDoctor/panelDoctor.html', {
+                    'usuario':user.first_name
+                })
+
 
 def crearPaquete(request):
     return render(request,'usAdmin/crearPaquete.html')
@@ -127,7 +141,10 @@ def registroExitoso(request):
             user.save()
             login(request, user)
             print("Se guardo correctamente")
-            return render(request,'usAdmin/index.html')            
+            print(user.rol_id)
+            return render(request,'usAdmin/index.html',{
+                'usuario':user.first_name
+            })            
         except:
             print("no se pudo")
             return HttpResponse('Usuario ya existe')
