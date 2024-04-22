@@ -38,6 +38,15 @@ def paquetes(request):
     #proyectos=list(Paquete.objects.values())
     return render(request, 'paquetes.html')
 
+def catalogDispositivo(request):
+    return render(request, 'catalogDispositivo.html')
+
+def detalleDispositivo(request):
+    return render(request, 'detalleDispositivo.html')
+
+def pagoDispositivo(request):
+    return render(request, 'pagoDispositivo.html')
+
 def servicios(request):
     #servicios= Servicio.objects.get(nombre=nombre)
     return render(request, 'servicios.html')
@@ -133,7 +142,12 @@ def dispositivosAdmin(request):
     dispositivos= Dispositivo.objects.all()
     return render(request,'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
 
+
 @login_required
+
+def revisionPlanes(request):
+    return render(request,'usAdmin/revisionPlanes.html')
+
 def ofertas(request):
     return render(request,'usAdmin/ofertas.html')
 

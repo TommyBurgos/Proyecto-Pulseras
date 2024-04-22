@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+
+<html lang="en">
+{% load static %}
+{% block content %}
+<head>
+  <link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <style>
+    .alquiler-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+  </style>
+</head>
+  
+<body>
+    <div class="container-fluid sticky-top bg-primary">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                <a href="/" class="navbar-brand">
+                    <h1 class="text-white">DOC<span class="text-dark">.</span></h1>
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sobre Nosotros</a>
+                            <div class="dropdown-menu bg-light mt-2">
+                                <a href="feature.html" class="dropdown-item">Features</a>
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="faq.html" class="dropdown-item">FAQs</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+                        <a href="index.html" class="nav-item nav-link active">Servicios</a>
+                        <a href="about.html" class="nav-item nav-link">Blog</a>                                            
+                        <a href="contact.html" class="nav-item nav-link">Contactanos</a>
+                        <a href="/registro" class="btn btn-light py-sm-2 px-sm-5 rounded-pill me-3 animated slideInRight">Registrarse</a>
+                    </div>
+                    <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
+                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class='container2'>
+        <div class='window'>
+            <div class='order-info'>
+                <div class='order-info-content'>
+                    <!-- Detalles del dispositivo -->
+                    <h2>Pulsera</h2>
+                    <div class='line'></div>
+                    <table class='order-table'>                
+                    </table>
+                    
+                    <table class='order-table'>
+                        <tbody>
+                            <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                                    <img src="{% static 'img/pulseraDis.jpg' %}" alt="Imagen del dispositivo" class="img-fluid">
+                                    <p>Alquiler: $10 /mes - Venta: $100</p>
+                                    <div class="col-sm-12">
+                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>1 familiar</h6>
+                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
+                                    </div>                        
+                                </div>
+                            </div>
+                        </tbody>
+                    </table>
+
+                    <label for='purchase-type'>Seleccione una opción:</label>
+                    <select class='form-select' id='select-option' onchange='toggleAlquilerForm()'>
+                        <option value='comprar'>Comprar</option>
+                        <option value='alquilar'>Alquilar</option>
+                    </select>
+
+                    <!--<div class='line'></div>
+                    <div class='total'>
+                        <span style='float:left;'>                  
+                            TOTAL
+                        </span>
+                        <span style='float:right; text-align:right;'>                  
+                            $100
+                        </span>
+                    </div>-->
+                </div>
+            </div>
+            <div class='credit-info'>
+                <div class='credit-info-content'>
+                    <table class='half-input-table'>
+                        <tr><td>Seleccione su tarjeta: </td><td><div class='dropdown' id='card-dropdown'><div class='dropdown-btn' id='current-card'>Visa</div>
+                            <div class='dropdown-select'>
+                                <ul>
+                                    <li>Master Card</li>
+                                    <li>American Express</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td></tr>
+                </table>
+                <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
+                Número de Tarjeta
+                <input class='input-field'></input>
+                Titular de la Tarjeta
+                <input class='input-field'></input>
+                <table class='half-input-table'>
+                    <tr>
+                        <td> Expira
+                            <input class='input-field'></input>
+                        </td>
+                        <td>CVC
+                            <input class='input-field'></input>
+                        </td>
+                    </tr>
+                </table>
+                <button class='pay-btn'>Checkout</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class='container alquiler-container bg-white rounded p-4 mt-4 shadow' style='display: none;'>
+        <h2>Formulario de Alquiler</h2>
+        <form>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su teléfono">
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    
+    <script>
+        function toggleAlquilerForm() {
+            var select = document.getElementById("select-option");
+            var alquilerContainer = document.querySelector(".alquiler-container");
+    
+            if (select.value === "alquilar") {
+                alquilerContainer.style.display = "block";
+            } else {
+                alquilerContainer.style.display = "none";
+            }
+        }
+    </script>
+
+    <script src="{% static 'js/codigo.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
+</body>
+{% endblock %}
+</html>
