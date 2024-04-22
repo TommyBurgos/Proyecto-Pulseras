@@ -29,6 +29,7 @@ urlpatterns = [
     path('configuracion/gestion', views.configuracion),
     path('metodos/gestion', views.metodos),
     path('transacciones/gestion', views.transacciones),
-    path('user/doctor', views.inicioDoctor)
+    path('user/doctor', views.inicioDoctor),
+    path('configuracion/cambiarContrasena', views.cambiarContrasena)
 
 ]
