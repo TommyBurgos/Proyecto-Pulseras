@@ -108,13 +108,13 @@
                 <img src="{% static 'img/perfil.png' %}" alt="profile"/>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="/configuracion/gestion">
                   <i class="ti-settings text-primary"></i>
-                  Settings
+                  Configuración
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="/logout">
                   <i class="ti-power-off text-primary"></i>
-                  Logout
+                  Salir
                 </a>
               </div>
             </li>
@@ -437,8 +437,8 @@
                                       <select name="opEstado" class="form-select form-control" aria-label="Default select example">
                                         <option selected>Selecciona una opción</option>
                                         <option value="1">Disponible</option>
-                                        <option value="2">Asignado</option>
-                                        <option value="3">Vendido</option>
+                                        <option value="2">Comprado</option>
+                                        <option value="3">Fuera De Servicio</option>
                                         <option value="4">Alquilado</option>
                                       </select>
 
@@ -497,21 +497,42 @@
                           </tr>
                         </thead>
                         <tbody>
+                          {% for disp in dispositivos %}                          
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Pulsx13003</td>
-                            <td>Marcos Mora</td>
-                            <td>MarcoPolo12</td>
+                            <td>{{cont}}</td>
+                            <td>{{disp.serie}}</td>
+                            <td>PEDRO </td>
+                            <td>Pablo</td>                            
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE; ">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activoInactivo" style="background-color:#37A7FE; ">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch" style="background-color:#3788FF" id="flexSwitchCheckChecked" checked>
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
                                     </div>
+                                </button>        
+                            </td>
+                            <td>
+                              <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="fas fa-pen"></i>
                                 </button>
-                                
+                                  <ul class="dropdown-menu">
+                                      <li>
+                                        
+                                        <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>                                            
+                                        
+                                      </li>
+                                      <li><a class="dropdown-item" href="#">Administrar</a></li>
+                                      <li><a class="dropdown-item" href="#">Ver</a></li>
+                                      <li><a class="dropdown-item" href="#">eliminar</a></li>
+                                  </ul>
+                              </div> 
+
+                            </td>
+                          </tr>
+                          {% endfor %}                                                      
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="activoInactivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -527,124 +548,9 @@
                                         </div>
                                     </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <i class="fas fa-pen"></i>
-                                    </button>
-                                      <ul class="dropdown-menu">
-                                          <li>
-                                            
-                                            <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>                                            
-                                            
-                                          </li>
-                                          <li><a class="dropdown-item" href="#">Administrar</a></li>
-                                          <li><a class="dropdown-item" href="#">Ver</a></li>
-                                          <li><a class="dropdown-item" href="#">eliminar</a></li>
-                                      </ul>
-                                  </div> 
-                            </td>
+                                </div>                                                        
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Pulsx13002</td>
-                            <td>Paula Peralta</td>
-                            <td>
-                                PaulaP000
-
-                            </td>
-                            <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE;">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
-                                    </div>
-                                </button>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        ...
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td>                                                                  
-                                <div class="btn-group" role="group">
-                                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-pen"></i>
-                                  </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Editar datos</a></li>
-                                        <li><a class="dropdown-item" href="#">Administrar</a></li>
-                                        <li><a class="dropdown-item" href="#">Ver</a></li>
-                                        <li><a class="dropdown-item" href="#">eliminar</a></li>
-                                    </ul>
-                                </div>                            
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Pulsx13001</td>
-                            <td>the Bird</td>
-                            <td>bird997</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#37A7FE;">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
-                                    </div>
-                                </button>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        ...
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <i class="fas fa-pen"></i>
-                                    </button>
-                                      <ul class="dropdown-menu">
-                                          <li><a class="dropdown-item" href="#">Editar datos</a></li>
-                                          <li><a class="dropdown-item" href="#">Administrar</a></li>
-                                          <li><a class="dropdown-item" href="#">Ver</a></li>
-                                          <li><a class="dropdown-item" href="#">eliminar</a></li>
-                                      </ul>
-                                  </div> 
-
-                            </td>
-                          </tr>
+                          
                         </tbody>
                       </table>
                 </div>

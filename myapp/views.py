@@ -1,11 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import Paquete, Servicio,Dispositivo
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from user.models import User  # Importa tu nueva clase User personalizada
+from .forms import UserForm
+#New
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+#from .forms import ChangePasswordForm
 
 paquete1="Paquete Amigo (Básico)"
 precio=15
@@ -71,23 +79,25 @@ def crearCercos(request):
 
 
 #Paginas de Gestion de cuenta
+@login_required
 def infoCuenta(request):
     return render(request,'gestion/infoCuenta.html')
-
+@login_required
 def configuracion(request):
     return render(request,'gestion/configuracion.html')
-
+@login_required
 def metodos(request):
     return render(request,'gestion/metodos.html')
-
+@login_required
 def transacciones(request):
     return render(request,'gestion/transacciones.html')
 
 #DOCTOR
+#@login_required
 def inicioDoctor(request):
     return render(request,'usDoctor/panelDoctor.html')
 #Páginas Administrador
-
+#@login_required
 def loginAdmin(request):
     print("HE INGRESADO A LA SESION pero no entro al if")
     if request.method == 'GET':
@@ -100,13 +110,14 @@ def loginAdmin(request):
         print(request.POST)
         user = authenticate(request, username=request.POST['idNumber'], password= request.POST['password'])
         print("usuario "+request.POST['idNumber'])          
-        rol=user.rol_id
+        
         print("HE INGRESADO A LA SESION")  
         if user is None:
             return render(request, 'login.html', {
                 'error': 'Username o password son incorrectas'
             })
         else:
+            rol=user.rol_id
             if rol ==1:
                 login(request, user)
                 return render(request, 'usAdmin/index.html', {
@@ -118,16 +129,21 @@ def loginAdmin(request):
                     'usuario':user.first_name
                 })
 
-
+@login_required
 def crearPaquete(request):
     return render(request,'usAdmin/crearPaquete.html')
 
+@login_required
 def detallePaqAdmin(request):
     return render(request,'usAdmin/detallePaqAdmin.html')
 
+@login_required
 def dispositivosAdmin(request):
     dispositivos= Dispositivo.objects.all()
     return render(request,'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
+
+
+@login_required
 
 def revisionPlanes(request):
     return render(request,'usAdmin/revisionPlanes.html')
@@ -135,8 +151,10 @@ def revisionPlanes(request):
 def ofertas(request):
     return render(request,'usAdmin/ofertas.html')
 
+@login_required
 def paqueteAdmin(request):
     return render(request,'usAdmin/paqueteAdmin.html')
+
 
 def registroExitoso(request):
     print(request.POST)
@@ -161,7 +179,7 @@ def registroExitoso(request):
             print("no se pudo")
             return HttpResponse('Usuario ya existe')
     return HttpResponse('Contraseñas no coinciden')
-
+@login_required
 def registrarDispositivo(request):
     print(request.POST['numSerie'])        
     try:
@@ -180,8 +198,38 @@ def registrarDispositivo(request):
         print("no se pudo")
         return HttpResponse('No se pudo guardar')
     
-
-
 def signout(request):
     logout(request)
     return render(request,'login.html')
+@login_required
+def cambiarContrasena(request):
+    user=request.user
+    if request.method == 'POST':
+        print("Me meti pa ACA 2")
+        form = UserForm(request.POST)
+        if form.is_valid():
+            print("Me meti pa ACA 3")
+            user = request.user
+            old_password = form.cleaned_data['old_password']
+            new_password = form.cleaned_data['new_password']
+            confirm_new_password = form.cleaned_data['confirm_new_password']
+            if user.check_password(old_password):
+                print("Me meti pa ACA 4")
+                if new_password == confirm_new_password:
+                    print("Me meti pa ACA SIIUUUU")
+                    user.set_password(new_password)
+                    user.save()
+                    update_session_auth_hash(request, user)
+                    messages.success(request, 'Contraseña cambiada con éxito.')
+                    return render(request,'gestion/cambioContrasena.html')  # Redirige a la página de perfil o donde sea apropiado
+                else:
+                    messages.error(request, 'Las contraseñas nuevas no coinciden.')
+            else:
+                messages.error(request, 'La contraseña actual no es válida.')
+    else:
+        print("Me meti pa ACAAAAA")
+        form = UserForm()
+    
+    return render(request,'gestion/cambioContrasena.html', {
+        'form':form        
+    })
