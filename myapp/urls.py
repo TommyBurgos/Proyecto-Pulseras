@@ -34,6 +34,12 @@ urlpatterns = [
     path('metodos/gestion', views.metodos),
     path('transacciones/gestion', views.transacciones),
     path('user/doctor', views.inicioDoctor),
+    path('user/paciente', views.inicioPaciente),
+    path('user/familiar', views.inicioFamiliar),
+    path('user/', views.inicioGeneral),
+    path('user/blog', views.blogUser),
+    path('user/doctor/cita', views.aggcita),
+    path('user/doctor/receta', views.aggreceta),
     path('configuracion/cambiarContrasena', views.cambiarContrasena)
 
 ]
