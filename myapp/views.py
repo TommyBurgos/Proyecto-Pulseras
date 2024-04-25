@@ -77,6 +77,8 @@ def blogs(request):
 def crearCercos(request):
     return render(request,'crearCercos.html')
 
+def blogUser(request):
+    return render (request, 'usGeneral/blog.html')
 
 #Paginas de Gestion de cuenta
 @login_required
@@ -91,11 +93,29 @@ def metodos(request):
 @login_required
 def transacciones(request):
     return render(request,'gestion/transacciones.html')
-
+#GENERAL
+#@login_required
+def inicioGeneral(request):
+    return render(request,'usGeneral/index.html')
+#PACIENTE
+#@login_required
+def inicioPaciente(request):
+    return render(request,'usPaciente/index.html')
+#FAMILIAR
+#@login_required
+def inicioFamiliar(request):
+    return render(request,'usFamiliar/index.html')
 #DOCTOR
 #@login_required
 def inicioDoctor(request):
     return render(request,'usDoctor/panelDoctor.html')
+
+def aggcita(request):
+    return render (request,'usDoctor/citas.html')
+
+def aggreceta(request):
+    return render (request,'usDoctor/recetaMedica.html')
+
 #Páginas Administrador
 #@login_required
 def loginAdmin(request):
