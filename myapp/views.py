@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from .models import Paquete, Servicio,Dispositivo
+from .models import Paquete, Servicio, Dispositivo
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -19,24 +19,21 @@ paquete1="Paquete Amigo (Básico)"
 precio=15
 #nombresPaquetes=list([Paquete.objects.values.name])
 #preciosPaquetes=list([Paquete.objects.values.precio])
+
 # Create your views here
 def index(request):
-    title='AI.Tech - Pulseras Wifi'    
+    title='AI.Tech - Pulseras Wifi' 
+    paquetes= Paquete.objects.all()   
     return render(request, "index.html",{
         'title':title,
-        'paquete1':paquete1,
-        'precio':precio
-
+        'paquetes': paquetes
     })
+
 def hello(request,username):
     return HttpResponse("<h2>Hola %s</h2>"%username)
 
 def about(request):
     return render(request,"about.html")
-
-def paquetes(request):
-    #proyectos=list(Paquete.objects.values())
-    return render(request, 'paquetes.html')
 
 def catalogDispositivo(request):
     return render(request, 'catalogDispositivo.html')
@@ -54,11 +51,6 @@ def servicios(request):
 def registro(request):
     return render(request, 'registro.html', {'form':UserCreationForm})
 
-def pagos(request):
-    return render(request,'pagos.html',{
-        'paquete1':paquete1,
-        'precio':precio})
-
 def iniciar(request):
     return render(request, 'login.html')
 
@@ -68,8 +60,13 @@ def contact(request):
 def recuperacion(request):
     return render(request, 'recuperacion.html')
 
-def detallePaquete(request):
-    return render(request, 'detallePaquete.html')
+def detallePaquete(request,id):
+    paquete = get_object_or_404(Paquete, id=id)
+    return render(request, 'detallePaquete.html', {'paquete': paquete})
+
+def pagos(request,id):
+    paquete = get_object_or_404(Paquete, id=id)
+    return render(request, 'pagos.html', {'paquete': paquete})
 
 def blogs(request):
     return render(request,'blogs.html')
@@ -256,3 +253,7 @@ def cambiarContrasena(request):
     return render(request,'gestion/cambioContrasena.html', {
         'form':form        
     })
+
+def paquetes(request):
+    paquetes= Paquete.objects.all()
+    return render(request,'paquetes.html', {'paquetes': paquetes})

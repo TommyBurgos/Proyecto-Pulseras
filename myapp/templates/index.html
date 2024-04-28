@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
 <!DOCTYPE html>
-
 <html lang="en">
+{% extends 'base.html' %}
+
 {% load static %}
 {% block content %}
 <body>
@@ -16,6 +16,7 @@
 
 
     <!-- Navbar Start -->
+<<<<<<< HEAD
     <div class="container-fluid sticky-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark p-0">
@@ -50,6 +51,9 @@
             </nav>
         </div>
     </div>
+=======
+    {% include 'navbar.html' %}
+>>>>>>> 5e218f324ddaf7e6db3b5ddaf7805e40932bb86e
     <!-- Navbar End -->
 
 
@@ -147,86 +151,29 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="row g-4">
-                                <div class="col-12 wow fadeIn h-60" data-wow-delay="0.1s">
-                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
-                                        <div class="service-icon btn-square">
-                                            <i class="fa fa-hand-holding-heart fa-2x"></i>
-                                        </div>
-                                        <br>
-                                        <h5 class="mb-3">{{paquete1}}</h5>
-                                        <p>${{precio}}<br> /mes</p>
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>1 familiar</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
-                                            <br>
-                                        </div>
-                                        <a class="btn-primary rounded-pill px-4" href="/pagos">Adquirirlo ya</a>
-                                        <br><br><br>
-                                    </div>
+                        {% for paquete in paquetes %}
+                        <div class="col-md-6" data-wow-delay="0.1s">
+                            <div class="service-item flex-column justify-content-center text-center rounded">
+                                <div class="service-icon btn-square">
+                                    <i class="fa fa-hand-holding-heart fa-2x"></i>
                                 </div>
-                                <div class="col-12 wow fadeIn h-60" data-wow-delay="0.5s">
-                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
-                                        <div class="service-icon btn-square">
-                                            <i class="fa fa-box-open fa-2x"></i>
-                                        </div><br><br>
-                                        <h5 class="mb-3">Paquete open Box (Standard)</h5><br>
-                                        <p>$30. <br> /mes</p><br>
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>2 familiares</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de saturacion</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de pasos</h6><br><br><br>
-                                        </div>
-                                        <a class="btn-primary rounded-pill px-4" href="">Adquirirlo ya</a>
-                                    </div>
+                                <br>
+                                <h5 class="mb-3">{{paquete.name}}</h5>
+                                <p>${{paquete.valor}}<br> /mes</p>
+                                <div class="col-sm-12">
+                                    <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>{{paquete.descripcion}}</h6>
+                                    <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>1 familiar</h6>
+                                    <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
+                                    <br>
                                 </div>
+                                <a class="btn-primary rounded-pill px-4" href="/pagos/{{ paquete.id }}">Adquirirlo ya</a>
+                                <br><br><br>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="row g-4">
-                                <div class="col-12 wow fadeIn h-60" data-wow-delay="0.3s">
-                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
-                                        <div class="service-icon btn-square">
-                                            <i class="fa fa-box fa-2x"></i>
-                                        </div>
-                                        <h5 class="mb-3">Paquete close Box (Avanzado)</h5>
-                                        <p>$55. <br> /mes</p>
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>3 familiares</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de saturacion</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de pasos</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Oxigenaciòn detallada</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Localización de pulsera</h6>
-                                        </div>
-                                        <a class="btn-primary rounded-pill px-4" href="">Adquirirlo ya</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 wow fadeIn" data-wow-delay="0.7s">
-                                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
-                                        <div class="service-icon btn-square">
-                                            <i class="fa fa-cubes fa-2x"></i>
-                                        </div>
-                                        <h5 class="mb-3">Paquete Multiple (Estrella)</h5>
-                                        <p>$70. <br> /mes</p>
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Familiares ilimitados</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de saturacion</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Control de pasos</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Oxigenaciòn detallada</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Localización de pulsera</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Acceso a citas</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Acceso a recetas</h6>
-                                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Comunicación con tu doctor</h6>
-                                        </div>
-                                        <a class="btn-primary rounded-pill px-4" href="">Adquirirlo ya</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="w-100"></div> <!-- Agrega una columna limpia después de cada dos tarjetas -->
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -247,7 +194,7 @@
                         <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
                             <i class="fa fa-check"></i>
                         </div>
-                        <span><a style="color: rgb(255, 255, 255);" href="https://hangaroa.ec/">Hangaroa S.A</a>por: Carrillo</span>
+                        <span><a style="color: rgb(255, 255, 255);" href="https://hangaroa.ec/">Hangaroa S.A</a> por: Carrillo</span>
                     </div>
                     <div class="d-flex align-items-center text-white mb-3">
                         <div class="btn-sm-square bg-white text-primary rounded-circle me-3">
@@ -300,8 +247,8 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" src="{% static 'img/presionArterial.jpg' %}" alt="">
+                    <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/presionArterial.jpg' %}" alt="">
                         <a class="case-overlay text-decoration-none" href="">
                             <small>Rangos normales de presión arterial</small>
                             <h5 class="lh-base text-white mb-3">La presión arterial es normal si está por debajo de 120/80 mm Hg. Si usted es adulto y ...
@@ -311,10 +258,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" src="{% static 'img/nanoBots.webp' %}" alt="">
+                    <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/nanoBots.webp' %}" alt="">
                         <a class="case-overlay text-decoration-none" href="">
-                            <small>Nuevos avances en las medicinas con nanobots</small>
+                            <small>Avances en las medicinas con nanobots</small>
                             <h5 class="lh-base text-white mb-3">La ciencia continua avanzando, ahora nos planteamos usar nanobots para ...
                             </h5>
                             <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
@@ -322,8 +269,8 @@
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" src="{% static 'img/glucosa.jpg' %}" alt="">
+                    <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/glucosa.jpg' %}" alt="">
                         <a class="case-overlay text-decoration-none" href="">
                             <small>Recomendaciones para tu glucosa</small>
                             <h5 class="lh-base text-white mb-3">Comer en horarios regulares y no saltarse comidas. Escoger alimentos bajos en ...
@@ -473,7 +420,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-fluid bg-light py-5">
+    <!--<div class="container-fluid bg-light py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
@@ -566,11 +513,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Team End -->
 
 
     <!-- Testimonial Start -->
+    <!--
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="row g-5">
@@ -624,7 +572,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Testimonial End -->
 
 
@@ -636,15 +584,15 @@
                     <img class="img-fluid" src="{% static 'img/newsletter.png' %}" alt="">
                 </div>
                 <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
-                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Newsletter</div>
-                    <h1 class="text-white mb-4">Let's subscribe the newsletter</h1>
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Boletín informativo</div>
+                    <h1 class="text-white mb-4">Suscríbete a nuestro boletín informativo</h1>
                     <div class="position-relative w-100 mt-3 mb-2">
                         <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text"
-                            placeholder="Enter Your Email" style="height: 48px;">
+                            placeholder="Ingrese su correo electrónico" style="height: 48px;">
                         <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
                                 class="fa fa-paper-plane text-primary fs-4"></i></button>
                     </div>
-                    <small class="text-white-50">Diam sed sed dolor stet amet eirmod</small>
+                    <small class="text-white-50">Recibirás noticias y promociones</small>
                 </div>
             </div>
         </div>
@@ -653,69 +601,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                    <a href="index.html" class="d-inline-block mb-3">
-                        <h1 class="text-white">DOC<span class="text-primary">.</span></h1>
-                    </a>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor</p>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                    <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                    <h5 class="text-white mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Career</a>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                    <h5 class="text-white mb-4">Our Services</h5>
-                    <a class="btn btn-link" href="">Robotic Automation</a>
-                    <a class="btn btn-link" href="">Machine learning</a>
-                    <a class="btn btn-link" href="">Predictive Analysis</a>
-                    <a class="btn btn-link" href="">Data Science</a>
-                    <a class="btn btn-link" href="">Robot Technology</a>
-                </div>
-            </div>
-        </div>
-        <div class="container wow fadeIn" data-wow-delay="0.1s">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FAQs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'footer.html' %}
     <!-- Footer End -->
 
 
