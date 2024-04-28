@@ -23,6 +23,7 @@ urlpatterns = [
     path('detallePaqAdmin/usAdmin', views.detallePaqAdmin),
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('revisionPlanes/usAdmin', views.revisionPlanes),
+    path('solicitudCompra/usAdmin', views.solicitudCompra),
     path('ofertas/usAdmin', views.ofertas),
     path('paqueteAdmin/usAdmin', views.paqueteAdmin),
     path('crearCercos/', views.crearCercos),
