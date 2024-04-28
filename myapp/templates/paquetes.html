@@ -144,120 +144,34 @@
     </div>
 
     <!--Lista de paquetes por filtrado-->
+    {% csrf_token %}
     <div class="container-fluid bg-light mt-5 py-5">
-      <div class="container py-5">
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-              <!-- Paquete Básico -->
-              <div class="col">
-                  <div class="card h-100 shadow-custom">
-                      <img src="{% static 'img/paquete1.jpg' %}" class="card-img-top img-fluid" alt="Paquete Básico">
-                      <div class="card-body text-center">
-                          <h5 class="card-title">
-                              <span class="package-title">Paquete Básico</span>
-                              <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                          </h5>
-                          <p class="card-text price-text">$20 /mes</p>
-                          <p class="card-text">Ideal para comenzar con monitoreo básico de salud.</p>
-                          <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <!-- Paquete Avanzado -->
-              <div class="col">
-                  <div class="card h-100 shadow-custom">
-                      <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
-                      <div class="card-body text-center">
-                          <h5 class="card-title">
-                              <span class="package-title">Paquete Avanzado</span>
-                              <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                          </h5>
-                          <p class="card-text price-text">$40 /mes</p>
-                          <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
-                          <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <!-- Paquete Premium -->
-              <div class="col">
-                  <div class="card h-100 shadow-custom">
-                      <img src="{% static 'img/paquete3.jpg' %}" class="card-img-top img-fluid" alt="Paquete Premium">
-                      <div class="card-body text-center">
-                          <h5 class="card-title">
-                              <span class="package-title">Paquete Premium</span>
-                              <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                          </h5>
-                          <p class="card-text price-text">$60 /mes</p>
-                          <p class="card-text">Todo incluido para el máximo cuidado de tu salud.</p>
-                          <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              <!-- Paquete Básico -->
-              <div class="col">
+        <div class="container py-5">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for paquete in paquetes %}
+                <div class="col">
                 <div class="card h-100 shadow-custom">
-                    <img src="{% static 'img/paquete1.jpg' %}" class="card-img-top img-fluid" alt="Paquete Básico">
+                    <img src="{% static 'img/paquete' %}{{ paquete.id }}.jpg" class="card-img-top img-fluid" alt="{{ paquete.name }}">
                     <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <span class="package-title">Paquete Básico</span>
-                            <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                        </h5>
-                        <p class="card-text price-text">$20 /mes</p>
-                        <p class="card-text">Ideal para comenzar con monitoreo básico de salud.</p>
-                        <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
+                    <h5 class="card-title">
+                        <span class="package-title">{{ paquete.name }}</span>
+                        <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
+                    </h5>
+                    <p class="card-text price-text"> $ {{ paquete.valor }}</p>
+                    <p class="card-text">{{ paquete.descripcion }}</p>
+                    <div class="d-flex justify-content-center flex-column align-items-center">
+                        <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete/{{ paquete.id }}">Ver más</a>
+                        <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos/{{ paquete.id }}">Adquirirlo ya</a>
+                    </div>
                     </div>
                 </div>
-            </div>
-            <!-- Paquete Avanzado -->
-            <div class="col">
-                <div class="card h-100 shadow-custom">
-                    <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <span class="package-title">Paquete Avanzado</span>
-                            <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                        </h5>
-                        <p class="card-text price-text">$40 /mes</p>
-                        <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
-                        <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
-                    </div>
                 </div>
+            {% endfor %}
             </div>
-            <!-- Paquete Premium -->
-            <div class="col">
-                <div class="card h-100 shadow-custom">
-                    <img src="{% static 'img/paquete3.jpg' %}" class="card-img-top img-fluid" alt="Paquete Premium">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <span class="package-title">Paquete Premium</span>
-                            <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                        </h5>
-                        <p class="card-text price-text">$60 /mes</p>
-                        <p class="card-text">Todo incluido para el máximo cuidado de tu salud.</p>
-                        <div class="d-flex justify-content-center flex-column align-items-center">
-                            <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete">Ver más</a>
-                            <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/pagos">Adquirirlo ya</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-              
-          </div>
-      </div>
+        </div>
+    </div>          
+    </div>
+    </div>
     </div>
     
     <!-- Footer Start -->

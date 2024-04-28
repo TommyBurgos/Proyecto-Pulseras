@@ -107,17 +107,17 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="package-title text-center">Paquete Salud Total</h2>
-                <p class="package-details">Este paquete incluye un completo servicio de atención médica para toda la familia, con consultas ilimitadas y acceso a especialistas.</p>
+                <h2 class="package-title text-center">{{paquete.name}}</h2>
+                <p class="package-details">{{paquete.descripcion}}</p>
                 <ul class="package-features">
                     <li>Consultas ilimitadas</li>
                     <li>Acceso a especialistas</li>
                     <li>Exámenes médicos incluidos</li>
                     <li>Descuentos en medicamentos</li>
                 </ul>
-                <h3 class="package-price text-center">$99.99</h3>
+                <h3 class="package-price text-center">${{paquete.valor}}</h3>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary">Adquirir Paquete</a>
+                    <a href="/pagos/{{ paquete.id }}" class="btn btn-primary">Adquirir Paquete</a>
                 </div>
             </div>
         </div>

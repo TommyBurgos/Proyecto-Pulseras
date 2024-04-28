@@ -12,12 +12,12 @@
 </head>
   
 <body>
-  {% include 'navbar.html' %}
+  {% include 'navbarAzul.html' %}
     <div class='container2'>
         <div class='window'>
           <div class='order-info'>
             <div class='order-info-content'>
-              <h2>{{paquete1}}</h2>
+              <h2>{{paquete.name}}</h2>
               <div class='line'></div>
               <table class='order-table'>                
               </table>
@@ -29,7 +29,7 @@
                         <div class="service-icon btn-square">
                             <i class="fa fa-hand-holding-heart fa-2x"></i>
                         </div>                        
-                        <p>${{precio}}<br>/mes</p>
+                        <p>${{paquete.valor}}<br>/mes</p>
                         <div class="col-sm-12">
                             <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>1 familiar</h6>
                             <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
@@ -44,7 +44,7 @@
                   TOTAL
                 </span>
                 <span style='float:right; text-align:right;'>                  
-                  ${{precio}}
+                  ${{paquete.valor}}
                 </span>
               </div>
             </div>
