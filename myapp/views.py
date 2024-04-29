@@ -172,6 +172,9 @@ def dispositivosAdmin(request):
 def revisionPlanes(request):
     return render(request,'usAdmin/revisionPlanes.html')
 
+def solicitudCompra(request):
+    return render(request,'usAdmin/solicitudCompra.html')
+
 def ofertas(request):
     return render(request,'usAdmin/ofertas.html')
 
