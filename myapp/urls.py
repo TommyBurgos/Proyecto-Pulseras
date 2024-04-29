@@ -18,6 +18,7 @@ urlpatterns = [
     path('recuperacion/', views.recuperacion),
     path('detallePaquete/<int:id>', views.detallePaquete),
     path('blogs/', views.blogs),
+    path('blogs/detalleBlogs/<int:id>', views.detalleBlogs),
     path('crearPaquete/usAdmin', views.crearPaquete),
     path('login/usAdmin/',views.loginAdmin),
     path('detallePaqAdmin/usAdmin', views.detallePaqAdmin),

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from .models import Paquete, Servicio, Dispositivo
+from .models import Paquete, Servicio, Dispositivo, BlogNoticia
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -24,9 +24,11 @@ precio=15
 def index(request):
     title='AI.Tech - Pulseras Wifi' 
     paquetes= Paquete.objects.all()   
+    blogs= BlogNoticia.objects.all()
     return render(request, "index.html",{
         'title':title,
-        'paquetes': paquetes
+        'paquetes': paquetes,
+        'blogs': blogs
     })
 
 def hello(request,username):
@@ -69,7 +71,12 @@ def pagos(request,id):
     return render(request, 'pagos.html', {'paquete': paquete})
 
 def blogs(request):
-    return render(request,'blogs.html')
+    blogs= BlogNoticia.objects.all()
+    return render(request,'blogs.html', {'blogs': blogs})
+
+def detalleBlogs(request,id):
+    blog = get_object_or_404(BlogNoticia, id=id)
+    return render(request, 'detalleBlogs.html', {'blog': blog})
 
 def crearCercos(request):
     return render(request,'crearCercos.html')
@@ -156,8 +163,8 @@ def detallePaqAdmin(request):
 
 @login_required
 def dispositivosAdmin(request):
-    dispositivos= Dispositivo.objects.all()
-    return render(request,'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
+        dispositivos= Dispositivo.objects.all()
+        return render(request,'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
 
 
 @login_required

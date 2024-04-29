@@ -15,9 +15,9 @@
 ================================================== -->
 <div class="container">
 	<div class="mainheading">
-		<h1 class="sitetitle">Blogs y Noticias</h1>
+		<h1 class="sitetitle" style="margin-top: 3%;">Blogs y Noticias</h1>
 		<p class="lead">
-			 Noticias y blogs del mundo de la médicina.
+			 Noticias y blogs del mundo de la medicina.
 		</p>
 	</div>
 <!-- End Site Title
@@ -26,47 +26,25 @@
 	<!-- Begin Featured
 	================================================== -->
 	<section class="featured-posts">
-	<div class="section-title">
-		<h2><span>Featured</span></h2>
-	</div>
-    <!-- begin post  {% static 'img/presionArterial.jpg' %} -->
-	<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="section-title">
+      <h2><span>Featured</span></h2>
+    </div>
+      <!-- begin post  {% static 'img/presionArterial.jpg' %} -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for blog in blogs|slice:":3" %}
         <div class="col">
-          <div class="card h-100">
+          <a class="card h-100" href="detalleBlogs/{{blog.id}}">
             <img src="{% static 'img/presionArterial.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title">{{blog.titulo}}</h5>
+              <p class="card-text">{{ blog.noticia|truncatechars:109 }}</p>
             </div>
             <div class="card-footer">
               <small class="text-body-secondary">Last updated 3 mins ago</small>
             </div>
-          </div>
+          </a>
         </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="{% static 'img/glucosa.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="{% static 'img/nanoBots.webp' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 	</section>
 	<!-- End Featured
@@ -74,48 +52,26 @@
 
 	<!-- Begin List Posts
 	================================================== -->
-	<section class="recent-posts">
-	<div class="section-title">
-		<h2><span>Más Blogs</span></h2>
-	</div>
-	<div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card">
-            <img src="{% static 'img/oxigenacion.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
+	<section class="recent-posts" style="margin-top: 5%;">
+    <div class="section-title">
+      <h2><span>Más Blogs</span></h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for blog in blogs %}
+      <div class="col">
+        <a class="card" href="detalleBlogs/{{blog.id}}">
+          <img src="{% static 'img/oxigenacion.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{blog.titulo}}</h5>
+            <p class="card-text">{{ blog.noticia|truncatechars:109 }}</p>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="{% static 'img/nanoBots.webp' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="{% static 'img/nanoBots.webp' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="{% static 'img/glucosa.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
-        </div>
+        </a>
       </div>
+      {% if forloop.counter|divisibleby:2 %}
+      <div class="w-100"></div> <!-- Agrega una columna limpia después de cada dos tarjetas -->
+      {% endif %}
+      {% endfor %}
+    </div>
 	</section>
 	<!-- End List Posts
 	================================================== -->

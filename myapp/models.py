@@ -123,6 +123,7 @@ class CitaMedica(models.Model):
 class BlogNoticia(models.Model):
     titulo=models.CharField(max_length=200)
     noticia=models.CharField(max_length=1000)
+    
 class CentroMedico(models.Model):
     nombre= models.CharField(max_length=100)
     direccion= models.CharField(max_length=150)
