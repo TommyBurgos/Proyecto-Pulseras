@@ -209,39 +209,18 @@
                 <h1 class="mb-4">Explora lo nuevo en cuanto a tecnología y salud</h1>
             </div>
             <div class="row g-4">
+                {% for blog in blogs|slice:":3" %}
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                     <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
                         <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/presionArterial.jpg' %}" alt="">
-                        <a class="case-overlay text-decoration-none" href="">
-                            <small>Rangos normales de presión arterial</small>
-                            <h5 class="lh-base text-white mb-3">La presión arterial es normal si está por debajo de 120/80 mm Hg. Si usted es adulto y ...
-                            </h5>
-                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        <a class="case-overlay text-decoration-none" href="blogs/detalleBlogs/{{blog.id}}">
+                            <small>{{blog.titulo}}</small>
+                            <h5 class="lh-base text-white mb-3">{{ blog.noticia|truncatechars:71 }}</h5>
+                            <span class="btn btn-square btn-primary" ><i class="fa fa-arrow-right"></i></span>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/nanoBots.webp' %}" alt="">
-                        <a class="case-overlay text-decoration-none" href="">
-                            <small>Avances en las medicinas con nanobots</small>
-                            <h5 class="lh-base text-white mb-3">La ciencia continua avanzando, ahora nos planteamos usar nanobots para ...
-                            </h5>
-                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
-                    <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/glucosa.jpg' %}" alt="">
-                        <a class="case-overlay text-decoration-none" href="">
-                            <small>Recomendaciones para tu glucosa</small>
-                            <h5 class="lh-base text-white mb-3">Comer en horarios regulares y no saltarse comidas. Escoger alimentos bajos en ...
-                            </h5>
-                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
