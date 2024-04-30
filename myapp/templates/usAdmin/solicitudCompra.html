@@ -36,105 +36,190 @@
 
     body {
         font-family: Arial, sans-serif;
-        font-size: 16px;
-    }
-
-    .input-group, .modal {
-        margin-bottom: 20px;
-        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .input-group-text, .modal-header, .btn-primary {
-        border-radius: 10px;
-        background-color: #573ad6;
-        color: white;
-    }
-
-    .input-group input, .form-select {
-        border-radius: 10px;
-    }
-
-    .input-group-text i {
-        color: white;
+        margin: 0;
+        padding: 0;
     }
 
     .container {
-        padding: 5%;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
     }
 
+    .input-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .input-group-text {
+        background-color: #6a1b9a;
+        color: white;
+        padding: 8px 12px;
+    }
+
+    .fas.fa-search {
+        color: white;
+        background-color: #6a1b9a;
+        border-radius: 5px;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    /* Estilos para la tabla */
     .table {
         width: 100%;
-        margin-top: 20px;
-        border-collapse: separate;
-        border-spacing: 0;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-    }
-
-    .table th, .table td {
-        text-align: center;
-        padding: 15px;
-        font-size: 16px;
-        border-left: 1px solid #ddd;
+        border-collapse: collapse;
+        margin-top: 35px;
     }
 
     .table th {
-        background-color: #573ad6;
-        color: white;
+        background-color: #6a1b9a;
+        color: #fff;
         font-weight: bold;
+        text-align: center;
+        padding: 10px;
     }
 
-    .table td:first-child {
-        border-left: none;
+    .table td {
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
     }
+
 
     .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         display: none;
-        padding: 20px;
-        background: white;
-        z-index: 1000;
-        border-radius: 10px;
-        width: 30%;
-        height: 35%;
-        box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    }
-
-    .modal-header {
-        padding-bottom: 15px;
-        border-bottom: 2px solid #573ad6;
-    }
-
-    .modal-content {
-        margin-top: 10px;
-    }
-
-    .modal-footer {
-        padding-top: 15px;
-        text-align: right;
-    }
-
-    .btn-primary {
-        background-color: #573ad6;
-        border: none;
-        cursor: pointer;
-        padding: 10px 20px;
-        display: inline-block;
-    }
-
-    .overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
         display: none;
-        z-index: 500;
+        z-index: 1;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; 
+        max-width: 600px;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    button {
+        background-color: #6a1b9a; 
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Estilos para la franja morada del encabezado */
+    .modal-header {
+        background-color: #6a1b9a;
+        color: white;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    p {
+        margin-top: 5px;
+        color: #333;
+    }
+
+    .modal-content h3 {
+        margin-bottom: 10px;
+    }
+
+    .modal-content select {
+        margin-bottom: 10px;
+    }
+
+    .modal-content textarea {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .modal-content button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #6a1b9a;
+        color: white;
+        cursor: pointer;
+    }
+
+    .modal-content button:hover {
+        background-color: #6a1b9a;
     }
 
   </style>
@@ -506,107 +591,101 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="container">
-                <div class="input-group" style="padding-bottom: 2%;">
-                    <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                        <span class="input-group-text" id="search">
-                            <i class="fas fa-search"></i>
-                        </span>
+                <div class="container">
+                    <div class="input-group" style="padding-bottom: 2%;">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search">
                     </div>
-                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="input-group">
+                            <span class="input-group-text">Filtrar por fechas</span>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Filtrar por tipo de pago</span>
+                            <select class="form-select">
+                                <option value="1">Venta</option>
+                                <option value="2">Alquiler</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Filtrar por tipo de dispositivo</span>
+                            <select class="form-select">
+                                <option value="1">Pulsera</option>
+                                <option value="2">Otro dispositivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="table" id="paymentTable">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Solicitud</th>
+                                <th>Nombre de Usuario</th>
+                                <th>Tipo de Dispositivo</th>
+                                <th>Fecha de Envío</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Venta</td>
+                                <td>Usuario1</td>
+                                <td>Pulsera</td>
+                                <td>2024-04-10</td>
+                                <td><i class="fas fa-pencil-alt" onclick="showMessageCard('Usuario1')"></i></td>
+                            </tr>
+                            <tr>
+                                <td><span onclick="showRentalInfo()">Alquiler</span></td>
+                                <td>Usuario2</td>
+                                <td>Otro Dispositivo</td>
+                                <td>2024-04-15</td>
+                                <td><i class="fas fa-pencil-alt" onclick="showMessageCard('Usuario2')"></i></td>
+                            </tr>
+                            <!-- Agrega más filas según sea necesario -->
+                        </tbody>
+                    </table>
                 </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <div class="input-group">
-                        <span class="input-group-text">Filtrar por fechas</span>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Filtrar por tipo de pago</span>
-                        <select class="form-select">
-                            <option value="1">Dispositivo</option>
-                            <option value="2">Paquete</option>
+                <!-- Modal para enviar mensaje -->
+                <div id="messageModal" class="modal">
+                    <div class="modal-content">
+                        <span onclick="closeModal('messageModal')" class="close">&times;</span>
+                        <h3>Seleccionar Motivo:</h3>
+                        <select id="messageReason" class="form-select">
+                            <option value="1">Aceptación de la solicitud</option>
+                            <option value="2">Retraso de la entrega del producto</option>
+                            <option value="3">Negación de la solicitud</option>
+                            <option value="4">En espera</option>
                         </select>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Filtrar por estado de pago</span>
-                        <select class="form-select">
-                            <option value="1">Pagado</option>
-                            <option value="2">No pagado</option>
-                            <option value="3">Plazo pendiente de pago</option>
-                        </select>
+                        <textarea id="messageContent" placeholder="Escribe tu mensaje aquí..." rows="4"></textarea>
+                        <button onclick="sendMessage()">Enviar</button>
                     </div>
                 </div>
-                <table class="table" id="paymentTable">
-                    <thead>
-                        <tr>
-                            <th>Tipo</th>
-                            <th>Nombre</th>
-                            <th>Código de Pago/Facturación</th>
-                            <th>Usuario</th>
-                            <th>Fecha de Vigencia</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Paquete</td>
-                            <td>Paquete 1</td>
-                            <td>001</td>
-                            <td>Usuario1</td>
-                            <td>2024-04-10</td>
-                            <td>Pagado</td>
-                        </tr>
-                        <tr>
-                            <td>Paquete</td>
-                            <td>Paquete 2</td>
-                            <td>002</td>
-                            <td>Usuario2</td>
-                            <td>2024-04-15</td>
-                            <td>Pendiente de pago</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivo</td>
-                            <td>Dispositivo 1</td>
-                            <td>101</td>
-                            <td>Usuario3</td>
-                            <td>2024-04-20</td>
-                            <td>Pagado</td>
-                        </tr>
-                        <tr>
-                            <td>Dispositivo</td>
-                            <td>Dispositivo 2</td>
-                            <td>102</td>
-                            <td>Usuario4</td>
-                            <td>2024-04-25</td>
-                            <td>Pendiente de pago</td>
-                        </tr>
-                        <tr>
-                          <td>Paquete</td>
-                          <td>Paquete 3</td>
-                          <td>102</td>
-                          <td>Usuario5</td>
-                          <td>2024-04-12</td>
-                          <td>No Pagado</td>
-                      </tr>
-                    </tbody>
-                </table>
-              </div>
-              <div class="overlay" id="overlay"></div>
-              <div class="modal" id="modal">
-                  <div class="modal-header">
-                      <h4 id="modal-title">Detalles del Producto</h4>
-                  </div>
-                  <div class="modal-content">
-                      <p id="modal-body"></p>
-                  </div>
-                  <div class="modal-footer">
-                      <span class="btn btn-primary" onclick="closeModal()">Cerrar</span>
-                      <span class="btn btn-primary" id="discontinue" style="display:none;">Descontinuar Producto</span>
-                  </div>
-              </div>
-              
-            </div>
+        
+                <!-- Modal para Información de Alquiler -->
+                <div id="rentalModal" class="modal">
+                    <div class="modal-content">
+                        <span onclick="closeModal('rentalModal')" class="close">&times;</span>
+                        <div class="modal-header">
+                            <h2>Información de Alquiler</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="rentalReason">Motivo del alquiler:</label>
+                                <input type="text" id="rentalReason" class="form-control" value="Necesidad temporal" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalDetails">Detalles:</label>
+                                <p id="rentalDetails">Ejemplo de motivo de solicitud de compra de un dispositivo como pulsera médica y por qué solo quiere alquiler.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
           </div>
         </div>
         </div>
@@ -678,5 +757,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script>
+    
+    function showMessageCard(username) {
+        var modal = document.getElementById('messageModal');
+        modal.style.display = 'block';
+        var usernameDisplay = document.getElementById('modalUsername');
+        usernameDisplay.textContent = username; 
+    }
 
+    function showRentalInfo() {
+        var modal = document.getElementById('rentalModal');
+        modal.style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var messageModal = document.getElementById('messageModal');
+        var rentalModal = document.getElementById('rentalModal');
+        if (event.target == messageModal || event.target == rentalModal) {
+            messageModal.style.display = 'none';
+            rentalModal.style.display = 'none';
+        }
+    }
+  </script>
 </body>

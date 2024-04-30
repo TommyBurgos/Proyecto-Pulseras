@@ -50,6 +50,9 @@ def detalleDispositivo(request):
 def pagoDispositivo(request):
     return render(request, 'pagoDispositivo.html')
 
+def historialRutas(request):
+    return render(request, 'historialRutas.html')
+
 def servicios(request):
     dispositivos= Dispositivo.objects.all()
     paquetes= Paquete.objects.all()  
