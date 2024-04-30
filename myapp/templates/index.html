@@ -90,16 +90,16 @@
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <a class="btn btn-primary rounded-pill px-4 me-3" href="">Leer más</a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-3" href="https://www.facebook.com/profile.php?id=100089246290406"><i class="fab fa-facebook-f"></i></a>
+                        <!--<a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>-->
+                        <a class="btn btn-outline-primary btn-square me-3" href="https://www.instagram.com/hangaroa_s.a?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-users"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
+     About End -->
 
 
     <!-- Service Start -->
@@ -213,7 +213,7 @@
                 {% for blog in blogs|slice:":3" %}
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                     <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/presionArterial.jpg' %}" alt="">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/blog' %}{{ forloop.counter }}.jpg" alt="">
                         <a class="case-overlay text-decoration-none" href="blogs/detalleBlogs/{{blog.id}}">
                             <small>{{blog.titulo}}</small>
                             <h5 class="lh-base text-white mb-3">{{ blog.noticia|truncatechars:71 }}</h5>
