@@ -51,8 +51,12 @@ def pagoDispositivo(request):
     return render(request, 'pagoDispositivo.html')
 
 def servicios(request):
-    #servicios= Servicio.objects.get(nombre=nombre)
-    return render(request, 'servicios.html')
+    dispositivos= Dispositivo.objects.all()
+    paquetes= Paquete.objects.all()  
+    return render(request, 'servicios.html',{
+        'dispositivos':dispositivos,
+        'paquetes': paquetes,
+    })
 
 def registro(request):
     return render(request, 'registro.html', {'form':UserCreationForm})
