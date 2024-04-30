@@ -15,41 +15,6 @@
      Spinner End -->
 
 
-    <!-- Navbar Start -->
-    <div class="container-fluid sticky-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                <a href="/" class="navbar-brand">
-                    <h1 class="text-white">DOC<span class="text-dark">.</span></h1>
-                </a>
-                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sobre Nosotros</a>
-                            <div class="dropdown-menu bg-light mt-2">
-                                <a href="/paquetes" class="dropdown-item">Paquetes</a>
-                                <a href="/catalogDispositivo" class="dropdown-item">Dispositivos</a>
-                                <a href="/crearCercos" class="dropdown-item">Cercos</a>
-                                <a href="/user/doctor" class="dropdown-item">Panel doctor</a>
-                                <a href="/user/paciente" class="dropdown-item">Panel Paciente</a>
-                                <a href="/user/familiar" class="dropdown-item">Panel Familiar</a>
-                            </div>
-                        </div>
-                        <a href="/servicios" class="nav-item nav-link active">Servicios</a>
-                        <a href="/blogs" class="nav-item nav-link">Blog</a>                                            
-                        <a href="/contact" class="nav-item nav-link">Contactanos</a>
-                        <a href="/registro" class="btn btn-light py-sm-2 px-sm-5 rounded-pill me-3 animated slideInRight">Registrarse</a>
-                    </div>
-                    <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
-                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                </div>
-            </nav>
-        </div>
-    </div>
     {% include 'navbar.html' %}
 
     <!-- Navbar End -->
@@ -124,16 +89,16 @@
                     </div>
                     <div class="d-flex align-items-center mt-4">
                         <a class="btn btn-primary rounded-pill px-4 me-3" href="">Leer más</a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-3" href="https://www.facebook.com/profile.php?id=100089246290406"><i class="fab fa-facebook-f"></i></a>
+                        <!--<a class="btn btn-outline-primary btn-square me-3" href=""><i class="fab fa-twitter"></i></a>-->
+                        <a class="btn btn-outline-primary btn-square me-3" href="https://www.instagram.com/hangaroa_s.a?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-users"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
+     About End -->
 
 
     <!-- Service Start -->
@@ -247,7 +212,7 @@
                 {% for blog in blogs|slice:":3" %}
                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                     <div style="width: 100%; height: 325px;" class="case-item position-relative overflow-hidden rounded mb-2">
-                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/presionArterial.jpg' %}" alt="">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{% static 'img/blog' %}{{ forloop.counter }}.jpg" alt="">
                         <a class="case-overlay text-decoration-none" href="blogs/detalleBlogs/{{blog.id}}">
                             <small>{{blog.titulo}}</small>
                             <h5 class="lh-base text-white mb-3">{{ blog.noticia|truncatechars:71 }}</h5>

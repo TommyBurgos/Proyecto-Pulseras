@@ -400,7 +400,7 @@
             <div class="row">
                 <div class="row"style="padding-botton: 5%;">
                     <div class="row col-12" style="padding-left: 5%;">
-                      <h3>Dispositivos</h3>
+                      <h3>Usuarios</h3>
                     </div>
                     <div class="row col-12" style="padding-left: 5%;">
                       <div class="input-group">
@@ -415,47 +415,183 @@
 
                       <div class="col-4">                        
                         
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nueva pulsera</button>                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nuevo Usuario</button>                        
                         
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                               <div class="modal-header bg-primary">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Registrar nuevo dispositivo</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Registrar nuevo usuario</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                <form action="/regitroDispositivo/" method="POST" class="contact-form form-validate" novalidate="novalidate">
-                                  {% csrf_token %}
-                                  <div class="mb-3 col-12 row">
-                                    <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Número de serie</label>
-                                      <input type="text" class="form-control" id="numSerie" name="numSerie">
-                                    </div>
-                                    <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Estado del dispositivo</label>
-                                      <select name="opEstado" class="form-select form-control" aria-label="Default select example">
-                                        <option selected>Selecciona una opción</option>
-                                        <option value="1">Disponible</option>
-                                        <option value="2">Comprado</option>
-                                        <option value="3">Fuera De Servicio</option>
-                                        <option value="4">Alquilado</option>
-                                      </select>
-
-                                    </div>                                                                      
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Tipo</label>
-                                    <select name="opTipo" class="form-select form-control" aria-label="Default select example">
-                                      <option selected>Selecciona una opción</option>
-                                      <option value="1">Pulsera</option>
-                                      <option value="2">Anillo</option>                                      
-                                    </select>
-                                  </div>
-                                  <div>                                    
-                                    <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
-                                  </div>
-                                </form>
+                                <div class="col-lg-12 contact-form__wrapper p-5 order-lg-1">
+                                    <form action="/login/usAdmin/detalleUsuarios" method="POST" class="contact-form form-validate" novalidate="novalidate">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <!--Tipo de identificacion-->
+                                            <div class="col-sm-12 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="idType">Tipo de Identificación</label>
+                                                    <select class="form-control" id="idType" name="idType">
+                                                        <option value="cedula">Cédula</option>
+                                                        <option value="pasaporte">Pasaporte</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="idNumber">Número de Identificación</label>
+                                                    <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="Cédula o Pasaporte">
+                                                </div>
+                                            </div>
+                
+                                            <!--Primer y segundo nombre-->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="firstName">Nombre</label>
+                                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Nombres">
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="secondName">Segundo Nombre</label>
+                                                    <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Segundo Nombre">
+                                                </div>
+                                            </div>-->
+                
+                                            <!-- Apellido Paterno y Apellido Materno -->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="lastName">Apellidos</label>
+                                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellidos">
+                                                </div>
+                                            </div><!--
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="secondLastName">Apellido Materno</label>
+                                                    <input type="text" class="form-control" id="secondLastName" name="secondLastName" placeholder="Apellido Materno">
+                                                </div>
+                                            </div>-->
+                        
+                                            <!-- Correo Electrónico y Género -->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="email">Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="gender">Género</label>
+                                                    <select class="form-control" id="gender" name="gender">
+                                                        <option value="1">Masculino</option>
+                                                        <option value="2">Femenino</option>
+                                                        <option value="3">Prefiero no decirlo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                
+                                            <!-- Edad y Teléfono -->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="birthdate">Fecha de Nacimiento</label>
+                                                    <input type="date" class="form-control" id="birthdate" name="birthdate">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="phone">Teléfono</label>
+                                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+593">
+                                                </div>
+                                            </div>
+                                        
+                                            Estado Civil y Rol de Usuario 
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="maritalStatus">Estado Civil</label>
+                                                    <select class="form-control" id="maritalStatus" name="maritalStatus">
+                                                        <option value="1">Soltero/a</option>
+                                                        <option value="2">Casado/a</option>
+                                                        <option value="3">Viudo/a</option>
+                                                        <option value="4">Divorciado/a</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="userRole">Rol de Usuario</label>
+                                                    <select class="form-control" id="userRole" name="userRole">
+                                                        <option value="1">Administrador</option>
+                                                        <option value="2">Doctor</option>
+                                                        <option value="3">Paciente</option>
+                                                        <option value="4">Familiar</option>
+                                                        <option value="5">Invitado</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                
+                                            <!-- Provincia y Ciudad -->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="province">Provincia</label>
+                                                    <select class="form-control" id="province" name="province">
+                                                        <option value="guayas">Guayas</option>
+                                                        <option value="pichincha">Pichincha</option>                      
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="city">Ciudad</label>
+                                                    <select class="form-control" id="city" name="city">
+                                                        <option value="guayaquil">Guayaquil</option>
+                                                        <option value="quito">Quito</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                
+                                             <!-- Dirección -->
+                                            <div class="col-sm-12 mb-4">
+                                                <div class="form-group">
+                                                    <label for="address">Dirección</label>
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Dirección Completa">
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-sm-12 mb-4">
+                                                <div class="form-group">
+                                                    <label class="required-field" for="codPulsera">Codigo Pulsera</label>
+                                                    <input type="text" class="form-control" id="codPulsera" name="codPulsera" placeholder="Código Pulsera">
+                                                </div>
+                                            </div>
+                
+                                            <!-- Contraseña y Repetir Contraseña (Ajustar IDs y Names) -->
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="password">Contraseña</label>
+                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 mb-4">
+                                                <div class="form-group">
+                                                    <label for="confirmPassword">Repetir Contraseña</label>
+                                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Repetir Contraseña">
+                                                </div>
+                                            </div>
+                
+                                            <!-- Botón de Registro -->
+                                            <div class="col-sm-12 mb-4">
+                                                <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrarme</button>
+                                            </div>
+                        
+                                        </div>
+                                    </form>
+                                </div>
                               </div>                              
                             </div>
                           </div>
@@ -485,24 +621,24 @@
                 </div>                               
                 <div class="row" style="padding: 5%;">
                     <table class="table caption-top">
-                        <caption>Lista de dispositivos</caption>
+                        <caption>Lista de usuarios</caption>
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">idDispositivo</th>
-                            <th scope="col">Id Usuario asignado</th>
-                            <th scope="col">Nombre usuario asignado</th>
+                            <th scope="col">idUsuario</th>
+                            <th scope="col">Nombre de Usuario</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {% for disp in dispositivos %}                          
+                          {% for user in usuarios %}                          
                           <tr>
                             <td>{{cont}}</td>
-                            <td>{{disp.serie}}</td>
-                            <td>PEDRO </td>
-                            <td>Pablo</td>                            
+                            <td>{{user.username}}</td>
+                            <td>{{user.first_name}} , {{user.last_name}}</td>
+                            <td>{{users.email}}</td>                            
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activoInactivo" style="background-color:#37A7FE; ">
                                     <div class="form-check form-switch">
@@ -606,6 +742,10 @@
       </div>
     </div>
   </div>
+  <!--Script luego del registro de usuario-->
+  <script>
+    {{ script_js|safe }}
+    </script>
   <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->

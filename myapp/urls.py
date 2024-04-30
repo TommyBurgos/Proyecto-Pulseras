@@ -43,6 +43,7 @@ urlpatterns = [
     path('user/blog', views.blogUser),
     path('user/doctor/cita', views.aggcita),
     path('user/doctor/receta', views.aggreceta),
-    path('configuracion/cambiarContrasena', views.cambiarContrasena)
+    path('configuracion/cambiarContrasena', views.cambiarContrasena),
+    path('login/usAdmin/detalleUsuarios', views.detalleUsuarios)
 
 ]

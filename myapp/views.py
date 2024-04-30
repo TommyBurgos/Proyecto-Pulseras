@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from .models import Paquete, Servicio, Dispositivo, BlogNoticia
+from .models import Paquete, Servicio, Dispositivo, BlogNoticia, Paciente, Medico
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -37,6 +37,10 @@ def hello(request,username):
 def about(request):
     return render(request,"about.html")
 
+def paquetes(request):
+    #proyectos=list(Paquete.objects.values())
+    return render(request, 'paquetes.html')
+
 def catalogDispositivo(request):
     return render(request, 'catalogDispositivo.html')
 
@@ -55,6 +59,11 @@ def servicios(request):
 
 def registro(request):
     return render(request, 'registro.html', {'form':UserCreationForm})
+
+def pagos(request):
+    return render(request,'pagos.html',{
+        'paquete1':paquete1,
+        'precio':precio})
 
 def iniciar(request):
     return render(request, 'login.html')
@@ -155,6 +164,11 @@ def loginAdmin(request):
                 return render(request, 'usDoctor/panelDoctor.html', {
                     'usuario':user.first_name
                 })
+            if rol==3:
+                login(request, user)
+                return render(request, 'usFamiliar/index.html', {
+                    'usuario':user.first_name
+                })
 
 @login_required
 def crearPaquete(request):
@@ -196,9 +210,11 @@ def registroExitoso(request):
         try:
             print("Apenas ingrese")
             user=User.objects.create_user(username=request.POST['idNumber'],
-            password=request.POST['password'],first_name=request.POST['firstName'], last_name=request.POST['lastName'], email=request.POST['email'],genero_id=request.POST['gender'],nacimiento=request.POST['birthdate'],estadoCivil_id=request.POST['maritalStatus'],ciudad=request.POST['city'],direccion=request.POST['address'],rol_id=request.POST['userRole'])            
+            password=request.POST['password'],first_name=request.POST['firstName'], last_name=request.POST['lastName'], email=request.POST['email'],genero_id=request.POST['gender'],nacimiento=request.POST['birthdate'],estadoCivil_id=1,ciudad=request.POST['city'],direccion=request.POST['address'],rol_id=3)            
             print("Casi guardo")
             user.save()
+            paciente=Paciente.objects.create(estado_id=1, idDispositivo_id=1,idUsuario_id=user.id)
+            paciente.save()                        
             login(request, user)
             print("Se guardo correctamente")
             print(user.rol_id)
@@ -209,6 +225,34 @@ def registroExitoso(request):
             print("no se pudo")
             return HttpResponse('Usuario ya existe')
     return HttpResponse('Contraseñas no coinciden')
+
+def detalleUsuarios(request):
+    usuarios= User.objects.all()
+    print("LISTADO DE USUARIOS")
+    print(usuarios)
+    if request.method == 'POST':
+        try:
+            script_js = f"""
+            alert("Usuario Creado correctamente")
+            """
+            context = {
+            'script_js': script_js }
+            print("Apenas ingrese")
+            user=User.objects.create_user(username=request.POST['idNumber'],
+            password=request.POST['password'],first_name=request.POST['firstName'], last_name=request.POST['lastName'], email=request.POST['email'],genero_id=request.POST['gender'],nacimiento=request.POST['birthdate'],estadoCivil_id=1,ciudad=request.POST['city'],direccion=request.POST['address'],rol_id=3)            
+            print("Casi guardo")
+            user.save()
+            #doctor=Medico.objects.create(estado_id=1, idDispositivo_id=1,idUsuario_id=user.id)
+            #doctor.save()                                
+            print("Se guardo correctamente")
+            print(user.rol_id)
+            return render(request, 'usAdmin/detalleUsuarios.html', {'context': context, 'usuarios': usuarios})
+        except:
+            print("no se pudo")
+            return HttpResponse('Usuario ya existe')
+    return render(request,'usAdmin/detalleUsuarios.html', {'usuarios': usuarios})
+
+
 @login_required
 def registrarDispositivo(request):
     print(request.POST['numSerie'])        
@@ -227,7 +271,7 @@ def registrarDispositivo(request):
     except:
         print("no se pudo")
         return HttpResponse('No se pudo guardar')
-    
+      
 def signout(request):
     logout(request)
     return render(request,'login.html')
