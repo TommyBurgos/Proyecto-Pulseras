@@ -46,6 +46,9 @@ def detalleDispositivo(request):
 def pagoDispositivo(request):
     return render(request, 'pagoDispositivo.html')
 
+def historialRutas(request):
+    return render(request, 'historialRutas.html')
+
 def servicios(request):
     #servicios= Servicio.objects.get(nombre=nombre)
     return render(request, 'servicios.html')
