@@ -27,18 +27,15 @@
         <div class="container pt-5">
             <div class="row g-5 pt-5">
                 <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
-                    <h1 class="display-4 text-white mb-4 animated slideInRight">Contact Us</h1>
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">Contáctanos</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-start mb-0">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact Us</li>
+                            <li class="breadcrumb-item"><a class="text-white" href="/">Inicio</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Contáctanos</li>
                         </ol>
                     </nav>
                 </div>
-                <div class="col-lg-6 align-self-end text-center text-lg-end">
-                    <img class="img-fluid" src="img/hero-img.png" alt="" style="max-height: 300px;">
-                </div>
+                
             </div>
         </div>
     </div>
@@ -65,46 +62,63 @@
     </div>
     <!-- Full Screen Search End -->
 
+    <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.5s" style="margin-top: 10px; margin-left: 50px; margin-right: 50px;">
+        <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Sobre Nosotros</div>
+        <h1 class="mb-4">Nuestra meta es cuidarte y mantenerte siempre seguro</h1>
+        <p class="mb-4" style="margin-left: 200px; margin-right: 200px;">Descubre HealthLink, la solución definitiva para el cuidado de la salud. Nuestra pulsera inteligente de vanguardia monitorea tus signos vitales y envía alertas instantáneas en caso de emergencia. 
+            Accede a nuestra plataforma online para visualizar tus signos vitales, gestionar citas médicas y rastrear la ubicación de la pulsera en tiempo real. 
+            </p>
+        <p class="mb-4" style="margin-left: 200px; margin-right: 200px;">En HealthLink, estamos dedicados a mejorar tu bienestar con tecnología innovadora y conectada.</p>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Atención de primera</h6>
+                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Personal profesional</h6>
+            </div>
+            <div class="col-sm-6">
+                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Soporte 24/7</h6>
+                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Precios accesibles</h6>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Contact Us</div>
-                <h1 class="mb-4">If You Have Any Query, Please Contact Us</h1>
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-3">Contáctanos</div>
+                <h1 class="mb-4">Si tienes alguna pregunta, puedes contactarte con nosotros</h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-7">
-                    <p class="text-center mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                     <div class="wow fadeIn" data-wow-delay="0.3s">
                         <form>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
+                                        <label for="name">Nombre</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
+                                        <label for="email">Correo electrónico</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">Tema</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                        <label for="message">Message</label>
+                                        <label for="message">Mensaje</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Enviar mensaje</button>
                                 </div>
                             </div>
                         </form>
@@ -117,28 +131,27 @@
         
 
     <!-- Newsletter Start -->
-    <div class="container-fluid bg-primary newsletter py-5">
+      <div class="container-fluid bg-primary newsletter py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-md-5 ps-lg-0 pt-5 pt-md-0 text-start wow fadeIn" data-wow-delay="0.3s">
-                    <img class="img-fluid" src="img/newsletter.png" alt="">
+                    <img class="img-fluid" src="{% static 'img/newsletter.png' %}" alt="">
                 </div>
                 <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
-                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Newsletter</div>
-                    <h1 class="text-white mb-4">Let's subscribe the newsletter</h1>
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3">Boletín informativo</div>
+                    <h1 class="text-white mb-4">Suscríbete a nuestro boletín informativo</h1>
                     <div class="position-relative w-100 mt-3 mb-2">
                         <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text"
-                            placeholder="Enter Your Email" style="height: 48px;">
+                            placeholder="Ingrese su correo electrónico" style="height: 48px;">
                         <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
                                 class="fa fa-paper-plane text-primary fs-4"></i></button>
                     </div>
-                    <small class="text-white-50">Diam sed sed dolor stet amet eirmod</small>
+                    <small class="text-white-50">Recibirás noticias y promociones</small>
                 </div>
             </div>
         </div>
     </div>
     <!-- Newsletter End -->
-
 
     <!-- Footer Start -->
     {% include 'footer.html' %}
