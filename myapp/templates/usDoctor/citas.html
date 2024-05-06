@@ -21,6 +21,14 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+  <style>
+    .fc-event {
+        background-color: rgb(62, 101, 151);
+        color: white; 
+    }
+
+  </style>
 </head>
 <body>
   <div class="container-scroller">
@@ -391,23 +399,25 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
+          <!--<div class="row">-->
+            <!--<div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   {% csrf_token %}
                   <h3 class="font-weight-bold">Registrar cita</h3>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row" >
+            </div>-->
+            <div id="calendar"></div>
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+          <!--</div>-->
+          <!--<div class="row" >
             <div class="col-lg-12 contact-form__wrapper p-5 order-lg-1">
               <form action="/regitroExitoso/" method="POST" class="contact-form form-validate" novalidate="novalidate">
                 {% csrf_token %}
-                <div class="row">
+                <div class="row">-->
                   <!--Fecha cita-->
-                  <div class="col-sm-6 mb-4">
+                  <!--<div class="col-sm-6 mb-4">
                     <div class="form-group">
                         <label class="required-field"  for="fechaCita">Fecha: </label>
                         <input type="date" class="form-control" id="fechaCita" name="fechaCita">
@@ -428,17 +438,17 @@
                           {% endfor %}  
                         </select>
                     </div>
-                </div>
+                </div>-->
 
                   <!-- Botón de Registro -->
-                  <div class="col-sm-12 mb-4">
+                  <!--<div class="col-sm-12 mb-4">
                       <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Guardar cita</button>
                   </div>
   
                 </div>
               </form>
             </div>
-          </div>
+          </div>-->
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -480,6 +490,105 @@
   <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
   <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
   <!-- End custom js for this page-->
+  <!--calendario-->
+  <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            editable: true, // Permite arrastrar y cambiar el tamaño de los eventos
+            selectable: true, // Permite seleccionar fechas en el calendario
+            //themeSystem: 'bootstrap',
+            events: [
+                {
+                    title: 'Evento 1',
+                    start: '2024-05-01T10:00:00',
+                    end: '2024-05-01T12:00:00'
+                },
+                {
+                    title: 'Evento 2',
+                    start: '2024-05-05T14:00:00',
+                    end: '2024-05-05T16:00:00'
+                },
+                {
+                    title: 'Evento 3',
+                    start: '2024-05-09T12:30:00',
+                    end: '2024-05-09T14:30:00'
+                },
+                {
+                    title: 'Evento 4',
+                    start: '2024-05-15T09:00:00',
+                    end: '2024-05-15T11:00:00'
+                },
+                {
+                    title: 'Evento 5',
+                    start: '2024-05-15T14:00:00',
+                    end: '2024-05-15T16:00:00'
+                }
+            ],
+            eventClick: function(info) {
+                Swal.fire({
+                    title: 'Detalles del Evento',
+                    html: '<b>Titulo:</b> ' + info.event.title + '<br><b>Fecha de Inicio:</b> ' + moment(info.event.start).format('YYYY-MM-DD HH:mm:ss') + '<br><b>Fecha de Fin:</b> ' + moment(info.event.end).format('YYYY-MM-DD HH:mm:ss'),
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Modificar',
+                    cancelButtonText: 'Eliminar',
+                    cancelButtonColor: '#d33',
+                    preConfirm: () => {
+                        return {
+                            titulo: document.getElementById('titulo').value,
+                            inicio: document.getElementById('inicio').value,
+                            fin: document.getElementById('fin').value
+                        };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // modificar el evento
+                        console.log(result.value);
+                        Swal.fire('Evento Modificado', 'El evento ha sido modificado', 'success');
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Aquí puedes eliminar el evento
+                        Swal.fire('Evento Eliminado', 'El evento ha sido eliminado', 'success');
+                        info.event.remove(); // Elimina el evento del calendario
+                    }
+                });
+            },
+            select: function(info) {
+                Swal.fire({
+                    title: 'Agregar Evento',
+                    html: '<form id="formAgregar"><label>Título:</label><input type="text" id="titulo"><br><label>Fecha de Inicio:</label><input type="datetime-local" id="inicio"><br><label>Fecha de Fin:</label><input type="datetime-local" id="fin"></form>',
+                    showCancelButton: true,
+                    confirmButtonText: 'Agregar',
+                    cancelButtonText: 'Cancelar',
+                    preConfirm: () => {
+                        return {
+                            titulo: document.getElementById('titulo').value,
+                            inicio: document.getElementById('inicio').value,
+                            fin: document.getElementById('fin').value
+                        };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Enviar los datos del formulario al servidor para agregar el evento
+                        console.log(result.value);
+                        calendar.addEvent({
+                            title: result.value.titulo,
+                            start: result.value.inicio,
+                            end: result.value.fin
+                        });
+                        Swal.fire('Evento Agregado', 'El evento ha sido agregado', 'success');
+                    }
+                });
+            }
+        });
+        calendar.render();
+    });
+
+  </script>
 </body>
 
 </html>
