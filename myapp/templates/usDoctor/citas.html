@@ -399,56 +399,10 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <!--<div class="row">-->
-            <!--<div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  {% csrf_token %}
-                  <h3 class="font-weight-bold">Registrar cita</h3>
-                </div>
-              </div>
-            </div>-->
-            <div id="calendar"></div>
-            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-          <!--</div>-->
-          <!--<div class="row" >
-            <div class="col-lg-12 contact-form__wrapper p-5 order-lg-1">
-              <form action="/regitroExitoso/" method="POST" class="contact-form form-validate" novalidate="novalidate">
-                {% csrf_token %}
-                <div class="row">-->
-                  <!--Fecha cita-->
-                  <!--<div class="col-sm-6 mb-4">
-                    <div class="form-group">
-                        <label class="required-field"  for="fechaCita">Fecha: </label>
-                        <input type="date" class="form-control" id="fechaCita" name="fechaCita">
-                    </div>
-                </div>
-                <div class="col-sm-4 mb-4">
-                  <div class="form-group">
-                      <label class="required-field" for="hora">Hora: </label>
-                      <input type="hour" class="form-control" id="hora" name="hora" placeholder="00:00:00">
-                  </div>
-                </div>
-                <div class="col-sm-4 mb-4">
-                    <div class="form-group">
-                        <label class="required-field" for="idPaciente">Paciente: </label>
-                        <select class="form-control" id="idPaciente" name="idPaciente">
-                          {% for paciente in pacientes %}
-                            <option value="1">{{paciente.idUsuario}}</option>
-                          {% endfor %}  
-                        </select>
-                    </div>
-                </div>-->
 
-                  <!-- Botón de Registro -->
-                  <!--<div class="col-sm-12 mb-4">
-                      <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Guardar cita</button>
-                  </div>
-  
-                </div>
-              </form>
-            </div>
-          </div>-->
+          <div id="calendar"></div>
+          <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+          
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -547,11 +501,11 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // modificar el evento
+                        //Modificar el evento
                         console.log(result.value);
                         Swal.fire('Evento Modificado', 'El evento ha sido modificado', 'success');
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        // Aquí puedes eliminar el evento
+                        //Eliminar el evento
                         Swal.fire('Evento Eliminado', 'El evento ha sido eliminado', 'success');
                         info.event.remove(); // Elimina el evento del calendario
                     }
