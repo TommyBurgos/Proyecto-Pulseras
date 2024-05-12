@@ -12,6 +12,7 @@ urlpatterns = [
     path('pagoDispositivo/', views.pagoDispositivo),
     path('historialRutas/', views.historialRutas),
     path('servicios/', views.servicios),
+    path('notificaciones/', views.notificaciones),
     path('registro/', views.registro),
     path('pagos/<int:id>', views.pagos),
     path('login/', views.iniciar),

@@ -53,6 +53,9 @@ def pagoDispositivo(request):
 def historialRutas(request):
     return render(request, 'historialRutas.html')
 
+def notificaciones(request):
+    return render(request, 'notificaciones.html')
+
 def servicios(request):
     dispositivos= Dispositivo.objects.all()
     paquetes= Paquete.objects.all()  
