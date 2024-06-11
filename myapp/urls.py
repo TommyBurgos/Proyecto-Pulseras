@@ -2,14 +2,14 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
-urlpatterns = [    
+urlpatterns = [
     path('', views.index),
     path('about/', views.about),
     path('hello/<str:username>', views.hello),
     path('paquetes/', views.paquetes),
-    path('catalogDispositivo/', views.catalogDispositivo),
-    path('detalleDispositivo/', views.detalleDispositivo),
-    path('pagoDispositivo/', views.pagoDispositivo),
+    path('dispositivos/', views.catalogDispositivo),
+    path('dispositivos/<int:id>', views.detalleDispositivo),
+    path('pagoDispositivo/<int:id>', views.pagoDispositivo),
     path('historialRutas/', views.historialRutas),
     path('servicios/', views.servicios),
     path('notificaciones/', views.notificaciones),
@@ -30,7 +30,7 @@ urlpatterns = [
     path('ofertas/usAdmin', views.ofertas),
     path('paqueteAdmin/usAdmin', views.paqueteAdmin),
     path('crearCercos/', views.crearCercos),
-    path('regitroExitoso/', views.registroExitoso, name='registroExitoso'),
+    path('registroExitoso/', views.registroExitoso),
     path('regitroDispositivo/', views.registrarDispositivo, name='registroDispositivo'),
     path('logout/', views.signout),
     path('infoCuenta/gestion', views.infoCuenta),
@@ -46,5 +46,5 @@ urlpatterns = [
     path('user/doctor/receta', views.aggreceta),
     path('configuracion/cambiarContrasena', views.cambiarContrasena),
     path('login/usAdmin/detalleUsuarios', views.detalleUsuarios)
-
 ]
+

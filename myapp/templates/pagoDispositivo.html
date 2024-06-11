@@ -18,7 +18,7 @@
 
   </style>
 </head>
-  
+
 <body>
     {% include 'navbar.html' %}
     <div class='container2'>
@@ -26,11 +26,11 @@
             <div class='order-info'>
                 <div class='order-info-content'>
                     <!-- Detalles del dispositivo -->
-                    <h2>Pulsera</h2>
+                    <h2>{{ dispositivo.tipo }}</h2>
                     <div class='line'></div>
-                    <table class='order-table'>                
+                    <table class='order-table'>
                     </table>
-                    
+
                     <table class='order-table'>
                         <tbody>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
@@ -38,9 +38,9 @@
                                     <img src="{% static 'img/pulseraDis.jpg' %}" alt="Imagen del dispositivo" class="img-fluid">
                                     <p>Alquiler: $10 /mes - Venta: $100</p>
                                     <div class="col-sm-12">
-                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>1 familiar</h6>
-                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Actualización de signos vitales</h6>
-                                    </div>                        
+                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Color: {{ dispositivo.color }}</h6>
+                                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Modelo: {{ dispositivo.modelo }}</h6>
+                                    </div>
                                 </div>
                             </div>
                         </tbody>
@@ -54,10 +54,10 @@
 
                     <!--<div class='line'></div>
                     <div class='total'>
-                        <span style='float:left;'>                  
+                        <span style='float:left;'>
                             TOTAL
                         </span>
-                        <span style='float:right; text-align:right;'>                  
+                        <span style='float:right; text-align:right;'>
                             $100
                         </span>
                     </div>-->
@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class='container alquiler-container bg-white rounded p-4 mt-4 shadow' style='display: none;'>
         <h2>Formulario de Alquiler</h2>
         <form>
@@ -118,12 +118,12 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
-    
+
     <script>
         function toggleAlquilerForm() {
             var select = document.getElementById("select-option");
             var alquilerContainer = document.querySelector(".alquiler-container");
-    
+
             if (select.value === "alquilar") {
                 alquilerContainer.style.display = "block";
             } else {
@@ -135,7 +135,7 @@
     <script src="{% static 'js/codigo.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 {% endblock %}
 </html>

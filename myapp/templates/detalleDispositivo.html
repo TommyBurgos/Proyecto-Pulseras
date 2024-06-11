@@ -16,61 +16,61 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-    
+
         .carousel-custom {
-            max-height: 300px; 
-            overflow: hidden; 
+            max-height: 300px;
+            overflow: hidden;
         }
-    
+
         .package-title {
             font-weight: bold;
         }
-    
+
         .package-details {
             font-size: 1.1em;
         }
-    
+
         .package-features {
             font-size: 1.1em;
             list-style-type: none;
             padding-left: 0;
         }
-    
+
         .package-price {
-            color: #8A2BE2; 
+            color: #8A2BE2;
             font-weight: bold;
         }
-    
+
         .dropdown-menu {
             margin-top: 0;
         }
-    
+
         .card-title {
             margin-bottom: 0;
         }
-    
+
         .card-text {
             margin-top: 5px;
             margin-bottom: 0;
         }
-    
+
         .img-thumbnail {
             max-width: 100%;
         }
-    
+
         .progress-bar {
             color: #8A2BE2;
         }
-    
+
         .rating {
             color: gold;
         }
-    
+
         .text-danger {
             text-decoration: underline;
             color: red;
         }
-    
+
     </style>
 </head>
 
@@ -84,40 +84,22 @@
     <div class="container detail-container my-5">
         <div class="row">
             <div class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide carousel-custom" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{% static 'img/pulseraDis.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/oximetro.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/monitor.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+                    <img src="{{ dispositivo.imgD.url }}" class="d-block w-100" alt="...">
             </div>
             <div class="col-md-6">
-                <h2 class="package-title text-center">Dispositivo de Monitoreo</h2>
+                <h2 class="package-title text-center">{{ dispositivo.tipo }} de Monitoreo</h2>
                 <p class="package-details">Este dispositivo proporciona información vital sobre la salud del paciente, incluyendo la frecuencia cardíaca, niveles de oxígeno en sangre, entre otros.</p>
                 <ul class="package-features">
                     <li>Monitoreo continuo de la salud</li>
                     <li>Alertas en tiempo real</li>
                     <li>Registro de datos históricos</li>
                     <li>Conexión a aplicaciones móviles</li>
+                    <li>Este dispositivo está disponible para {{dispositivo.estadoD }}</li>
+                    <li>Color: {{ dispositivo.color }}</li>
                 </ul>
                 <h3 class="package-price text-center">Alquiler: $10 /mes - Venta: $100</h3>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary">Adquirir Dispositivo</a>
+                    <a href="/pagoDispositivo/{{ dispositivo.id }}" class="btn btn-primary">Adquirir Dispositivo</a>
                 </div>
             </div>
         </div>
@@ -255,7 +237,7 @@
         </div>
     </div>
 
-    
+
     <!-- Footer Start -->
     {% include 'footer.html' %}
     <!-- Footer End -->
