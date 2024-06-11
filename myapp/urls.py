@@ -22,7 +22,7 @@ urlpatterns = [
     path('blogs/', views.blogs),
     path('blogs/detalleBlogs/<int:id>', views.detalleBlogs),
     path('crearPaquete/usAdmin', views.crearPaquete),
-    path('login/usAdmin/',views.loginAdmin),
+    path('login/usAdmin/', views.loginAdmin),
     path('detallePaqAdmin/usAdmin', views.detallePaqAdmin),
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('revisionPlanes/usAdmin', views.revisionPlanes),
