@@ -82,7 +82,7 @@
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label class="required-field" for="idNumber">Número de Identificación</label>
-                                    <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="Cédula o Pasaporte">
+                                    <input type="number" class="form-control" id="idNumber" name="idNumber" placeholder="Cédula o Pasaporte">
                                 </div>
                             </div>
 
@@ -212,15 +212,32 @@
 
                             <!-- Contraseña y Repetir Contraseña (Ajustar IDs y Names) -->
                             <div class="col-sm-6 mb-4">
-                                <div class="form-group">
+                                <div class="form-group row">
                                     <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                    <div class="col-sm-11">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                                    </div>
+                                    
+                                    {% if errorP %}
+                                        <p style="color: red;">{{ errorP }}</p>
+                                    {% endif %}   
+                                                                     
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-4">
-                                <div class="form-group">
+                                <div class="form-group row">
+
                                     <label for="confirmPassword">Repetir Contraseña</label>
-                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Repetir Contraseña">
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Repetir Contraseña">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span class="toggle-password2" onclick="togglePasswordVisibility2()">👁️</span>
+                                    </div>
+                                                                        
                                 </div>
                             </div>
 
@@ -237,5 +254,36 @@
             </div>
         </div>
 </div>
+<script>
+    function togglePasswordVisibility() {
+        //confirmPassword
+        const passwordInput = document.getElementById('password');
+        const passwordIcon = document.querySelector('.toggle-password');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.textContent = '🔒';
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.textContent = '👁️';
+        }
+        
+    }
+    function togglePasswordVisibility2() {
+        //confirmPassword
+        const passwordInput = document.getElementById('confirmPassword');
+        const passwordIcon = document.querySelector('.toggle-password2');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.textContent = '🔒';
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.textContent = '👁️';
+        }
+        
+    }
+
+</script>
 </body>
 {% endblock %}
