@@ -25,9 +25,9 @@
                             {% csrf_token %}
                             <div class="form-group mb-4">
                                 <label for="tipoIdentificacion">Tipo de Identificación</label>
-                                <select class="form-control" id="tipoIdentificacion">
-                                    <option>Cédula</option>
-                                    <option>Pasaporte</option>
+                                <select onclick="cedOpasp()" class="form-control" id="tipoIdentificacion">
+                                    <option id="cedula" value="cedula">Cédula</option>
+                                    <option id="pasaporte" value="pasaporte">Pasaporte</option>
                                 </select>
                             </div>
                             <div class="form-group mb-4">
@@ -72,6 +72,21 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        function cedOpasp() {
+            //confirmPassword
+            const seleccionCoP=document.getElementById('tipoIdentificacion')
+            const idNumber = document.getElementById('idNumber');
+            //const pasaporte = document.querySelector('pasaporte');
+    
+            if (seleccionCoP.value === 'cedula') {
+                idNumber.type = 'number';                
+            } else {
+                idNumber.type = 'text';                
+            }
+            
+        }    
+    </script>
 
 </body>
 {% endblock %}
