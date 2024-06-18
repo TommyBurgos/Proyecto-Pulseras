@@ -1,21 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
-from .models import Paquete, Servicio, Dispositivo, BlogNoticia, Paciente, Medico, Alerta
+from django.http import HttpResponse
+from .models import Paquete, Servicio, Dispositivo, BlogNoticia, Paciente, Medico, Alerta, PaqueteImagen, PaqueteServicio
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from user.models import User, Rol  # Importa tu nueva clase User personalizada
-from .forms import UserForm
+from .forms import UserForm, BlogNoticiaForm, PaqueteForm
 # New
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db import IntegrityError
 import re
-
-
 
 
 # from .forms import ChangePasswordForm
@@ -26,8 +22,6 @@ precio = 15
 # preciosPaquetes=list([Paquete.objects.values.precio])
 
 # Create your views here
-
-
 def index(request):
     title = 'AI.Tech - Pulseras Wifi'
     paquetes = Paquete.objects.all()
@@ -50,7 +44,6 @@ def about(request):
 def catalogDispositivo(request):
     dispositivos = Dispositivo.objects.all()
     return render(request, 'catalogDispositivo.html', {'dispositivos': dispositivos})
-
 
 def detalleDispositivo(request, id):
     dispositivo = get_object_or_404(Dispositivo, id=id)
@@ -102,13 +95,14 @@ def recuperacion(request):
 
 
 def detallePaquete(request, id):
-    paquete = get_object_or_404(Paquete, id=id)
+    paquete = get_object_or_404(Paquete.objects.prefetch_related('imagenes'), id=id)
     return render(request, 'detallePaquete.html', {'paquete': paquete})
 
 
 def pagos(request, id):
     paquete = get_object_or_404(Paquete, id=id)
-    return render(request, 'pagos.html', {'paquete': paquete})
+    servicios = paquete.servicios.all()
+    return render(request, 'pagos.html', {'paquete': paquete, 'servicios': servicios})
 
 
 def blogs(request):
@@ -181,7 +175,6 @@ def aggcita(request):
 def aggreceta(request):
     return render(request, 'usDoctor/recetaMedica.html')
 
-
 def dirigirPorRol(request, user):
     rol = user.rol_id
     if rol == 1:
@@ -226,8 +219,27 @@ def loginAdmin(request):
 
 
 @login_required
-def crearPaquete(request):
-    return render(request, 'usAdmin/crearPaquete.html')
+def create_paquete(request):
+    if request.method == 'POST':
+        form = PaqueteForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Guardar el paquete
+            paquete = form.save()
+
+            # Guardar las imágenes del paquete
+            images = request.FILES.getlist('imagenes')
+            for image in images:
+                PaqueteImagen.objects.create(paquete=paquete, imagen=image)
+
+            # Guardar los servicios seleccionados
+            servicios = form.cleaned_data.get('servicios')
+            for servicio in servicios:
+                PaqueteServicio.objects.create(paquete=paquete, servicio=servicio)
+
+            return redirect('view_paquete')  # Redirige a la lista de paquetes u otra vista relevante
+    else:
+        form = PaqueteForm()
+    return render(request, 'usAdmin/crearPaquete.html', {'form': form})
 
 
 @login_required
@@ -261,6 +273,17 @@ def ofertas(request):
 @login_required
 def paqueteAdmin(request):
     return render(request, 'usAdmin/paqueteAdmin.html')
+
+
+def create_blog(request):
+    if request.method == 'POST':
+        form = BlogNoticiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')  # Redirige a la lista de blogs u otra vista relevante
+    else:
+        form = BlogNoticiaForm()
+    return render(request, 'create_blog.html', {'form': form})
 
 
 def registroExitoso(request):
@@ -439,7 +462,7 @@ def cambiarContrasena(request):
 
 
 def paquetes(request):
-    paquetes = Paquete.objects.all()
+    paquetes = Paquete.objects.prefetch_related('imagenes','servicios').all()
     return render(request, 'paquetes.html', {'paquetes': paquetes})
 
 

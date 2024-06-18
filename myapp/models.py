@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
 
 
@@ -8,9 +7,9 @@ class Enfermedades(models.Model):
     descripcion = models.CharField(max_length=150)
 
 
-class Medicamento(models.Model):
-    name = models.CharField(max_length=100)
-    indicaciones = models.CharField(max_length=150)
+class Medicamento(models.Model): #xxxx
+    nombre = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=150)
 
 
 class Departamento(models.Model):
@@ -118,17 +117,16 @@ class FamiliarPaciente(models.Model):
     idPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
 
 
-class RecetaMedica(models.Model):
+class RecetaMedica(models.Model): #xxxxx
     fechaEmision = models.DateField()
     idPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     idMedico = models.ForeignKey(Medico, on_delete=models.CASCADE)
-    receta = models.CharField(max_length=1000, default="Consulte con su médico")
 
 
-class DetalleReceta(models.Model):
+class DetalleReceta(models.Model): #xxxx
     idReceta = models.ForeignKey(RecetaMedica, on_delete=models.CASCADE)
     idMedicamento = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
-    dosis = models.CharField(max_length=100)
+    dosis = models.CharField(max_length=100, default="Consulte con su médico")
 
 
 class CitaMedica(models.Model):
@@ -166,43 +164,81 @@ class CentroMedico(models.Model):
 
 
 # Create your models here.
-class Paquete(models.Model):
-    name = models.CharField(max_length=200)
-    descripcion = models.TextField(blank=True)
-    valor = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.name
-
-
-class DetalleServicio(models.Model):
-    fecha = models.DateField()
-    hora = models.TimeField()
-    medicion = models.CharField(max_length=200)
+#class periodoPaquete(models.Model):
+ #   periodo = models.CharField(max_length=100)
+  #  descripcion = models.CharField(max_length=200)
 
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=200)
     umbral = models.TextField(blank=True)
-    detalleServicio = models.ForeignKey(DetalleServicio, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.nombre + '-' + self.detalleServicio.medicion
+        return self.nombre
 
 
-class detallePaquete(models.Model):
-    idPaquete = models.ForeignKey(Paquete, on_delete=models.CASCADE, blank=True)
-    idServicio = models.ForeignKey(Servicio, on_delete=models.CASCADE, blank=True)
+class Paquete(models.Model):
+    name = models.CharField(max_length=200)
+    descripcion = models.CharField(max_length=500)
+    descripcion_detallada = models.TextField(blank=True)
+    valor = models.IntegerField(default=0)
+    servicios = models.ManyToManyField(Servicio, through='PaqueteServicio', related_name='paquetes')
+
+    def __str__(self):
+        return self.name
 
 
-class PacientePaquete(models.Model):
-    idPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True)
-    idPaquete = models.ForeignKey(Paquete, on_delete=models.CASCADE, blank=True)
-    idDispositivo = models.ForeignKey(Dispositivo, on_delete=models.CASCADE, blank=True)
+def paquete_image_directory_path(instance, filename):
+    return f"paq_images/{instance.paquete.id}/{filename}"
+
+
+class PaqueteImagen(models.Model):
+    paquete = models.ForeignKey(Paquete, related_name='imagenes', on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to=paquete_image_directory_path)
+
+    def __str__(self):
+        return f"Imagen de {self.paquete.name}"
+
+    def save(self, *args, **kwargs):
+        if self.paquete.imagenes.count() >= 5:
+            raise ValueError("No se pueden agregar más de 5 imágenes a un paquete.")
+        super().save(*args, **kwargs)
+
+
+class DetalleServicio(models.Model): #xxxx
+    servicio = models.ForeignKey(Servicio, related_name='detalles', on_delete=models.CASCADE)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    medicion = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.servicio.nombre} - {self.medicion}"
+
+
+class PaqueteServicio(models.Model):
+    paquete = models.ForeignKey(Paquete, related_name='paquete_servicios', on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio, related_name='servicio_paquetes', on_delete=models.CASCADE)
+
+
+class PacientePaquete(models.Model): #xxxxx
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True)
+    paquete = models.ForeignKey(Paquete, on_delete=models.CASCADE, blank=True)
+    dispositivo = models.ForeignKey(Dispositivo, on_delete=models.CASCADE, blank=True)
     fechaInicio = models.DateField()
     fechaFin = models.DateField()
     precio = models.FloatField()
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE, blank=True)
+
+    def __str__(self):
+        return f"Paquete de {self.paciente.name} - {self.paquete.name}"
+
+
+class PacienteDetalleServicio(models.Model):
+    paciente_paquete = models.ForeignKey(PacientePaquete, related_name='detalles_servicio', on_delete=models.CASCADE)
+    detalle_servicio = models.ForeignKey(DetalleServicio, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Detalle de servicio para {self.paciente_paquete.paciente.name}"
 
 
 class tipoAlerta(models.Model):

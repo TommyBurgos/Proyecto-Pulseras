@@ -18,7 +18,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">   
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
 
   <style>
     .form-container {
-        background-color: #ffffff; 
-        border-radius: 15px; 
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px;
     }
 
@@ -37,7 +37,7 @@
 </head>
 <body>
   <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-dark">
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-dark">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'img/logo.png' %}" class="mr-2" alt="logo"/></a>
           <a class="navbar-brand brand-logo-mini" href="/"><img src="{% static 'img/logo.png' %}" alt="logo"/></a>
@@ -136,7 +136,7 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
-          
+
           <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
           <div id="theme-settings" class="settings-panel">
             <i class="settings-close ti-close fas fa-screwdriver"></i>
@@ -312,7 +312,7 @@
               <a class="nav-link" href="index.html">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
-                
+
               </a>
             </li>
             <li class="nav-item">
@@ -389,7 +389,7 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
                 </ul>
               </div>
-            </li>          
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
@@ -408,18 +408,20 @@
                 </div>
                 <!-- Contenedor del formulario -->
                 <div class="form-container">
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
                   <div class="row">
                       <!-- Sección de carga de imágenes -->
                       <div class="col-md-6">
                           <div class="mb-3">
-                              <label for="packageImagesPreview" class="form-label"><strong>Vista Previa de Imágenes</strong></label>
+                              <!--<label for="packageImagesPreview" class="form-label"><strong>Vista Previa de Imágenes</strong></label>
                               <div id="packageImagesPreview" class="image-preview mb-4">
-                                  <!-- Imágenes cargadas -->
-                              </div>
-                              <label class="form-label">Cargar Imágenes del Paquete (3 a 5 imágenes)</label>
+                                   Imágenes cargadas
+                              </div> -->
+                              <label class="form-label">Cargar Imágenes del Paquete</label>
                               <div id="imageUploadContainer" class="image-upload-container">
                                   <!-- Botón para agregar nuevas cargas de imagen -->
-                                  <button type="button" id="addImageField" class="btn btn-outline-primary add-image"><i class="fa fa-plus"></i> Agregar Imagen</button>
+                                  <button type="button" id="addImageField" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Agregar Imagen</button>
                               </div>
                           </div>
                       </div>
@@ -440,7 +442,6 @@
 
                       <!-- Formulario de creación de paquete -->
                       <div class="col-md-6">
-                          <form>
                               <div class="mb-3">
                                   <label for="packageName" class="form-label">Nombre del Paquete</label>
                                   <input type="text" class="form-control" id="packageName" placeholder="Nombre del Paquete">
@@ -457,31 +458,27 @@
                                   <label for="packageDetails" class="form-label">Descripción Detallada</label>
                                   <textarea class="form-control" id="packageDetails" rows="7" placeholder="Descripción Detallada"></textarea>
                               </div>
-                              <div class="mb-3">
+                              <!--<div class="mb-3">
                                   <label for="includedServicesContainer" class="form-label">Servicios Incluidos</label>
                                   <div id="includedServicesContainer">
                                       <div class="input-group mb-3">
                                           <input type="text" class="form-control" placeholder="Servicio">
                                           <button class="btn btn-outline-secondary" type="button" onclick="agregarServicio()"><i class="fa fa-plus"></i> Agregar</button>
                                       </div>
-                                  </div>
-                              </div>
-                              <button type="submit" class="btn btn-primary">Crear Paquete</button>
-                          </form>
+                                  </div>-->
                       </div>
+                      <button type="submit" class="btn btn-primary">Crear Paquete</button>
                   </div>
-              </div>
-              
+                  </div>
+                </form>
+                </div>
+
             </div>
-          </div>       
-        </div>
           </div>
         </div>
-        </div>
-
   </div>
 
-  
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5">
         <div class="container py-5">
@@ -531,7 +528,7 @@
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
-                        
+
                         Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
