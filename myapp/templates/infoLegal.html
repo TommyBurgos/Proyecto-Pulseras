@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/feather.css' %}">
+  <link href="{% static 'css/estiloAdmin/themify-icons.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">   
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+</head>
+<body>    
+    <div class="container-scroller">
+        <!-- Navbar Start -->
+        {% include 'navSuperiorUs.html' %}
+        <!-- Navbar End -->
+        <div class="container-fluid page-body-wrapper">            
+            {% include 'navIzquierdoUs.html' %}            
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h2>Términos y Condiciones</h2>
+                            <p>Bienvenido a <strong>HealthLink Band</strong>, un espacio en línea que facilita la interacción entre pacientes y doctores. Antes de utilizar nuestros servicios, te invitamos a leer detenidamente nuestros términos y condiciones.</p>
+                            
+                            <h3>1. Aceptación de los Términos</h3>
+                            <p>Al utilizar <strong>HealthLink Band</strong>, aceptas estos términos y condiciones en su totalidad. Si no estás de acuerdo con alguna parte de estos términos, te pedimos que no utilices nuestros servicios.</p>
+                            
+                            <h3>2. Descripción del Servicio</h3>
+                            <p><strong>HealthLink</strong> es una plataforma en línea que permite a los usuarios registrados, tanto pacientes como doctores, interactuar para facilitar la atención médica y el intercambio de información relacionada con la salud. Nuestros servicios incluyen, entre otros, la programación de citas, la comunicación en línea y el acceso a recursos médicos.</p>
+                            
+                            <h3>3. Responsabilidades del Usuario</h3>
+                            <ul>
+                                <li>Los usuarios son responsables de mantener la confidencialidad de sus credenciales de inicio de sesión y de cualquier actividad que ocurra en sus cuentas.</li>
+                                <li>Los usuarios deben proporcionar información precisa y actualizada en su perfil.</li>
+                                <li>Los usuarios deben utilizar <strong>[Nombre de tu Plataforma]</strong> de manera legal y ética, respetando los derechos de privacidad y propiedad intelectual de otros usuarios y terceros.</li>
+                            </ul>
+                            
+                            <h3>4. Política de Privacidad</h3>
+                            <p><strong>HealthLink</strong> respeta la privacidad de sus usuarios y se compromete a proteger la información personal que recopilamos. Consulta nuestra <a href="#">Política de Privacidad</a> para obtener más información sobre cómo recopilamos, utilizamos y protegemos tus datos.</p>
+                            
+                            <h3>5. Propiedad Intelectual</h3>
+                            <p>Los derechos de propiedad intelectual sobre <strong>HealthLink</strong> y su contenido pertenecen a sus respectivos propietarios. Se prohíbe la reproducción, distribución o modificación del contenido sin autorización previa.</p>
+                            
+                            <h3>6. Modificaciones a los Términos</h3>
+                            <p>Nos reservamos el derecho de actualizar o modificar estos términos y condiciones en cualquier momento. Te recomendamos revisar periódicamente esta página para estar al tanto de los cambios. El uso continuado de nuestros servicios después de la publicación de los cambios constituirá tu aceptación de los mismos.</p>
+                            
+                            <h3>7. Contacto</h3>
+                            <p>Si tienes alguna pregunta sobre estos términos y condiciones, no dudes en ponerte en contacto con nosotros.</p>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                    </div>
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span> 
+                    </div>
+                  </footer>
+            </div>
+        </div>
+    </div>
+    <!-- plugins:js -->
+  <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'js/codigoAdmin/Chart.min.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/codigoAdmin/off-canvas.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/template.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/settings.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->    
+</body>
+</html>

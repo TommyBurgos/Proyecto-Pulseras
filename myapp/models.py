@@ -7,7 +7,7 @@ class Enfermedades(models.Model):
     descripcion = models.CharField(max_length=150)
 
 
-class Medicamento(models.Model): #xxxx
+class Medicamento(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=150)
 
@@ -117,13 +117,13 @@ class FamiliarPaciente(models.Model):
     idPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True, null=True)
 
 
-class RecetaMedica(models.Model): #xxxxx
+class RecetaMedica(models.Model):
     fechaEmision = models.DateField()
     idPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     idMedico = models.ForeignKey(Medico, on_delete=models.CASCADE)
 
 
-class DetalleReceta(models.Model): #xxxx
+class DetalleReceta(models.Model):
     idReceta = models.ForeignKey(RecetaMedica, on_delete=models.CASCADE)
     idMedicamento = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
     dosis = models.CharField(max_length=100, default="Consulte con su médico")
@@ -164,10 +164,9 @@ class CentroMedico(models.Model):
 
 
 # Create your models here.
-#class periodoPaquete(models.Model):
- #   periodo = models.CharField(max_length=100)
-  #  descripcion = models.CharField(max_length=200)
-
+#   class periodoPaquete(models.Model):
+#       periodo = models.CharField(max_length=100)
+#       descripcion = models.CharField(max_length=200)
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=200)
@@ -205,7 +204,7 @@ class PaqueteImagen(models.Model):
         super().save(*args, **kwargs)
 
 
-class DetalleServicio(models.Model): #xxxx
+class DetalleServicio(models.Model):
     servicio = models.ForeignKey(Servicio, related_name='detalles', on_delete=models.CASCADE)
     fecha = models.DateField()
     hora = models.TimeField()
@@ -220,7 +219,7 @@ class PaqueteServicio(models.Model):
     servicio = models.ForeignKey(Servicio, related_name='servicio_paquetes', on_delete=models.CASCADE)
 
 
-class PacientePaquete(models.Model): #xxxxx
+class PacientePaquete(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, blank=True)
     paquete = models.ForeignKey(Paquete, on_delete=models.CASCADE, blank=True)
     dispositivo = models.ForeignKey(Dispositivo, on_delete=models.CASCADE, blank=True)

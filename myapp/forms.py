@@ -54,6 +54,7 @@ class PaqueteForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=True  # Servicios son obligatorios
     )
+
     class Meta:
         model = Paquete
         fields = ['name', 'descripcion', 'descripcion_detallada', 'valor', 'servicios']

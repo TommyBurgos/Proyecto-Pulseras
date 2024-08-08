@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+from .views import DetalleServicioListCreate, DetalleServicioDetail, PacienteDetalleServicioListCreateView, LoginView
 from . import views
 
 urlpatterns = [
@@ -17,13 +18,14 @@ urlpatterns = [
     path('pagos/<int:id>', views.pagos),
     path('login/', views.iniciar),
     path('contact/', views.contact),
+    path('contact/mensajeEnviado', views.mensajeEnviado),
     path('recuperacion/', views.recuperacion),
     path('detallePaquete/<int:id>', views.detallePaquete),
     path('blogs/', views.blogs),
     path('blogs/detalleBlogs/<int:id>', views.detalleBlogs),
     path('crearPaquete/usAdmin', views.create_paquete, name='create_paquete'),
     path('login/usAdmin/', views.loginAdmin),
-    path('detallePaqAdmin/usAdmin', views.detallePaqAdmin, name='view_paquete'),
+    path('detallePaqAdmin/usAdmin/<int:id>', views.detallePaqAdmin, name='view_paquete'),
     path('dispositivosAdmin/usAdmin', views.dispositivosAdmin),
     path('revisionPlanes/usAdmin', views.revisionPlanes),
     path('solicitudCompra/usAdmin', views.solicitudCompra),
@@ -45,6 +47,11 @@ urlpatterns = [
     path('user/doctor/cita', views.aggcita),
     path('user/doctor/receta', views.aggreceta),
     path('configuracion/cambiarContrasena', views.cambiarContrasena),
-    path('login/usAdmin/detalleUsuarios', views.detalleUsuarios)
-]
+    path('login/usAdmin/detalleUsuarios', views.detalleUsuarios),
+    path('detalleServicio/', DetalleServicioListCreate.as_view(), name='detalleservicio-list-create'),
+    path('detalleServicio/<int:pk>/', DetalleServicioDetail.as_view(), name='detalleservicio-detail'),
+    path('pacienteDetalleServicio/', PacienteDetalleServicioListCreateView.as_view(), name='paciente_detalle_servicio'),
+    path('api/loginAPI/', LoginView.as_view(), name='login'),
+    path('user/doctor/detalleCitas', views.detalleCitas)
 
+]

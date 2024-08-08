@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Paquete, Servicio, Dispositivo, BlogNoticia, Paciente, Medico, Alerta, PaqueteImagen, PaqueteServicio
+from rest_framework import generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Paquete, Servicio, Dispositivo, BlogNoticia, Paciente, Medico, Alerta, PaqueteImagen, PaqueteServicio, DetalleServicio, PacienteDetalleServicio, Departamento, CitaMedica
+from .serializers import DetalleServicioSerializer, PacienteDetalleServicioSerializer
 from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from user.models import User, Rol  # Importa tu nueva clase User personalizada
 from .forms import UserForm, BlogNoticiaForm, PaqueteForm
@@ -10,8 +15,28 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.conf import settings
 import re
+import random
+from datetime import timedelta
+import string
+import json
+from django.core.files.storage import FileSystemStorage
+from django.core.mail import send_mail
+
+
+def generate_random_string():
+    # La primera letra es siempre 'P'
+    first_letter = 'P'
+
+    # Generar los siguientes 9 caracteres que pueden ser números o letras
+    characters = string.ascii_letters + string.digits  # a-z, A-Z, 0-9
+    random_chars = ''.join(random.choices(characters, k=9))
+
+    # Concatenar la primera letra con los caracteres aleatorios
+    random_string = first_letter + random_chars
+
+    return random_string
 
 
 # from .forms import ChangePasswordForm
@@ -22,6 +47,8 @@ precio = 15
 # preciosPaquetes=list([Paquete.objects.values.precio])
 
 # Create your views here
+
+
 def index(request):
     title = 'AI.Tech - Pulseras Wifi'
     paquetes = Paquete.objects.all()
@@ -44,6 +71,7 @@ def about(request):
 def catalogDispositivo(request):
     dispositivos = Dispositivo.objects.all()
     return render(request, 'catalogDispositivo.html', {'dispositivos': dispositivos})
+
 
 def detalleDispositivo(request, id):
     dispositivo = get_object_or_404(Dispositivo, id=id)
@@ -90,13 +118,27 @@ def contact(request):
     return render(request, 'contact.html')
 
 
+def mensajeEnviado(request):
+    if request.method == 'POST':
+        asunto = request.POST['tema']
+        mensaje = request.POST["message"]
+        email_desde = settings.DEFAULT_FROM_EMAIL
+        email_para = []
+        correoCampo = request.POST["email"]
+        email_para.append(correoCampo)
+        send_mail(asunto, mensaje, email_desde, email_para, fail_silently=False)
+        return render(request, 'mensajeEnviado.html')
+    return render(request, 'contact.html')
+
+
 def recuperacion(request):
     return render(request, 'recuperacion.html')
 
 
 def detallePaquete(request, id):
     paquete = get_object_or_404(Paquete.objects.prefetch_related('imagenes'), id=id)
-    return render(request, 'detallePaquete.html', {'paquete': paquete})
+    servicios = paquete.servicios.all()
+    return render(request, 'detallePaquete.html', {'paquete': paquete, 'servicios': servicios})
 
 
 def pagos(request, id):
@@ -106,7 +148,7 @@ def pagos(request, id):
 
 
 def blogs(request):
-    blogs= BlogNoticia.objects.all()
+    blogs = BlogNoticia.objects.all()
     return render(request, 'blogs.html', {'blogs': blogs})
 
 
@@ -123,10 +165,40 @@ def blogUser(request):
     return render(request, 'usGeneral/blog.html')
 
 
+@login_required
+def infoLegal(request):
+    user = request.user
+    return render(request, 'gestion/infoLegal.html', {'rutaImgPerfil': user.picture})
+
+
 # Paginas de Gestion de cuenta
 @login_required
 def infoCuenta(request):
-    return render(request, 'gestion/infoCuenta.html')
+    usuario = request.user
+    if request.method == 'POST' and request.FILES['archivo']:
+        print("Entre al post de imagen")
+        archivo = request.FILES['archivo']
+        print("He capturado la imagen")
+        print(archivo)
+        fs = FileSystemStorage()
+        filename = fs.save("users/"+archivo.name, archivo)
+        print(filename)
+        uploaded_file_url = fs.url(filename)
+         # Actualizar el campo picture del usuario
+        usuario.picture = uploaded_file_url
+        usuario.save()
+        print(usuario.picture)
+        print(usuario.picture.url)
+        return render(request, 'gestion/infoCuenta.html', {
+            'rutaImgPerfil': usuario.picture,
+            'usuario': usuario,
+            'email': usuario.email,
+    })
+    return render(request, 'gestion/infoCuenta.html', {
+        'rutaImgPerfil': usuario.picture,
+        'usuario': usuario
+    })
+
 
 
 @login_required
@@ -151,9 +223,22 @@ def inicioGeneral(request):
 
 
 # PACIENTE
-# @login_required
-def inicioPaciente(request):
-    return render(request, 'usPaciente/index.html')
+@login_required
+def inicioPaciente(request, user):
+    #usuarios = User.objects.all()
+    #userxRol = User.objects.filter(rol=3)
+    #cant=len(usuarios)
+    #cantxRol=len(userxRol)
+    print("Ahora estoy dentro de la función paciente")
+    print(user.first_name)
+    print(user.picture)
+    print("VEAMOS SI LLEGO HASTA AQUII")
+    return render(request, 'usPaciente/index.html', {
+            'usuario': user.first_name,
+            'rutaImgPerfil':user.picture
+            #'cantUsuarios':cant,
+            #'cantxRol':cantxRol
+                })
 
 
 # FAMILIAR
@@ -168,6 +253,21 @@ def inicioDoctor(request):
     return render(request, 'usDoctor/panelDoctor.html')
 
 
+# ADMIN
+@login_required
+def inicioAdmin(request, user):
+    usuarios = User.objects.all()
+    userxRol = User.objects.filter(rol=3)
+    cant = len(usuarios)
+    cantxRol = len(userxRol)
+    return render(request, 'usAdmin/index.html', {
+            'usuario': user.first_name,
+            'rutaImgPerfil':user.picture,
+            'cantUsuarios':cant,
+            'cantxRol':cantxRol
+                })
+
+
 def aggcita(request):
     return render(request, 'usDoctor/citas.html')
 
@@ -175,19 +275,55 @@ def aggcita(request):
 def aggreceta(request):
     return render(request, 'usDoctor/recetaMedica.html')
 
+
+def obtener_nombre_paciente(id_paciente):
+    paciente = get_object_or_404(Paciente, id=id_paciente)
+    print("POR OBTENER PACIENTE")
+    print(paciente)
+    print(paciente.idUsuario.first_name)
+    return paciente.idUsuario
+
+
+def detalleCitas(request):
+    eventos = []
+    cita = get_object_or_404(CitaMedica, id=1)
+    nombre_paciente = obtener_nombre_paciente(cita.idPaciente.id)
+    apellido_paciente = obtener_nombre_paciente(cita.idPaciente.id).last_name
+    print("Mostrando detalle")
+    print(nombre_paciente.first_name)
+    citas = CitaMedica.objects.all()
+    for cita in citas:
+        eventos.append({
+            'title': cita.motivo,
+            'start': cita.fechaCita.strftime('%Y-%m-%dT%H:%M:%S'),
+            'end': (cita.fechaCita + timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%S'),  # Assuming the duration of the appointment is 1 hour
+        })
+    jsEventos = json.dumps(eventos)
+    print(citas)
+    return render(request, 'usDoctor/detalleCitas.html', {
+        'jsEventos':jsEventos,
+        'cita': cita,
+        'nombre_paciente': nombre_paciente.first_name,
+        'apellido_paciente':apellido_paciente
+    })
+
+
 def dirigirPorRol(request, user):
     rol = user.rol_id
     if rol == 1:
         login(request, user)
-        return render(request, 'usAdmin/index.html', {
-            'usuario': user.first_name
-                })
+        return inicioAdmin(request, user)
+
     if rol == 2:
         login(request, user)
         return render(request, 'usDoctor/panelDoctor.html', {
                     'usuario': user.first_name
                 })
     if rol == 3:
+        login(request, user)
+        print("HE INGRESADO AL ROL DE PACIENTE, LLAMARE A LA FUNCION...")
+        return inicioPaciente(request, user)
+    if rol == 4:
         login(request, user)
         return render(request, 'usFamiliar/index.html', {
                     'usuario': user.first_name
@@ -197,10 +333,14 @@ def dirigirPorRol(request, user):
 # Páginas Administrador
 # @login_required
 def loginAdmin(request):
-    print("HE INGRESADO A LA SESION pero no entro al if")
+    print("HE INGRESADO A LA loginAdmin pero no entro al if")
+
     if request.method == 'GET':
+        user = request.user
+        print(user)
+        print(user.rol_id)
         # user = authenticate(request, username=request.POST['idNumber'], password= request.POST['password'])
-        return render(request, 'usAdmin/index.html')
+        return dirigirPorRol(request, user)
 
     else:
         # return render(request, 'usAdmin/index.html')
@@ -209,23 +349,24 @@ def loginAdmin(request):
         user = authenticate(request, username=request.POST['idNumber'], password=request.POST['password'])
         print("usuario "+request.POST['idNumber'])
 
-        print("HE INGRESADO A LA SESION")
+
         if user is None:
             return render(request, 'login.html', {
                 'error': 'Username o password son incorrectas'
             })
         else:
+            print("intento ingresar A LA SESION")
             return dirigirPorRol(request, user)
 
 
 @login_required
 def create_paquete(request):
+    user = request.user
     if request.method == 'POST':
         form = PaqueteForm(request.POST, request.FILES)
         if form.is_valid():
             # Guardar el paquete
             paquete = form.save()
-
             # Guardar las imágenes del paquete
             images = request.FILES.getlist('imagenes')
             for image in images:
@@ -239,22 +380,24 @@ def create_paquete(request):
             return redirect('view_paquete')  # Redirige a la lista de paquetes u otra vista relevante
     else:
         form = PaqueteForm()
-    return render(request, 'usAdmin/crearPaquete.html', {'form': form})
+    return render(request, 'usAdmin/crearPaquete.html', {'form': form, 'rutaImgPerfil':user.picture})
 
 
 @login_required
-def detallePaqAdmin(request):
-    return render(request, 'usAdmin/detallePaqAdmin.html')
+def detallePaqAdmin(request, id):
+    paquete = get_object_or_404(Paquete.objects.prefetch_related('imagenes'), id=id)
+    servicios = paquete.servicios.all()
+    return render(request, 'usAdmin/detallePaqAdmin.html', {'paquete': paquete, 'servicios': servicios})
 
 
 @login_required
 def dispositivosAdmin(request):
-        dispositivos = Dispositivo.objects.all()
-        busqueda = request.GET.get("buscar")
-        if busqueda:
-            dispositivos = Dispositivo.objects.filter(Q(serie=busqueda)).distinct()
-            print("entre al if de busqueda")
-        return render(request, 'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
+    dispositivos = Dispositivo.objects.all()
+    busqueda = request.GET.get("buscar")
+    if busqueda:
+        dispositivos = Dispositivo.objects.filter(Q(serie=busqueda)).distinct()
+        print("entre al if de busqueda")
+    return render(request, 'usAdmin/dispositivosAdmin.html', {'dispositivos': dispositivos})
 
 
 @login_required
@@ -272,7 +415,8 @@ def ofertas(request):
 
 @login_required
 def paqueteAdmin(request):
-    return render(request, 'usAdmin/paqueteAdmin.html')
+    paquetes = Paquete.objects.prefetch_related('imagenes','servicios').all()
+    return render(request, 'usAdmin/paqueteAdmin.html', {'paquetes': paquetes})
 
 
 def create_blog(request):
@@ -291,7 +435,7 @@ def registroExitoso(request):
     print(request.POST['password'] == request.POST['confirmPassword'])
     print('ps1 ->'+request.POST['password'])
     print('ps2 ->'+request.POST['confirmPassword'])
-    print('usuario //'+ request.POST['idNumber'])
+    print('usuario //' + request.POST['idNumber'])
     if request.POST['password'] == request.POST['confirmPassword']:
         try:
             password = request.POST.get('password')
@@ -360,6 +504,7 @@ def registroExitoso(request):
 
 
 def detalleUsuarios(request):
+    user = request.user
     busqueda = request.GET.get("buscar")
     usuarios = User.objects.all().order_by('-date_joined')
     if busqueda:
@@ -390,28 +535,46 @@ def detalleUsuarios(request):
                                             direccion=request.POST['address'],
                                             rol_id=request.POST['userRole'])
             print("Casi guardo")
+            rol_id = request.POST['userRole']
             user.save()
             # doctor=Medico.objects.create(estado_id=1, idDispositivo_id=1,idUsuario_id=user.id)
             # doctor.save()
             print("Se guardo correctamente")
             print(user.rol_id)
+            #CONDICION DE GUARDADO
+            print("Estoy a punto de ingresar al if de paciente creado")
+            print(rol_id)
+            print(type(rol_id))
+            if rol_id == '2':
+                print("He entrado al if de medico creado")
+                medico = Medico.objects.create(departamento_id=1, idUsuario_id=user.id)
+                print("He creado el medico pero aun no lo guardo")
+                medico.save()
+            if rol_id == '3':
+                print("He entrado al if de paciente creado")
+                paciente = Paciente.objects.create(estado_id=1, idDispositivo_id=1, idUsuario_id=user.id)
+                print("He creado el paciente pero aun no lo guardo")
+                paciente.save()
+
             return render(request, 'usAdmin/detalleUsuarios.html', {'context': context, 'usuarios': usuarios})
         except:
             print("no se pudo")
             return HttpResponse('Usuario ya existe')
-    return render(request, 'usAdmin/detalleUsuarios.html', {'usuarios': usuarios})
+    return render(request, 'usAdmin/detalleUsuarios.html', {'usuarios': usuarios, 'rutaImgPerfil':user.picture})
 
 
 @login_required
 def registrarDispositivo(request):
     print(request.POST['numSerie'])
     try:
-        print("Apenas ingrese")
+        numSerie = generate_random_string()
+        # print("Apenas ingrese")
         opcion = request.POST.get('opEstado')
         print(opcion)
         opcion2 = request.POST.get('opTipo')
+        color = request.POST.get('opColor')
         print(opcion2)
-        dispositivo = Dispositivo.objects.create(serie=request.POST['numSerie'], estadoD_id=request.POST['opEstado'], tipo_id=request.POST['opTipo'])
+        dispositivo = Dispositivo.objects.create(serie=numSerie, estadoD_id=request.POST['opEstado'], tipo_id=request.POST['opTipo'], version=request.POST['numVersion'], color=color)
         print(dispositivo)
         print("Casi guardo")
         dispositivo.save
@@ -480,3 +643,29 @@ def manejar_mediciones_paciente(request):
             paciente=request.user,
             mensaje="¡Alerta! La medición del paciente ha superado el umbral."
         )
+
+
+class DetalleServicioListCreate(generics.ListCreateAPIView):
+    queryset = DetalleServicio.objects.all()
+    serializer_class = DetalleServicioSerializer
+
+
+class DetalleServicioDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DetalleServicio.objects.all()
+    serializer_class = DetalleServicioSerializer
+
+
+class PacienteDetalleServicioListCreateView(generics.ListCreateAPIView):
+    queryset = PacienteDetalleServicio.objects.all()
+    serializer_class = PacienteDetalleServicioSerializer
+
+
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.rol.nombre == 'paciente':
+            return Response({'message': 'Inicio de sesión exitoso', 'user_id': user.id})
+        else:
+            return Response({'message': 'Credenciales inválidas o usuario no tiene permisos'}, status=status.HTTP_401_UNAUTHORIZED)

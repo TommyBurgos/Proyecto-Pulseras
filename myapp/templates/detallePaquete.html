@@ -16,61 +16,61 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-    
+
         .carousel-custom {
-            max-height: 300px; 
-            overflow: hidden; 
+            max-height: 300px;
+            overflow: hidden;
         }
-    
+
         .package-title {
             font-weight: bold;
         }
-    
+
         .package-details {
             font-size: 1.1em;
         }
-    
+
         .package-features {
             font-size: 1.1em;
             list-style-type: none;
             padding-left: 0;
         }
-    
+
         .package-price {
-            color: #8A2BE2; 
+            color: #8A2BE2;
             font-weight: bold;
         }
-    
+
         .dropdown-menu {
             margin-top: 0;
         }
-    
+
         .card-title {
             margin-bottom: 0;
         }
-    
+
         .card-text {
             margin-top: 5px;
             margin-bottom: 0;
         }
-    
+
         .img-thumbnail {
             max-width: 100%;
         }
-    
+
         .progress-bar {
             color: #8A2BE2;
         }
-    
+
         .rating {
             color: gold;
         }
-    
+
         .text-danger {
             text-decoration: underline;
             color: red;
         }
-    
+
     </style>
 </head>
 
@@ -86,15 +86,11 @@
             <div class="col-md-6">
                 <div id="carouselExampleIndicators" class="carousel slide carousel-custom" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{% static 'img/paquete1.jpg' %}" class="d-block w-100" alt="...">
+                        {% for imagen in paquete.imagenes.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ imagen.imagen.url }}" class="d-block w-100" alt="Imagen de {{ paquete.name }}">
                         </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/paquete2.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'img/paquete3.jpg' %}" class="d-block w-100" alt="...">
-                        </div>
+                        {% endfor %}
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -113,9 +109,11 @@
                     <li>Consultas ilimitadas</li>
                     <li>Acceso a especialistas</li>
                     <li>Exámenes médicos incluidos</li>
-                    <li>Descuentos en medicamentos</li>
+                    {% for servicio in paquete.servicios.all %}
+                    <li>{{ servicio.nombre }}</li>
+                    {% endfor %}
                 </ul>
-                <h3 class="package-price text-center">${{paquete.valor}}</h3>
+                <h3 class="package-price text-center">${{paquete.valor}} /mes</h3>
                 <div class="text-center">
                     <a href="/pagos/{{ paquete.id }}" class="btn btn-primary">Adquirir Paquete</a>
                 </div>
@@ -223,7 +221,7 @@
                   </div>
                 </div>
               </div>
-              
+
           </div>
           <div class="col-md-4">
               <h3>Calificación general</h3>
@@ -255,7 +253,7 @@
           </div>
         </div>
     </div>
-    
+
     <!-- Footer Start -->
     {% include 'footer.html' %}
     <!-- Footer End -->
