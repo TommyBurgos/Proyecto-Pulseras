@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">   
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
@@ -101,7 +101,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{% static 'img/perfil.png' %}" alt="profile"/>
+                <img src="{{ rutaImgPerfil  }}" alt="profile"/>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="/configuracion/gestion">
@@ -128,7 +128,7 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
-          
+
           <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
           <div id="theme-settings" class="settings-panel">
             <i class="settings-close ti-close fas fa-screwdriver"></i>
@@ -301,10 +301,10 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="/login/usAdmin/">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
-                
+
               </a>
             </li>
             <li class="nav-item">
@@ -381,7 +381,7 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
                 </ul>
               </div>
-            </li>          
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
@@ -394,23 +394,27 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            
+
             <div class="row">
 
             </div>
             <div class="card text-center">
               <div class="card-header bg-light-blue">
                 <div class="profile-image-container position-relative d-inline-block">
-                  <img src="{% static 'img/perfil.png' %}" alt="Perfil" id="profile-img" class="rounded-circle shadow">
-                  <div class="change-image position-absolute bottom-0 end-0 bg-transparent rounded-circle" style="cursor: pointer; transform: translate(25%, 25%);">
-                      <i class="fas fa-camera"></i>
-                  </div>
+                  <form action="/infoCuenta/gestion" method="POST" class="contact-form form-validate" novalidate="novalidate" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <img src="{{ rutaImgPerfil }}" alt="Perfil" id="profile-img" class="rounded-circle shadow">    <br>
+                    <input class="fas fa-camera" type="file" id="archivo" name="archivo" onchange="this.nextElementSibling.innerText = this.files[0].name"> <br>
+                    <button type="submit">Actualizar</button>
+                  </form>
+
+
                 </div>
-                <h2>Juan Pérez</h2>
+                <h2>{{ usuario }}</h2>
               </div>
               <div class="card-body">
                 <div class="profile-details">
-                  <p><strong>Email:</strong> juan.perez@example.com</p>
+                  <p><strong>Email:</strong>  {{email}}</p>
                   <p><strong>Usuario desde:</strong> Enero 2020</p>
                   <p><strong>País:</strong> España</p>
                   <p><strong>Último inicio de sesión:</strong> 22 de marzo de 2024</p>
@@ -456,15 +460,15 @@
                       </div>
                   </div>
               </div>
-              
-                
-              </div>
-              
-            </div>
-            
 
-          </div>  
-          </div>       
+
+              </div>
+
+            </div>
+
+
+          </div>
+          </div>
         </div>
           </div>
         </div>
@@ -472,7 +476,7 @@
 
   </div>
 
-  
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5">
         <div class="container py-5">
@@ -522,7 +526,7 @@
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
-                        
+
                         Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
                     </div>
                     <div class="col-md-6 text-center text-md-end">

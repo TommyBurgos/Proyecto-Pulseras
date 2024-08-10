@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/vendor.bundle.base.css' %}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="{% static 'css/estiloAdmin/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/dataTables.bootstrap4.css' %}"> <!--Aqui añadire el scrol horizontal-->
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/themify-icons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">   
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
@@ -105,7 +105,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{% static 'img/perfil.png' %}" alt="profile"/>
+                <img src="{{ rutaImgPerfil }}" alt="profile"/>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="/configuracion/gestion">
@@ -132,7 +132,7 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
-          
+
           <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
           <div id="theme-settings" class="settings-panel">
             <i class="settings-close ti-close fas fa-screwdriver"></i>
@@ -305,10 +305,10 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="/login/usAdmin/">
+              <a class="nav-link" href="/login/usAdmin">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
-                
+
               </a>
             </li>
             <li class="nav-item">
@@ -385,9 +385,9 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
                 </ul>
               </div>
-            </li>          
+            </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/documentation/documentation.html">
+              <a class="nav-link" href="/login/infoLegal">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Información legal</span>
               </a>
@@ -403,20 +403,25 @@
                       <h3>Usuarios</h3>
                     </div>
                     <div class="row col-12" style="padding-left: 5%;">
-                      <div class="input-group">
-                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                          <span class="input-group-text" id="search">
-                            <i class="icon-search"></i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search">
-                    </div>
+                      <form method="GET">
+                        <div class="input-group">
+                          <input type="text"name="buscar"  class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search" value="{{ request.GET.buscar }}">
+                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <button class="input-group-text" id="search">
+                                <i class="icon-search"></i>
+                            </button>
+                          </div>
+                      </div>
+
+
+                      </form>
+
                     <div class="row col-12" style="padding-top: 2%; padding-left: 5%;">
 
-                      <div class="col-4">                        
-                        
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nuevo Usuario</button>                        
-                        
+                      <div class="col-4">
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nuevo Usuario</button>
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-xl">
                             <div class="modal-content">
@@ -439,14 +444,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                
+
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
                                                     <label class="required-field" for="idNumber">Número de Identificación</label>
                                                     <input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="Cédula o Pasaporte">
                                                 </div>
                                             </div>
-                
+
                                             <!--Primer y segundo nombre-->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
@@ -461,7 +466,7 @@
                                                     <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Segundo Nombre">
                                                 </div>
                                             </div>-->
-                
+
                                             <!-- Apellido Paterno y Apellido Materno -->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
@@ -475,7 +480,7 @@
                                                     <input type="text" class="form-control" id="secondLastName" name="secondLastName" placeholder="Apellido Materno">
                                                 </div>
                                             </div>-->
-                        
+
                                             <!-- Correo Electrónico y Género -->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
@@ -493,7 +498,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                
+
                                             <!-- Edad y Teléfono -->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
@@ -507,8 +512,8 @@
                                                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="+593">
                                                 </div>
                                             </div>
-                                        
-                                            Estado Civil y Rol de Usuario 
+
+                                            Estado Civil y Rol de Usuario
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
                                                     <label for="maritalStatus">Estado Civil</label>
@@ -529,18 +534,18 @@
                                                         <option value="3">Paciente</option>
                                                         <option value="4">Familiar</option>
                                                         <option value="5">Invitado</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>
-                
+
                                             <!-- Provincia y Ciudad -->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
                                                     <label for="province">Provincia</label>
                                                     <select class="form-control" id="province" name="province">
                                                         <option value="guayas">Guayas</option>
-                                                        <option value="pichincha">Pichincha</option>                      
+                                                        <option value="pichincha">Pichincha</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -550,11 +555,11 @@
                                                     <select class="form-control" id="city" name="city">
                                                         <option value="guayaquil">Guayaquil</option>
                                                         <option value="quito">Quito</option>
-                                                        
+
                                                     </select>
                                                 </div>
                                             </div>
-                
+
                                              <!-- Dirección -->
                                             <div class="col-sm-12 mb-4">
                                                 <div class="form-group">
@@ -562,14 +567,14 @@
                                                     <input type="text" class="form-control" id="address" name="address" placeholder="Dirección Completa">
                                                 </div>
                                             </div>
-                
+
                                             <div class="col-sm-12 mb-4">
                                                 <div class="form-group">
                                                     <label class="required-field" for="codPulsera">Codigo Pulsera</label>
                                                     <input type="text" class="form-control" id="codPulsera" name="codPulsera" placeholder="Código Pulsera">
                                                 </div>
                                             </div>
-                
+
                                             <!-- Contraseña y Repetir Contraseña (Ajustar IDs y Names) -->
                                             <div class="col-sm-6 mb-4">
                                                 <div class="form-group">
@@ -583,25 +588,25 @@
                                                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Repetir Contraseña">
                                                 </div>
                                             </div>
-                
+
                                             <!-- Botón de Registro -->
                                             <div class="col-sm-12 mb-4">
                                                 <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrarme</button>
                                             </div>
-                        
+
                                         </div>
                                     </form>
                                 </div>
-                              </div>                              
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div class="col-4">                                                                   
+                      <div class="col-4">
                         <a class="btn btn-primary" href="#" role="button"><i class="fas fa-screwdriver"></i>Configuración general</a>
                       </div>
-                      
+
                       <div class="col-4">
                         <div class="btn-group btn-primary">
                           <button type="button" class="btn btn-primary">Filtro</button>
@@ -618,34 +623,44 @@
                         </div>
                       </div>
                     </div>
-                </div>                               
-                <div class="row" style="padding: 5%;">
-                    <table class="table caption-top">
+                </div>
+                <div class="row" style="padding: 5%; overflow-x: scroll;">
+                    <table class="table caption-top scroll-horizontal" style="overflow-x: scroll;">
                         <caption>Lista de usuarios</caption>
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">idUsuario</th>
+                            <th scope="col">Id Usuario</th>
                             <th scope="col">Nombre de Usuario</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Ultimo Ingreso</th>
+                            <th scope="col">Fecha de registro</th>
+                            <th scope="col">ciudad</th>
+                            <th scope="col">direccion</th>
+                            <th scope="col" title="1:Administrador &#013; 2:Doctor&#013; 3:Paciente &#013; 4:Familiar">Rol</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Opciones</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          {% for user in usuarios %}                          
+                        <tbody style="overflow-x: scroll;">
+                          {% for user in usuarios %}
                           <tr>
                             <td>{{cont}}</td>
                             <td>{{user.username}}</td>
                             <td>{{user.first_name}} , {{user.last_name}}</td>
-                            <td>{{users.email}}</td>                            
+                            <td>{{user.email}}</td>
+                            <td>{{user.last_login}}</td>
+                            <td>{{user.date_joined}}</td>
+                            <td>{{user.ciudad}}</td>
+                            <td>{{user.direccion}}</td>
+                            <td>{{user.rol_id}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activoInactivo" style="background-color:#37A7FE; ">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch" style="background-color:#3788FF" id="flexSwitchCheckChecked" checked>
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
                                     </div>
-                                </button>        
+                                </button>
                             </td>
                             <td>
                               <div class="btn-group" role="group">
@@ -654,19 +669,19 @@
                                 </button>
                                   <ul class="dropdown-menu">
                                       <li>
-                                        
-                                        <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>                                            
-                                        
+
+                                        <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>
+
                                       </li>
                                       <li><a class="dropdown-item" href="#">Administrar</a></li>
                                       <li><a class="dropdown-item" href="#">Ver</a></li>
                                       <li><a class="dropdown-item" href="#">eliminar</a></li>
                                   </ul>
-                              </div> 
+                              </div>
 
                             </td>
                           </tr>
-                          {% endfor %}                                                      
+                          {% endfor %}
                                 <!-- Modal -->
                                 <div class="modal fade" id="activoInactivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -684,13 +699,13 @@
                                         </div>
                                     </div>
                                     </div>
-                                </div>                                                        
+                                </div>
                           </tr>
-                          
+
                         </tbody>
                       </table>
                 </div>
-                
+
 
             </div>
 
@@ -724,21 +739,21 @@
                   <option value="4">Alquilado</option>
                 </select>
 
-              </div>                                                                      
+              </div>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Tipo</label>
               <select name="opTipo" class="form-select form-control" aria-label="Default select example">
                 <option selected>Selecciona una opción</option>
                 <option value="1">Pulsera</option>
-                <option value="2">Anillo</option>                                      
+                <option value="2">Anillo</option>
               </select>
             </div>
-            <div>                                    
+            <div>
               <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
             </div>
           </form>
-        </div>                              
+        </div>
       </div>
     </div>
   </div>
