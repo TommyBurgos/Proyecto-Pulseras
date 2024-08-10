@@ -17,16 +17,23 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">   
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
   <style>
    .prescription-header {
-        background-color: #007bff;
-        color: white;
+        background-color: #b0bcd4;
+        color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -42,6 +49,15 @@
         text-align: right;
     }
 
+    input.medication-input {
+      border: transparent;
+    }
+    input.description-input {
+      border: transparent;
+    }
+    input.dose-input {
+      border: transparent;
+    }
     .medication-section {
         background-color: white;
         padding: 20px;
@@ -96,6 +112,20 @@
         color: white;
     }
 
+    @media print {
+
+    body * {
+        visibility: hidden;
+    }
+    #content-to-pdf, #content-to-pdf * {
+        visibility: visible;
+    }
+    #content-to-pdf {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
   </style>
 
 </head>
@@ -202,7 +232,7 @@
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
-        
+
         <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close fas fa-screwdriver"></i>
@@ -378,7 +408,7 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
-              
+
             </a>
           </li>
           <li class="nav-item">
@@ -456,7 +486,7 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
               </ul>
             </div>
-          </li>          
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/documentation/documentation.html">
               <i class="icon-paper menu-icon"></i>
@@ -467,10 +497,10 @@
       </nav>
       <!-- partial -->
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="content-to-pdf">
           <div class="row">
             <div class="prescription-header">
-              <img src="{% static 'img/logoVeris.png' %}" alt="Logo Veris" style="width: 50px; height: 50px;">
+              <img src="{% static 'img/logoVeris.png' %}" alt="Logo Veris" style="height: 100px; ">
               <div class="header-info">
                   <div class="hospital-name">Hospital Veris</div>
                   <div class="doctor-info">
@@ -480,16 +510,16 @@
                   <div class="address-phone">Dirección: Av. Principal #123 | Teléfono: 123456789</div>
                   <div class="date-patient">Fecha: 10 de Mayo de 2024 | Paciente: Juanito Pérez</div>
               </div>
-              <div class="actions">
+              <div class="actions no-print">
                   <button id="pdfBtn" onclick="generatePDF()" class="btn btn-primary">
                     <i class="fas fa-file-pdf"></i> PDF
                   </button>
-                <button id="printBtn" onclick="window.print()" class="btn btn-primary">
+                  <button id="printBtn" onclick="printSection('content-to-pdf')" class="btn btn-primary">
                     <i class="fas fa-print"></i> Imprimir
-                </button>
+                  </button>
               </div>
             </div>
-          
+
             <div class="medication-section">
                 <table id="medication-table">
                     <thead>
@@ -503,13 +533,13 @@
                         <!-- Aquí se agregarán las filas de medicamentos dinámicamente -->
                     </tbody>
                 </table>
-                <button id="addMedicationBtn" onclick="addMedicationRow()">+ Agregar Medicamento</button>
-                <div class="acciones-medicamentos">
-                  <button class="boton-guardar">Guardar</button>
+                <button id="addMedicationBtn" onclick="addMedicationRow()" class="no-print">+ Agregar Medicamento</button>
+                <div class="acciones-medicamentos no-print">
+                  <button class="boton-guardar" id="saveBtn">Guardar</button>
                   <button class="boton-eliminar">Eliminar</button>
                 </div>
             </div>
-          </div> 
+          </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -519,13 +549,13 @@
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
           </div>
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span> 
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span>
           </div>
-        </footer> 
+        </footer>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
-    </div>   
+    </div>
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
@@ -561,7 +591,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-  
+
+
   <script>
     // Lista de medicamentos para el autocompletado
     var medicamentos = [
@@ -578,15 +609,14 @@
         "Hidroclorotiazida"
     ];
 
-    //Inicializar el autocompletado
-    function initAutocomplete() {
-        var input = document.getElementById('medication-select');
-        new Awesomplete(input, {
-            list: medicamentos
+    // Función para inicializar Awesomplete
+    function initAutocomplete(element) {
+        new Awesomplete(element, {
+            list: medicamentos,
+            autoFirst: true
         });
     }
-
-    //Agregar una fila de medicamento
+    // Agregar una fila de medicamento
     function addMedicationRow() {
         var table = document.getElementById('medication-table-body');
         var newRow = table.insertRow();
@@ -595,18 +625,71 @@
         var descriptionCell = newRow.insertCell(1);
         var doseCell = newRow.insertCell(2);
 
-        medicationCell.innerHTML = '<input type="text" class="medication-input" placeholder="Medicamento" />';
-        descriptionCell.innerHTML = '<input type="text" class="description-input" placeholder="Descripción" />';
-        doseCell.innerHTML = '<input type="text" class="dose-input" placeholder="Dosis" />';
+        var medicationInput = document.createElement('input');
+        medicationInput.type = 'text';
+        medicationInput.className = 'medication-input';
+        medicationInput.placeholder = 'Medicamento';
+
+        var descriptionInput = document.createElement('input');
+        descriptionInput.type = 'text';
+        descriptionInput.className = 'description-input';
+        descriptionInput.placeholder = 'Descripción';
+
+        var doseInput = document.createElement('input');
+        doseInput.type = 'text';
+        doseInput.className = 'dose-input';
+        doseInput.placeholder = 'Dosis';
+
+        medicationCell.appendChild(medicationInput);
+        descriptionCell.appendChild(descriptionInput);
+        doseCell.appendChild(doseInput);
+
+        // Inicializar Awesomplete para el nuevo input
+        initAutocomplete(medicationInput);
     }
 
-    // Función para generar el PDF
-    function generatePDF() {
-        alert('Generando PDF...');
-    }
-
+    // Inicializar autocompletado para la primera fila (si existe)
     document.addEventListener('DOMContentLoaded', function() {
-        initAutocomplete();
+        var initialMedicationInputs = document.querySelectorAll('.medication-input');
+        initialMedicationInputs.forEach(function(input) {
+            initAutocomplete(input);
+        });
+    });
+
+    function generatePDF() {
+
+       const element = document.getElementById('content-to-pdf');
+
+       html2pdf(element, {
+          margin:       1,
+          filename:     'receta_medica.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+       });
+    }
+
+    function printSection(sectionId) {
+        // Mostrar solo la sección específica para impresión
+        document.getElementById(sectionId).style.visibility = 'visible';
+
+        // Llamar a la función de impresión del navegador
+        window.print();
+
+        // Restaurar la visibilidad después de imprimir
+        document.getElementById(sectionId).style.visibility = 'hidden';
+    }
+
+    // Agregar evento click para el botón de guardar
+    document.getElementById('saveBtn').addEventListener('click', function() {
+        // Aquí puedes agregar la lógica para guardar los datos en el servidor si es necesario
+
+        // Mostrar mensaje de éxito
+        Swal.fire({
+            icon: 'success',
+            title: 'Guardado exitosamente',
+            text: 'Los medicamentos han sido guardados.'
+        });
     });
 
   </script>

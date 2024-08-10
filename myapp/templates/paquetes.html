@@ -41,7 +41,7 @@
         }
 
         .btn-ver-mas {
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
             text-decoration: underline;
         }
 
@@ -60,17 +60,17 @@
 
         .form-select, .form-control {
             font-size: 1.1rem;
-            padding: .5rem .75rem; 
-            width: 100%; 
-            max-width: 250px; 
+            padding: .5rem .75rem;
+            width: 100%;
+            max-width: 250px;
         }
 
         .form-label {
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
         }
 
         .btn-primary {
-            font-size: 1.1rem; 
+            font-size: 1.1rem;
             padding: .5rem 1rem;
         }
 
@@ -87,11 +87,11 @@
                 max-width: none;
             }
             .row.g-3 > div:first-child, .row.g-3 > div:last-child {
-                margin-left: 0; 
+                margin-left: 0;
                 margin-right: 0;
             }
         }
-    
+
     </style>
 </head>
 
@@ -136,7 +136,7 @@
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">Filtrar</button>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>
@@ -151,13 +151,17 @@
             {% for paquete in paquetes %}
                 <div class="col">
                 <div class="card h-100 shadow-custom">
-                    <img src="{% static 'img/paquete' %}{{ paquete.id }}.jpg" class="card-img-top img-fluid" alt="{{ paquete.name }}">
+                    {% if paquete.imagenes.count > 0 %}
+                        <img src="{{ paquete.imagenes.all.0.imagen.url }}" class="card-img-top img-fluid" alt="{{ paquete.name }}">
+                    {% else %}
+                        <img src="{% static 'img/paquete2' %}.jpg" style= "object-fit: contain;" class="card-img-top img-fluid" alt="{{ paquete.name }}">
+                    {% endif %}
                     <div class="card-body text-center">
                     <h5 class="card-title">
                         <span class="package-title">{{ paquete.name }}</span>
                         <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
                     </h5>
-                    <p class="card-text price-text"> $ {{ paquete.valor }}</p>
+                    <p class="card-text price-text"> $ {{ paquete.valor }} /mes</p>
                     <p class="card-text">{{ paquete.descripcion }}</p>
                     <div class="d-flex justify-content-center flex-column align-items-center">
                         <a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete/{{ paquete.id }}">Ver más</a>
@@ -169,11 +173,11 @@
             {% endfor %}
             </div>
         </div>
-    </div>          
     </div>
     </div>
     </div>
-    
+    </div>
+
     <!-- Footer Start -->
     {% include 'footer.html' %}
     <!-- Footer End -->
@@ -199,7 +203,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function () {
           const favoriteButtons = document.querySelectorAll('.favorite-btn');
-      
+
           favoriteButtons.forEach(button => {
               button.addEventListener('click', function () {
                   const heartIcon = this.querySelector('.fa-heart');

@@ -7,8 +7,8 @@
 
 <body>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">  
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <!-- Navbar Start -->
     {% include 'navbarAzul.html' %}
@@ -78,14 +78,14 @@
             const seleccionCoP=document.getElementById('tipoIdentificacion')
             const idNumber = document.getElementById('idNumber');
             //const pasaporte = document.querySelector('pasaporte');
-    
+
             if (seleccionCoP.value === 'cedula') {
-                idNumber.type = 'number';                
+                idNumber.type = 'number';
             } else {
-                idNumber.type = 'text';                
+                idNumber.type = 'text';
             }
-            
-        }    
+
+        }
     </script>
 
 </body>

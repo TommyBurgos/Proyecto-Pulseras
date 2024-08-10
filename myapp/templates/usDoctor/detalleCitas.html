@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-      rel="stylesheet"
-    />
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:regular,bold">
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/feather.css' %}">
   <link href="{% static 'css/estiloAdmin/themify-icons.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{% static 'css/estiloAdmin/dataTables.bootstrap4.css' %}">
@@ -30,6 +25,99 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+  <!--CALENDARio-->
+  <script src="{% static 'js/lib/fullCalendar/index.global.js' %}"></script>
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var eventos = JSON.parse('{{ jsEventos|safe }}');
+      var today = new Date();
+      var currentMonth = today.toISOString().slice(0, 10);
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        },
+        initialDate: currentMonth,
+        locale: 'es',
+        navLinks: true, // can click day/week names to navigate views
+        businessHours: true, // display business hours
+        editable: true,
+        selectable: true,
+        events: eventos,
+        eventClick: function(info) {
+                    // Open the modal and populate it with event details
+                    $('#eventModal').modal('show');
+                    $('#modalEventTitle').text(info.event.title);
+                    $('#modalEventStart').text(info.event.start.toISOString());
+                    $('#modalEventEnd').text(info.event.end ? info.event.end.toISOString() : 'N/A');
+                }
+      });
+
+      calendar.render();
+    });
+
+  </script>
+
+
+
+  <style>
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+    .fc .fc-button {
+            background-color: #007bff; /* Color de fondo */
+            border-color: #007bff;     /* Color del borde */
+            color: black;              /* Color de la letra */
+        }
+
+    .fc .fc-button-primary:hover {
+        background-color: #0056b3; /* Color de fondo del botón activo al pasar el mouse */
+        border-color: #0056b3;     /* Color del borde del botón activo al pasar el mouse */
+    }
+
+        /* Personalizar el título del calendario */
+        .fc-toolbar-title {
+            color: #007bff;            /* Color de la letra del título */
+        }
+
+    #calendar {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .fc-daygrid-dot-event .fc-event-title{
+        color: rgb(0, 0, 0);
+    }
+    .fc-direction-ltr .fc-daygrid-event .fc-event-time{
+        color: rgb(120, 90, 253);
+    }
+    .modal-body p strong{
+        color: rgb(16, 16, 16);
+        margin: 10px;
+    }
+    .modal-body p span{
+        color: rgb(61, 135, 244);
+        margin: 10px;
+        padding: auto;
+        font-size: 1rem;
+    }
+    .modal .modal-dialog .modal-content .modal-body{
+        text-align: center;
+
+    }
+    .fc .fc-list-day-cushion, .fc .fc-list-table td{
+        color:black
+    }
+
+  </style>
+
 </head>
 <body>
   <div class="container-scroller">
@@ -105,7 +193,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{{ rutaImgPerfil }}" alt="profile"/>
+                <img src="{% static 'img/perfil.png' %}" alt="profile"/>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="/configuracion/gestion">
@@ -305,7 +393,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="/login/usAdmin">
+              <a class="nav-link" href="index.html">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
 
@@ -320,7 +408,7 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Gestionar permisos</a></li>
-                  <li class="nav-item"> <a class="nav-link"  href="/login/usAdmin/detalleUsuarios">Detalle Usuarios</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Detalle Usuarios</a></li>
                   <!--<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>-->
                 </ul>
               </div>
@@ -387,270 +475,167 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login/infoLegal">
+              <a class="nav-link" href="pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Información legal</span>
               </a>
             </li>
           </ul>
         </nav>
+
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-                <div class="row"style="padding-botton: 5%;">
-                    <div class="row col-12" style="padding-left: 5%;">
-                      <h3>Dispositivos</h3>
-                    </div>
-                    <div class="row col-12" style="padding-left: 5%;">
-                      <form method="GET">
-                        <div class="input-group">
-                          <input type="text"name="buscar"  class="form-control" id="navbar-search-input" placeholder="Código, Usuario, Estado" aria-label="search" aria-describedby="search" value="{{ request.GET.buscar }}">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <button class="input-group-text" id="search">
-                                <i class="icon-search"></i>
-                            </button>
-                          </div>
-                      </div>
-                      </form>
-                    <div class="row col-12" style="padding-top: 2%; padding-left: 5%;">
+                <div class="row">
 
-                      <div class="col-4">
+                      <div id='calendar'></div>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Registrar nueva pulsera</button>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                              <div class="modal-header bg-primary">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Registrar nuevo dispositivo</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-
-                              <!--Modal de registro nuevo dispositivo-->
-                              <div class="modal-body">
-                                <form action="/regitroDispositivo/" method="POST" class="contact-form form-validate" novalidate="novalidate">
-                                  {% csrf_token %}
-                                  <div class="mb-3 col-12 row">
-                                    <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Número de serie</label>
-                                      <input type="text" class="form-control" id="numSerie" name="numSerie" value="Phsdnjsd332" readonly>
-                                    </div>
-                                    <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Estado del dispositivo</label>
-                                      <select name="opEstado" class="form-select form-control" aria-label="Default select example">
-                                        <option selected>Selecciona una opción</option>
-                                        <option value="1">Disponible</option>
-                                        <option value="2">Comprado</option>
-                                        <option value="3">Fuera De Servicio</option>
-                                        <option value="4">Alquilado</option>
-                                      </select>
-
-                                    </div>
-                                  </div>
-                                  <div class="mb-3 col-12">
-                                      <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Versión</label>
-                                      <input type="text" class="form-control" id="numVersion" name="numVersion">
-                                      </div>
-                                      <div class="col-5">
-                                      <label for="recipient-name" class="col-form-label">Color del dispositivo</label>
-                                      <select name="opColor" class="form-select form-control" aria-label="Default select example">
-                                        <option selected>Selecciona una opción</option>
-                                        <option value="negro">Negro</option>
-                                        <option value="rosa">Rosa</option>
-                                        <option value="azul">Azul</option>
-                                        <option value="dorado">Dorado</option>
-                                      </select>
-                                      </div>
-
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Tipo</label>
-                                    <select name="opTipo" class="form-select form-control" aria-label="Default select example">
-                                      <option selected>Selecciona una opción</option>
-                                      <option value="1">Pulsera</option>
-                                      <option value="2">Anillo</option>
-                                    </select>
-                                  </div>
-                                  <div>
-                                    <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-4">
-                        <a class="btn btn-primary" href="#" role="button"><i class="fas fa-screwdriver"></i>Configuración general</a>
-                      </div>
-
-                      <div class="col-4">
-                        <div class="btn-group btn-primary">
-                          <button type="button" class="btn btn-primary">Filtro</button>
-                          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                            <span class="visually-hidden">Activos</span>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Inactivos</a></li>
-                            <li><a class="dropdown-item" href="#">Adquirido</a></li>
-                            <li><a class="dropdown-item" href="#">Por Comprar</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sin filtro</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
                 </div>
-                <div class="row" style="padding: 5%;overflow-x: scroll;">
-                    <table class="table caption-top scroll-horizontal" style="overflow-x: scroll;">
-                        <caption>Lista de dispositivos</caption>
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">idDispositivo</th>
-                            <th scope="col">Id Usuario asignado</th>
-                            <th scope="col">Nombre usuario asignado</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Versión</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Opciones</th>
-                          </tr>
-                        </thead>
-                        <tbody style="overflow-x: scroll;">
-                          {% for disp in dispositivos %}
-                          <tr>
-                            <td>{{cont}}</td>
-                            <td>{{disp.serie}}</td>
-                            <td>PEDRO </td>
-                            <td>Pablo</td>
-                            <td>{{disp.color}}</td>
-                            <td>{{disp.modelo}}</td>
-                            <td>{{disp.version}}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activoInactivo" style="background-color:#37A7FE; ">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" style="background-color:#3788FF" id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
-                                    </div>
-                                </button>
-                            </td>
-                            <td>
-                              <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="fas fa-pen"></i>
-                                </button>
-                                  <ul class="dropdown-menu">
-                                      <li>
-
-                                        <li><a class="dropdown-item" href="#"style="text-decoration: none; color: inherit;" data-toggle="modal" data-target="#modalEditarDatos">Editar datos</a></li>
-
-                                      </li>
-                                      <li><a class="dropdown-item" href="#">Administrar</a></li>
-                                      <li><a class="dropdown-item" href="#">Ver</a></li>
-                                      <li><a class="dropdown-item" href="#">eliminar</a></li>
-                                  </ul>
-                              </div>
-
-                            </td>
-                          </tr>
-                          {% endfor %}
-                                <!-- Modal -->
-                                <div class="modal fade" id="activoInactivo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        ...
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                          </tr>
-
-                        </tbody>
-                      </table>
-                </div>
-
 
             </div>
-
+          </div>
+        </div>
           </div>
         </div>
         </div>
-  </div>
-  <!-- Modales de opcion Li  -->
-  <div class="modal fade" id="modalEditarDatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header bg-primary">
-          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #fff;">Edición del dispositivo</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/regitroDispositivo/" method="POST" class="contact-form form-validate" novalidate="novalidate">
-            {% csrf_token %}
-            <div class="mb-3 col-12 row">
-              <div class="col-5">
-                <label for="recipient-name" class="col-form-label">Número de serie</label>
-                <input type="text" class="form-control" id="numSerie" name="numSerie" value="Phsdnjsd332" readonly>
-              </div>
-              <div class="col-5">
-                <label for="recipient-name" class="col-form-label">Estado del dispositivo</label>
-                <select name="opEstado" class="form-select form-control" aria-label="Default select example">
-                  <option selected>Selecciona una opción</option>
-                  <option value="1">Disponible</option>
-                  <option value="2">Asignado</option>
-                  <option value="3">Vendido</option>
-                  <option value="4">Alquilado</option>
-                </select>
 
-              </div>
+  </div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                    <a href="index.html" class="d-inline-block mb-3">
+                        <h1 class="text-white">AI<span class="text-primary">.</span>Tech</h1>
+                    </a>
+                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
+                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
+                        clita duo justo et tempor</p>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                    <h5 class="text-white mb-4">Get In Touch</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                    <h5 class="text-white mb-4">Popular Link</h5>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Career</a>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                    <h5 class="text-white mb-4">Our Services</h5>
+                    <a class="btn btn-link" href="">Robotic Automation</a>
+                    <a class="btn btn-link" href="">Machine learning</a>
+                    <a class="btn btn-link" href="">Predictive Analysis</a>
+                    <a class="btn btn-link" href="">Data Science</a>
+                    <a class="btn btn-link" href="">Robot Technology</a>
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Tipo</label>
-              <select name="opTipo" class="form-select form-control" aria-label="Default select example">
-                <option selected>Selecciona una opción</option>
-                <option value="1">Pulsera</option>
-                <option value="2">Anillo</option>
-              </select>
-            </div>
-            <div>
-              <button style="width: 50%; position: relative; left: 25%;" type="submit" name="submit" class="btn btn-primary">Registrar</button>
-            </div>
-          </form>
         </div>
-      </div>
+
+        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eventModalLabel">Detalles del Evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Asunto: </strong><span id="modalEventTitle"></span></p>
+                        <p><strong>Inicia: </strong><span id="modalEventStart"></span></p>
+                        <p><strong>Termina: </strong><span id="modalEventEnd"></span></p>
+                        <p><strong>Paciente: </strong><span > {{ nombre_paciente }} , {{ apellido_paciente }}</span></p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container wow fadeIn" data-wow-delay="0.1s">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+
+
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="{% static 'js/codigoAdmin/Chart.min.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/jquery.dataTables.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/dataTables.bootstrap4.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/dataTables.select.min.js' %}"></script>
+    <!-- Footer End -->
 
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="{% static 'js/codigoAdmin/off-canvas.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/hoverable-collapse.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/template.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/settings.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/todolist.js' %}"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/logicaAdmin.js' %}"></script>
-  <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
+
+    <!-- Back to Top -->
+    <!--<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>-->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{% static 'js/codigoAdmin/crearPaquete.js' %}"></script>
+
+    <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
+
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'js/codigoAdmin/Chart.min.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/dataTables.select.min.js' %}"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'js/codigoAdmin/off-canvas.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/template.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/settings.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <!--SCRIP PARA LA PLANTILLA DE COMMING SOON-->
+    <script type="text/javascript" src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.countdown.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/global.js' %}"></script>
+
 </body>
+
+</html>

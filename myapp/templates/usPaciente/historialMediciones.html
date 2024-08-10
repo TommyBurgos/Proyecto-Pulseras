@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/feather.css' %}">
+  <link href="{% static 'css/estiloAdmin/themify-icons.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'css/estiloAdmin/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- Navbar Start -->
+        {% include 'navSuperiorUs.html' %}
+        <!-- Navbar End -->
+        <div class="container-fluid page-body-wrapper">
+            {% include 'navIzquierdoUs.html' %}
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+
+                    </div>
+
+                </div>
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                    </div>
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span>
+                    </div>
+                  </footer>
+            </div>
+        </div>
+    </div>
+    <!-- plugins:js -->
+    <script src="{% static 'js/codigoAdmin/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'js/codigoAdmin/Chart.min.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'js/codigoAdmin/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/codigoAdmin/off-canvas.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/template.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/settings.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/codigoAdmin/dashboard.js' %}"></script>
+  <script src="{% static 'js/codigoAdmin/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+</html>

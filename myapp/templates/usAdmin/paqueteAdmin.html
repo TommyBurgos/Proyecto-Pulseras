@@ -18,15 +18,15 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/estiloAdmin/select.dataTables.min.css' %}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">  
-  <link href="{% static 'css/estiloAdmin/estiloPaquete.css' %}" rel="stylesheet">  
+  <link href="{% static 'css/estiloAdmin/estilo.css' %}" rel="stylesheet">
+  <link href="{% static 'css/estiloAdmin/estiloPaquete.css' %}" rel="stylesheet">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
   <script src="https://kit.fontawesome.com/62ea397d3a.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <style>
-    
+
     .card {
         transition: box-shadow .3s ease-in-out;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -70,17 +70,17 @@
 
     .form-select, .form-control {
         font-size: 1.1rem;
-        padding: .5rem .75rem; 
-        width: 100%; 
-        max-width: 250px; 
+        padding: .5rem .75rem;
+        width: 100%;
+        max-width: 250px;
     }
 
     .form-label {
-        font-size: 1.2rem; 
+        font-size: 1.2rem;
     }
 
     .btn-primary {
-        font-size: 1.1rem; 
+        font-size: 1.1rem;
         padding: .5rem 1rem;
     }
 
@@ -97,7 +97,7 @@
             max-width: none;
         }
         .row.g-3 > div:first-child, .row.g-3 > div:last-child {
-            margin-left: 0; 
+            margin-left: 0;
             margin-right: 0;
         }
     }
@@ -121,7 +121,7 @@
         left: 2px;
         background-color: red;
         color: white;
-        padding: 8px 15px; 
+        padding: 8px 15px;
         border-radius: 5px;
         transform: rotate(-45deg);
         font-size: 0.89rem;
@@ -232,7 +232,7 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
         <div class="theme-setting-wrapper">
-          
+
           <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
           <div id="theme-settings" class="settings-panel">
             <i class="settings-close ti-close fas fa-screwdriver"></i>
@@ -408,7 +408,7 @@
               <a class="nav-link" href="index.html">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
-                
+
               </a>
             </li>
             <li class="nav-item">
@@ -485,7 +485,7 @@
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
                 </ul>
               </div>
-            </li>          
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
@@ -537,118 +537,49 @@
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">Filtrar</button>
                                     </div>
-                                    
+
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            
+
+
                 <!--Lista de paquetes por filtrado-->
+                {% csrf_token %}
                 <div class="container-fluid bg-light mt-5 py-5">
-                  <div class="container py-5">
-                      <div class="row row-cols-1 row-cols-md-3 g-4">
-                          <!-- Paquete Básico -->
-                          <div class="col">
-                              <div class="card h-100 shadow-custom">
-                                  <img src="{% static 'img/paquete1.jpg' %}" class="card-img-top img-fluid" alt="Paquete Básico">
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title">
-                                          <span class="package-title">Paquete Básico</span>
-                                          <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                      </h5>
-                                      <p class="card-text price-text">$20 /mes</p>
-                                      <p class="card-text">Ideal para comenzar con monitoreo básico de salud.</p>
-                                      <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Paquete Avanzado -->
-                          <div class="col">
-                              <div class="card h-100 shadow-custom">
-                                  <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title">
-                                          <span class="package-title">Paquete Avanzado</span>
-                                          <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                      </h5>
-                                      <p class="card-text price-text">$40 /mes</p>
-                                      <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
-                                      <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Paquete Premium -->
-                          <div class="col">
-                              <div class="card h-100 shadow-custom">
-                                  <img src="{% static 'img/paquete3.jpg' %}" class="card-img-top img-fluid" alt="Paquete Premium">
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title">
-                                          <span class="package-title">Paquete Premium</span>
-                                          <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                      </h5>
-                                      <p class="card-text price-text">$60 /mes</p>
-                                      <p class="card-text">Todo incluido para el máximo cuidado de tu salud.</p>
-                                      <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Paquete Básico -->
-                          <div class="col">
+                    <div class="container py-5">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for paquete in paquetes %}
+                            <div class="col">
                             <div class="card h-100 shadow-custom">
-                                <img src="{% static 'img/paquete1.jpg' %}" class="card-img-top img-fluid" alt="Paquete Básico">
+                                {% if paquete.imagenes.count > 0 %}
+                                    <img src="{{ paquete.imagenes.all.0.imagen.url }}" class="card-img-top img-fluid" alt="{{ paquete.name }}">
+                                {% else %}
+                                    <img src="{% static 'img/paquete2' %}.jpg" style= "object-fit: contain;" class="card-img-top img-fluid" alt="{{ paquete.name }}">
+                                {% endif %}
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <span class="package-title">Paquete Básico</span>
-                                        <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                    </h5>
-                                    <p class="card-text price-text">$20 /mes</p>
-                                    <p class="card-text">Ideal para comenzar con monitoreo básico de salud.</p>
-                                    <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
+                                <h5 class="card-title">
+                                    <span class="package-title">{{ paquete.name }}</span>
+                                    <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
+                                </h5>
+                                <p class="card-text price-text"> $ {{ paquete.valor }} /mes</p>
+                                <p class="card-text">{{ paquete.descripcion }}</p>
+                                <div class="d-flex justify-content-center flex-column align-items-center">
+                                    <!--<a class="btn btn-sm btn-light mb-2 btn-action btn-ver-mas" href="/detallePaquete/{{ paquete.id }}">Ver más</a>-->
+                                    <a class="btn btn-primary btn-sm rounded-pill px-3 btn-action" href="/detallePaqAdmin/usAdmin/{{ paquete.id }}">Ver mas</a>
+                                </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Paquete Avanzado -->
-                        <div class="col">
-                          <div class="card h-100 shadow-custom">
-                              <img src="{% static 'img/paquete2.jpg' %}" class="card-img-top img-fluid" alt="Paquete Avanzado">
-                              <div class="card-body text-center">
-                                  <h5 class="card-title">
-                                      <span class="package-title">Paquete Avanzado</span>
-                                      <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                  </h5>
-                                  <p class="card-text price-text"><del>$40 /mes</del> <span class="discounted-price">-$30 /mes</span></p>
-                                  <p class="card-text">Monitoreo avanzado para una salud óptima.</p>
-                                  <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                  <div class="discount-badge">
-                                      <span>Oferta</span>
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-                      
-                        <!-- Paquete Premium -->
-                        <div class="col">
-                            <div class="card h-100 shadow-custom">
-                                <img src="{% static 'img/paquete3.jpg' %}" class="card-img-top img-fluid" alt="Paquete Premium">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <span class="package-title">Paquete Premium</span>
-                                        <button class="btn favorite-btn"><i class="fa fa-heart"></i></button>
-                                    </h5>
-                                    <p class="card-text price-text">$60 /mes</p>
-                                    <p class="card-text">Todo incluido para el máximo cuidado de tu salud.</p>
-                                    <a href="/detallePaqAdmin/usAdmin" class="btn btn-primary">Ver más</a>
-                                </div>
                             </div>
+                        {% endfor %}
                         </div>
-                          
-                      </div>
-                  </div>
+                    </div>
+                </div>
               </div>
-              
+
             </div>
-          </div>       
+          </div>
         </div>
      </div>
     </div>
@@ -702,7 +633,7 @@
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
-                        
+
                         Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
@@ -718,7 +649,7 @@
         </div>
     </div>
 
-    
+
     <!-- Footer End -->
 
 
@@ -764,7 +695,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function () {
           const favoriteButtons = document.querySelectorAll('.favorite-btn');
-      
+
           favoriteButtons.forEach(button => {
               button.addEventListener('click', function () {
                   const heartIcon = this.querySelector('.fa-heart');
@@ -773,7 +704,7 @@
           });
       });
       </script>
-      
+
 </body>
 
 </html>

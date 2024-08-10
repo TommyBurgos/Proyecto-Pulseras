@@ -36,447 +36,101 @@
   </style>
 </head>
 <body>
-  <div class="container-scroller">
-      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-dark">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo mr-5" href="/"><img src="{% static 'img/logo.png' %}" class="mr-2" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="/"><img src="{% static 'img/logo.png' %}" alt="logo"/></a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="icon-menu"></span>
-          </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Just now
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Private message
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      2 days ago
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="{% static 'img/perfil.png' %}" alt="profile"/>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="/configuracion/gestion">
-                  <i class="ti-settings text-primary"></i>
-                  Configuración
-                </a>
-                <a class="dropdown-item" href="/logout">
-                  <i class="ti-power-off text-primary"></i>
-                  Salir
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
-              </a>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="icon-menu"></span>
-          </button>
-        </div>
-      </nav>
+    <div class="container-scroller">
+      {% include 'usAdmin/navUS.html' %}
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_settings-panel.html -->
-        <div class="theme-setting-wrapper">
-
-          <div id="settings-trigger"><i class="ti-settings fas fa-screwdriver"></i></div>
-          <div id="theme-settings" class="settings-panel">
-            <i class="settings-close ti-close fas fa-screwdriver"></i>
-            <p class="settings-heading">SIDEBAR SKINS</p>
-            <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
-            <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
-            <p class="settings-heading mt-2">HEADER SKINS</p>
-            <div class="color-tiles mx-0 px-4">
-              <div class="tiles success"></div>
-              <div class="tiles warning"></div>
-              <div class="tiles danger"></div>
-              <div class="tiles info"></div>
-              <div class="tiles dark"></div>
-              <div class="tiles default"></div>
-            </div>
-          </div>
-        </div>
-        <div id="right-sidebar" class="settings-panel">
-          <i class="settings-close ti-close"></i>
-          <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="setting-content">
-            <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
-              <div class="add-items d-flex px-3 mb-0">
-                <form class="form w-100">
-                  <div class="form-group d-flex">
-                    <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                    <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
-                  </div>
-                </form>
-              </div>
-              <div class="list-wrapper px-3">
-                <ul class="d-flex flex-column-reverse todo-list">
-                  <li>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox">
-                        Team review meeting at 3.00 PM
-                      </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox">
-                        Prepare for presentation
-                      </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox">
-                        Resolve all the low priority tickets due today
-                      </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li class="completed">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox" checked>
-                        Schedule meeting for next week
-                      </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li class="completed">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox" checked>
-                        Project review
-                      </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                </ul>
-              </div>
-              <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
-              <div class="events pt-4 px-3">
-                <div class="wrapper d-flex mb-2">
-                  <i class="ti-control-record text-primary mr-2"></i>
-                  <span>Feb 11 2018</span>
-                </div>
-                <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
-                <p class="text-gray mb-0">The total number of sessions</p>
-              </div>
-              <div class="events pt-4 px-3">
-                <div class="wrapper d-flex mb-2">
-                  <i class="ti-control-record text-primary mr-2"></i>
-                  <span>Feb 7 2018</span>
-                </div>
-                <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
-                <p class="text-gray mb-0 ">Call Sarah Graves</p>
-              </div>
-            </div>
-            <!-- To do section tab ends -->
-            <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-              <div class="d-flex align-items-center justify-content-between border-bottom">
-                <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
-              </div>
-              <ul class="chat-list">
-                <li class="list active">
-                  <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
-                  <div class="info">
-                    <p>Thomas Douglas</p>
-                    <p>Available</p>
-                  </div>
-                  <small class="text-muted my-auto">19 min</small>
-                </li>
-                <li class="list">
-                  <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
-                  <div class="info">
-                    <div class="wrapper d-flex">
-                      <p>Catherine</p>
-                    </div>
-                    <p>Away</p>
-                  </div>
-                  <div class="badge badge-success badge-pill my-auto mx-2">4</div>
-                  <small class="text-muted my-auto">23 min</small>
-                </li>
-                <li class="list">
-                  <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
-                  <div class="info">
-                    <p>Daniel Russell</p>
-                    <p>Available</p>
-                  </div>
-                  <small class="text-muted my-auto">14 min</small>
-                </li>
-                <li class="list">
-                  <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
-                  <div class="info">
-                    <p>James Richardson</p>
-                    <p>Away</p>
-                  </div>
-                  <small class="text-muted my-auto">2 min</small>
-                </li>
-                <li class="list">
-                  <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
-                  <div class="info">
-                    <p>Madeline Kennedy</p>
-                    <p>Available</p>
-                  </div>
-                  <small class="text-muted my-auto">5 min</small>
-                </li>
-                <li class="list">
-                  <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
-                  <div class="info">
-                    <p>Sarah Graves</p>
-                    <p>Available</p>
-                  </div>
-                  <small class="text-muted my-auto">47 min</small>
-                </li>
-              </ul>
-            </div>
-            <!-- chat tab ends -->
-          </div>
-        </div>
+        <!-- partial:partials/settings-panel.html -->
+        {% include 'usAdmin/settings-panel.html' %}
         <!-- partial -->
-        <!-- partial:partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon "></i>
-                <span class="menu-title">Usuarios</span>
-                <!--<i class="fas fa-arrow-right"></i>-->
-              </a>
-              <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Gestionar permisos</a></li>
-                  <li class="nav-item"> <a class="nav-link"  href="/login/usAdmin/detalleUsuarios">Detalle Usuarios</a></li>
-                  <!--<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>-->
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                <i class="icon-columns menu-icon"></i>
-                <span class="menu-title">Dispositivos</span>
-                <!--<i class="menu-arrow"></i>-->
-              </a>
-              <div class="collapse" id="form-elements">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="/dispositivosAdmin/usAdmin">Agregar dispositivo</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                <i class="icon-bar-graph menu-icon"></i>
-                <span class="menu-title">Gestionar propietarios</span>
-                <!--<i class="menu-arrow"></i>-->
-              </a>
-              <div class="collapse" id="charts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <i class="icon-grid-2 menu-icon"></i>
-                <span class="menu-title">Planes</span>
-                <!--<i class="menu-arrow"></i>-->
-              </a>
-              <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="/crearPaquete/usAdmin">Crear planes</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                <i class="icon-contract menu-icon"></i>
-                <span class="menu-title">Ofertas</span>
-                <!--<i class="menu-arrow"></i>-->
-              </a>
-              <div class="collapse" id="icons">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">Detalle cuenta</span>
-                <!--<i class="menu-arrow"></i>-->
-              </a>
-              <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Editar información </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages/documentation/documentation.html">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Información legal</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
+        <!-- partial:partials/sidebar.html -->
+        {% include 'usAdmin/sidebarAdm.html' %}
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-                <div class="row">
-
-                </div>
-                <!-- Contenedor del formulario -->
-                <div class="form-container">
-                <form method="post" enctype="multipart/form-data">
+              <!-- Contenedor del formulario -->
+              <div class="form-container">
+                <form method="post" enctype="multipart/form-data" id="paqueteForm">
                   {% csrf_token %}
                   <div class="row">
                       <!-- Sección de carga de imágenes -->
                       <div class="col-md-6">
-                          <div class="mb-3">
-                              <!--<label for="packageImagesPreview" class="form-label"><strong>Vista Previa de Imágenes</strong></label>
-                              <div id="packageImagesPreview" class="image-preview mb-4">
-                                   Imágenes cargadas
-                              </div> -->
-                              <label class="form-label">Cargar Imágenes del Paquete</label>
+                            <div class="mb-3">
+                              <label class="form-label"><strong>Vista Previa de Imágenes</strong></label>
+                              <!--<div id="packageImagesPreview" class="image-preview mb-4">
+                                   <!--Imágenes cargadas
+                              </div>-->
                               <div id="imageUploadContainer" class="image-upload-container">
-                                  <!-- Botón para agregar nuevas cargas de imagen -->
-                                  <button type="button" id="addImageField" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Agregar Imagen</button>
+                                     <!-- Botón para agregar nuevas cargas de imagen -->
+                                     <button type="button" onclick="agregarImagen()" class="btn btn-outline-primary"><i class="fa fa-plus"></i> Agregar Imagen</button>
                               </div>
-                          </div>
+                            </div>
+                            <!--Carousel para mostrar las imágenes cargadas-->
+                            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner" id="carouselInner">
+                                    <!--Los items del carousel se agregarán aquí -->
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
                       </div>
-                      <!-- Carousel para mostrar las imágenes cargadas -->
-                      <!--<div id="imageCarousel" class="carousel slide" data-bs-ride="carousel"> -->
-                        <!--<div class="carousel-inner">-->
-                            <!-- Los items del carousel se agregarán aquí -->
-                        <!--</div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Siguiente</span>
-                        </button>
-                      </div>-->
 
                       <!-- Formulario de creación de paquete -->
                       <div class="col-md-6">
                               <div class="mb-3">
                                   <label for="packageName" class="form-label">Nombre del Paquete</label>
-                                  <input type="text" class="form-control" id="packageName" placeholder="Nombre del Paquete">
+                                   {{ form.name }}
+                                  <!--<input type="text" class="form-control" id="packageName" placeholder="Nombre del Paquete">-->
                               </div>
                               <div class="mb-3">
                                   <label for="packagePrice" class="form-label">Precio del Paquete (al mes)</label>
-                                  <input type="number" class="form-control" id="packagePrice" placeholder="Precio del Paquete">
+                                  {{ form.valor }}
+                                  <!--<input type="number" class="form-control" id="packagePrice" placeholder="Precio del Paquete">-->
                               </div>
                               <div class="mb-3">
                                   <label for="packageDescription" class="form-label">Descripción General</label>
-                                  <textarea class="form-control" id="packageDescription" rows="5" placeholder="Descripción General"></textarea>
+                                  {{ form.descripcion }}
+                                  <!--<textarea class="form-control" id="packageDescription" rows="5" placeholder="Descripción General"></textarea>-->
                               </div>
                               <div class="mb-3">
                                   <label for="packageDetails" class="form-label">Descripción Detallada</label>
-                                  <textarea class="form-control" id="packageDetails" rows="7" placeholder="Descripción Detallada"></textarea>
+                                  {{ form.descripcion_detallada }}
+                                  <!--<textarea class="form-control" id="packageDetails" rows="7" placeholder="Descripción Detallada"></textarea>-->
                               </div>
-                              <!--<div class="mb-3">
-                                  <label for="includedServicesContainer" class="form-label">Servicios Incluidos</label>
+                              <div class="mb-3">
+                                  <label for="id_servicios" class="form-label">Servicios Incluidos</label>
                                   <div id="includedServicesContainer">
-                                      <div class="input-group mb-3">
+                                      {% for servicio in form.servicios %}
+                                      <div class="form-check">
+                                        <!--{{ servicio }}-->
+                                        <label class="form-check-label">{{ servicio }}</label>
+                                      </div>
+                                      {% endfor %}
+                                      <!--<div class="input-group mb-3">
                                           <input type="text" class="form-control" placeholder="Servicio">
                                           <button class="btn btn-outline-secondary" type="button" onclick="agregarServicio()"><i class="fa fa-plus"></i> Agregar</button>
-                                      </div>
-                                  </div>-->
+                                      </div>-->
+                                  </div>
+                              </div>
+                            <!-- Botón de enviar formulario -->
+                              <div class="col-12">
+                                 <button type="submit" class="btn btn-primary" id="saveBtn">Crear Paquete</button>
+                              </div>
                       </div>
-                      <button type="submit" class="btn btn-primary">Crear Paquete</button>
-                  </div>
                   </div>
                 </form>
-                </div>
-
+              </div>
             </div>
           </div>
         </div>
-  </div>
+      </div>
+    </div>
 
 
     <!-- Footer Start -->
@@ -587,11 +241,11 @@
     <script src="js/main.js"></script>
     <script>
       function agregarImagen() {
-        const previewContainer = document.getElementById("packageImagesPreview");
+        //const previewContainer = document.getElementById("packageImagesPreview");
         const imageUploadContainer = document.getElementById("imageUploadContainer");
         const carouselInner = document.getElementById("carouselInner");
 
-        if (previewContainer.children.length >= 5) {
+        if (carouselInner.children.length >= 5) {
             alert("Solo se permiten hasta 5 imágenes.");
             return;
         }
@@ -599,31 +253,40 @@
         const input = document.createElement("input");
         input.type = "file";
         input.accept = "image/*";
+        input.name = "imagenes"; // Nombre del campo en el formulario Django
         input.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function () {
-                    const image = document.createElement("img");
-                    image.src = reader.result;
-                    previewContainer.appendChild(image);
+                    //const image = document.createElement("img");
+                    //image.src = reader.result;
+                    //image.classList.add("d-block", "w-100");
+                    //previewContainer.appendChild(image);
 
+                    // Agregar la imagen al carrusel
                     const carouselItem = document.createElement("div");
                     carouselItem.classList.add("carousel-item");
-                    if (previewContainer.children.length === 1) {
+                    if (carouselInner.children.length === 0) {
                         carouselItem.classList.add("active");
                     }
+
                     const carouselImage = document.createElement("img");
                     carouselImage.src = reader.result;
                     carouselImage.classList.add("d-block", "w-100");
                     carouselItem.appendChild(carouselImage);
+
                     carouselInner.appendChild(carouselItem);
                 };
                 reader.readAsDataURL(file);
             }
-      });
+        });
 
-    imageUploadContainer.appendChild(input);
+        // Agrega el input de archivo al formulario
+        imageUploadContainer.appendChild(input);
+
+        // Agrega el formulario a la solicitud de envío
+        //form.appendChild(input);
     }
 
 
@@ -656,6 +319,17 @@
       document.getElementById("addImageField").addEventListener("click", agregarImagen);
       document.getElementById("addServiceField").addEventListener("click", agregarServicio);
 
+        // Agregar evento click para el botón de guardar
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            // Aquí puedes agregar la lógica para guardar los datos en el servidor si es necesario
+
+            // Mostrar mensaje de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Guardado exitosamente',
+                text: 'El paquete ha sido registrado.'
+            });
+        });
 
     </script>
 

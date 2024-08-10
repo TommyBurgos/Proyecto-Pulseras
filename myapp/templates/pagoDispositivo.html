@@ -35,7 +35,7 @@
                         <tbody>
                             <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="service-item d-flex flex-column justify-content-center text-center rounded">
-                                    <img src="{% static 'img/pulseraDis.jpg' %}" alt="Imagen del dispositivo" class="img-fluid">
+                                    <img src="{{ dispositivo.imgD.url }}" alt="Imagen del dispositivo" class="img-contain" style="object-fit:contain;">
                                     <p>Alquiler: $10 /mes - Venta: $100</p>
                                     <div class="col-sm-12">
                                         <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Color: {{ dispositivo.color }}</h6>
